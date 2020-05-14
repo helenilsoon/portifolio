@@ -3,9 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title></title>
+  <title>Bem vindo | Portifolio helenilson</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="shortcut icon" href="img/favicon_site.png" type="image/png">
+  <meta name="author" content="Helenilson oliveira">
 </head>
 
 <body>
@@ -14,113 +16,147 @@
       <div class="container-menu">
         <div class="brand"><a href="home.html"> HELENILSON </a>
         </div>
-         <i class="icon-menu" onclick="aparecerMenu()"></i>
-        
-        <div id="menu"> 
-        
-        <spam class="close" onclick="fecharMenu()">x</spam>
-            <a href="index.html">Home</a>
-            <a href="sobre.html">Sobre</a>
-            <a href="contato.html">Contato</a>
-            <a href="curriculum">Curriculum</a>
+        <i class="icon-menu" onclick="aparecerMenu()"></i>
+
+        <div id="menu">
+
+          <spam class="close" onclick="fecharMenu()">x</spam>
+          <a href="index.html">Home</a>
+          <a href="sobre.html">Sobre</a>
+          <a href="contato.html">Contato</a>
+          <a href="curriculum">Curriculum</a>
         </div>
       </div>
     </nav>
   </header>
 
-    <div class="header">
-      <div class="boasVindas">
+  <div class="header">
+    <div class="boasVindas">
       <div class="titulo">Precisa construir um site? </div>
-        <a class="sim" href="#">Sim</a>
-        <a class="nao" href="#">Não</a>
-        </div>
-      <img src="img/code-cafe.jpg">
+      <a class="sim" href="#">Sim</a>
+
     </div>
-  
+    <img src="img/code-cafe.jpg">
+  </div>
+
   <div class="container">
-    
+
     <iframe id="iframe" name="pagina" src=""></iframe>
-         <h1> Principais projetos</h1>
+    <h1> Principais projetos</h1>
     <main id="janela">
       <!-- webuild-->
       <div class="container-img" id="container-img">
         <div class='borda-img'>
           <a href='#' onclick='projetoUrl("webuild");'>
-            <img src='img/icon_site.png'>
+            <img src='img/logo_webuild.png'>
           </a>
         </div>
         <div class="nome_projeto">
           <p>Webuild</p>
         </div>
       </div>
-      
+
       <!--amazoniaBela-->
-       <div class="container-img" id="container-img">
-         <div class='borda-img'>
-           <a href='#' onclick='projetoUrl("amazoniabela");'>
-             <img src='img/icon_site.png'>
-           </a>
-         </div>
-         <div class="nome_projeto">
-           <p>Amazonia Bela</p>
-         </div>
-       </div>
+      <div class="container-img" id="container-img">
+        <div class='borda-img'>
+          <a href='#' onclick='projetoUrl("amazoniabela");'>
+            <img src='img/Amazonia_bela.png'>
+          </a>
+        </div>
+        <div class="nome_projeto">
+          <p>Amazonia Bela</p>
+        </div>
+      </div>
+      <!--Dcperfumes-->
+      <div class="container-img" id="container-img">
+        <div class='borda-img'>
+          <a href='#' onclick='projetoUrl("dcperfumes");'>
+            <img src='img/Nova_LOGO_ Dcperfumes_160x160.p.jpg'>
+          </a>
+        </div>
+        <div class="nome_projeto">
+          <p>Dc perfumes</p>
+        </div>
+      </div>
+      <!--Portifolio-->
+      <div class="container-img" id="container-img">
+        <div class='borda-img'>
+          <a href='#' onclick='projetoUrl("portifolio");'>
+            <img src='img/portifolio.png'>
+          </a>
+        </div>
+        <div class="nome_projeto">
+          <p>Dc perfumes</p>
+        </div>
+      </div>
     </main>
-    
-    
+
+
   </div>
   <footer>
-    
+
   </footer>
   <div class="mandeinbrasil">
-     helenilson  &copy; 2020 made in Brazil 
-     <img src="img/brasil.svg">
+    helenilson &copy; 2020 made in Brazil
+    <img src="img/brasil.svg">
   </div>
+
   <script>
     var janela = document.getElementById("iframe");
     janela.style.visibility = "hidden";
-    var menu= document.getElementsByClassName("container-menu");
-   
-  
+    var menu = document.getElementsByClassName("container-menu");
+
+
     function projetoUrl(url) {
       var paraRec;
       var header = document.querySelector(".header");
-      header.style="display:none;";
-      
-      if(url=! "" && url=="amazoniabela"){
-         paraRec ="https://helenilsoon.github.io/AmazoniaBela/";
-      }else{
-         paraRec="http://webuild.cf";
+      header.style = "display:none;";
+
+      switch (url) {
+        case 'amazoniabela':
+          paraRec = "https://helenilsoon.github.io/AmazoniaBela/";
+          break;
+        case 'webuild':
+          paraRec = "http://webuild.cf";
+          break;
+        case 'dcperfumes':
+          paraRec = "http://dcperfumes.com";
+          break;
+        default:
+          paraRec = "file:///var/www/html/PROJETOS/Projeto_Portifolio/index.html";
+          break;
+
       }
-      
-        window.open(paraRec, "pagina");
-      
-      janela.style="visibility :visible;";
-        
-           
+
+
+      window.open(paraRec, "pagina");
+
+      janela.style = "visibility :visible;";
+
+
     }
     var media = window.matchMedia("(max-width:600px)");
     var iconClose = document.querySelector(".close");
-    
 
-    function aparecerMenu(){
-     var aparM= document.getElementById("menu");
-      aparM.style="visibility:visible;";      
-      if(media.matches){
-        iconClose.style="visibility:visible;";
+
+    function aparecerMenu() {
+      var aparM = document.getElementById("menu");
+      aparM.style = "visibility:visible;";
+      if (media.matches) {
+        iconClose.style = "visibility:visible;";
       }
     }
-    
-     
-    function fecharMenu(){
-      
+
+
+    function fecharMenu() {
+
       var closeM = document.getElementById("menu");
-       closeM.style="visibility:hidden;";
-       iconClose.style="visibility:hidden;";
+      closeM.style = "visibility:hidden;";
+      iconClose.style = "visibility:hidden;";
 
     }
-    
-    
+
+
   </script>
 </body>
 
