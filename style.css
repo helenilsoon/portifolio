@@ -105,21 +105,44 @@ iframe{
   
 }
 .header{
+  background-image:url('/img/code-cafe.jpg');
+  background-size: 100%; 
   width: 100%;
   height: auto;
   overflow: hidden;
-  height: 50vh;
+  height: 200px;/* propriedade que muda na pagina home pra outra paginas*/
   
+}
+.header-home{
+  background-image:url('/img/code-cafe.jpg');
+  background-size: 100%; 
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  height:350px; /* propriedade que muda na pagina home pra outra paginas*/
 }
 .header img{
   width: 100%;
 }
-.boasVindas{
-  position: absolute;
-  left: 50%;
-  top: 30% ;
-  transform: translateX(-50%); 
+.header-chamada{
+  
+  display: flex;
+  justify-content: center;
+  align-items:   center;
   height: 200px;
+  
+
+}
+
+.header-chamada-home{
+  display: flex;
+  justify-content: center;
+  align-items:   center;
+  height: 350px;
+  
+}
+.boasVindas{  
+ 
   text-align: center;
   
   
@@ -198,7 +221,13 @@ main {
   flex-wrap: wrap;
   
 }
-
+h2{
+  color:#fff;
+}
+main p{
+  color:#fff;
+  text-align: left;
+}
 /* 
 *   Container da imagem
 */
@@ -274,6 +303,30 @@ footer{
   width: 2%;
   padding-left: 15px;
 }
+
+/* fomularios*/
+
+
+form {
+  
+  color:#fff;
+  margin: 10px 0px;
+
+}
+
+form label{
+  font-size: 12pt;
+}
+
+form input{
+  border:none;
+  border-radius: 5px;
+  height:25px;
+  width: 30%;
+}
+form textarea{
+  margin: 10px 0;
+}
 @media screen and (max-width: 600px){ 
   #menu{
     visibility: hidden;
@@ -314,7 +367,7 @@ footer{
  
    /*
    *  Container da imagem
-  */
+  
   .container-img {
     margin: 5px;
    

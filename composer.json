@@ -1,0 +1,30 @@
+{
+
+	"name":"helenilsoon/portifolio",
+	"authors":[
+		{		
+
+			"name":"helenilson oliveira",
+			"email": "Helenilson@gmail.com"
+		}
+	],
+	"require":{
+		"rain/raintpl":">=3.0.0",
+		"slim/slim": "^4.0",
+		"nyholm/psr7": "^1.3",
+		"slim/http": "^1.1",
+		"slim/psr7": "^1.2",
+		"nyholm/psr7-server": "^1.0",
+		"guzzlehttp/psr7": "^1.7",
+		"http-interop/http-factory-guzzle": "^1.0",
+		"laminas/laminas-diactoros": "^2.4"
+	},
+	"autoload":{
+		"psr-4":{
+			"app\\":"app",
+			
+		}
+		
+	}
+
+}
