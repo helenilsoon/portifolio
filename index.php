@@ -7,6 +7,10 @@ require __DIR__ . '/vendor/autoload.php';
 
 use Slim\Factory\AppFactory;
 use app\classes\Page;
+use app\classes\PageAdmin;
+use app\classes\Site;
+use app\controllers\MailController;
+
 
 $app = AppFactory::create();
 
@@ -15,7 +19,12 @@ $app->get("/", function($request, $response){
 
 	$page = new Page();
 
-	$page->setTpl("index");
+	$listaAllSites = Site::loadAllSites();
+
+
+	$page->setTpl("index", array(
+		"sites" => $listaAllSites
+	));
 
 	return $response;
 });
@@ -29,7 +38,7 @@ $app->get("/sobre", function($request, $response){
 
 	return $response;
 
-	return $response;
+	
 });
 
 // contato
@@ -41,7 +50,35 @@ $app->get("/contato", function($request, $response){
 
 	return $response;
 
+	
+});
+$app->post("/contato", function($request, $response){
+
+	$mail = new MailController($_POST);
+	
+
+	$page = new Page();
+
+	$page->setTpl("contato");
+
 	return $response;
+
+	
+});
+
+// Admin
+$app->get("/admin", function($request, $response){
+
+	$page = new PageAdmin();
+	$pasta = $_SERVER['DOCUMENT_ROOT'];
+
+
+	
+	$page->setTpl("index", array('url' => $pasta ));
+
+	return $response;
+
+	
 });
 
 $app->run();

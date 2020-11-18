@@ -2,63 +2,33 @@
      <div class="header-chamada-home">
         <div class="boasVindas">
         <div class="titulo">Precisa construir um site? </div>
-        <a class="sim" href="#">Sim</a>
+        <a class="sim" href="/contato">Sim</a>
 
       </div>
     </div>
    
-  </div><!--end cabeçalho do body-->
+</div><!--end cabeçalho do body-->
 
-  <div class="container"><!--Main-->
+  <div class="container"><!--container-->
     <iframe id="iframe" name="pagina" src=""></iframe>
     <h1> Principais projetos</h1>
-    <main id="janela">
+    <main id="janela"><!--main-->
       <!-- webuild-->
-      <div class="container-img" id="container-img">
-        <div class='borda-img'>
-          <a href='#' onclick='projetoUrl("webuild");'>
-            <img src='img/logo_webuild.png'>
-          </a>
-        </div>
-        <div class="nome_projeto">
-          <p>Webuild</p>
-        </div>
-      </div>
 
-      <!--amazoniaBela-->
+      {loop="$sites"}
+      <!--{$value.nome}-->
       <div class="container-img" id="container-img">
         <div class='borda-img'>
-          <a href='#' onclick='projetoUrl("amazoniabela");'>
-            <img src='img/Amazonia_bela.png'>
+          <a href='{$value.url}' >
+            <img src='img/{$value.icon}'>
           </a>
         </div>
         <div class="nome_projeto">
-          <p>Amazonia Bela</p>
+          <p>{$value.nome}</p>
         </div>
       </div>
-      <!--Dcperfumes-->
-      <div class="container-img" id="container-img">
-        <div class='borda-img'>
-          <a href='#' onclick='projetoUrl("dcperfumes");'>
-            <img src='img/Nova_LOGO_ Dcperfumes_160x160.p.jpg'>
-          </a>
-        </div>
-        <div class="nome_projeto">
-          <p>Dc perfumes</p>
-        </div>
-      </div>
-      <!--Portifolio-->
-      <div class="container-img" id="container-img">
-        <div class='borda-img'>
-          <a href='#' onclick='projetoUrl("portifolio");'>
-            <img src='img/portifolio.png'>
-          </a>
-        </div>
-        <div class="nome_projeto">
-          <p>Dc perfumes</p>
-        </div>
-      </div>
-    </main>
+      {/loop}
 
-
-  </div><!--end Main-->
+     
+    </main><!--end main-->
+  </div><!--end container-->
