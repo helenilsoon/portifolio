@@ -7,12 +7,12 @@
       </div>
     </div>
    
-  </div><!--end cabeçalho do body-->
+</div><!--end cabeçalho do body-->
 
-  <div class="container"><!--Main-->
+  <div class="container"><!--container-->
     <iframe id="iframe" name="pagina" src=""></iframe>
     <h1> Principais projetos</h1>
-    <main id="janela">
+    <main id="janela"><!--main-->
       <!-- webuild-->
 
       <?php $counter1=-1;  if( isset($sites) && ( is_array($sites) || $sites instanceof Traversable ) && sizeof($sites) ) foreach( $sites as $key1 => $value1 ){ $counter1++; ?>
@@ -32,7 +32,5 @@
 
 
      
-    </main>
-
-
-  </div><!--end Main-->
+    </main><!--end main-->
+  </div><!--end container-->

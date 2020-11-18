@@ -309,25 +309,100 @@ footer{
 
 
 form {
-  
-  color:#fff;
-  margin: 10px 0px;
+    margin: 10px 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
 
 }
 
 form label{
-  font-size: 12pt;
+  font-size: 13pt;
 }
 
 form input{
   border:none;
+  border: 1px solid #ccc;
   border-radius: 5px;
   height:25px;
-  width: 30%;
+  width: 100%;
+  box-shadow: 0 1px 1px #ccc;
+  padding: 5px;
+  font-size: 13pt;
 }
 form textarea{
   margin: 10px 0;
+   width: 80%;
+   padding: 5px;
+   height: auto;
+   box-shadow: 0 1px 4px  #ccc;
 }
+
+/*Formulario de contato*/
+
+.header-form{
+  background: var(--bg-gradiente);
+  border-radius:  20px  20px 0 0  ;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items:   center;
+  box-shadow: 0 1px 2px  #ccc;
+
+}
+.form-contato{
+  
+  margin: 0 auto;
+  max-width: 600px;
+  width:90%;
+  border-radius: 20px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px  #000;
+}
+
+.msg-sucess, .msg-erro{
+  padding: 10px;
+  color:#fff;
+  margin:10px 0;
+}
+
+.msg-sucess{
+  background-color:#27ae60;
+}
+
+.msg-erro{
+  background-color: #e74c3c;
+ 
+}
+.form-campo{
+  
+  margin:5px 20px;
+  width: 70%;
+}
+.form_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:20px 10px 50px;
+   width: 90%;
+  
+}
+.form_btn>input{
+  width: 50%;
+  height: 40px;
+  background-color: #27ae60;
+  color:#fff;
+  font-size: 13pt;
+  box-shadow: 0 1px 5px  #ccc;
+
+}
+.form_btn>input:hover{
+  background-color: #2ecc71; 
+}
+
+
 @media screen and (max-width: 600px){ 
   #menu{
     visibility: hidden;

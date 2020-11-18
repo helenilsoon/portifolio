@@ -63,9 +63,12 @@ class Mail
 		    $mail->Subject = 'Orçamento';
 		    $mail->Body    = $html;
 		    $mail->send();
-		    echo 'Message has been sent';
+		    
+		    $_SESSION['MSG']['retornoEmail']="Mensagem enviada com sucesso em breve entraremos em contato.";
+		   
 		} catch (Exception $e) {
-		    echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+
+		    $_SESSION['MSG']['retornoEmailErro'] ="Mensagem não enviada. Error: {$mail->ErrorInfo}";
 		}
 
 	}

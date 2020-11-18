@@ -54,14 +54,20 @@ $app->get("/contato", function($request, $response){
 });
 $app->post("/contato", function($request, $response){
 
+	session_start();
+	
 	$mail = new MailController($_POST);
 	
+	$data= $_SESSION['MSG'];
 
 	$page = new Page();
 
-	$page->setTpl("contato");
+	$page->setTpl("contato",$data);
+
+	unset($_SESSION['MSG']);
 
 	return $response;
+
 
 	
 });
