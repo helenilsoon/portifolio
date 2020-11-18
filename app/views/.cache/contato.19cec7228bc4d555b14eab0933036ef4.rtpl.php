@@ -16,27 +16,64 @@
     <h1> Contate-nós</h1>
     <!--<main id="janela">-->
 
-    	<div class="formulario">
-		
-	</div>
+  <div class="form-contato">	
+      <div class="header-form">
+        <h2>Faça seu orçamento sem compromisso</h2>
+      </div>
       
-      <h2>Faça seu orçamento sem compromisso</h2><br>
+
       <form action="/contato" method="POST" >
-      	<label for="name">Nome:</label><br>
-      	<input type="text" id="name" name="name"><br>
+
+          <?php if( isset($retornoEmail) ){ ?>
+
+                    <div class="msg-sucess"><?php echo htmlspecialchars( $retornoEmail, ENT_COMPAT, 'UTF-8', FALSE ); ?>  </div>          
+                <?php } ?>
+
+              
+         <?php if( isset($retornoEmailErro) ){ ?>
+
+                    <div class="msg-erro"> <?php echo htmlspecialchars( $retornoEmailErro, ENT_COMPAT, 'UTF-8', FALSE ); ?> </div>
+             
+
+
+                <?php } ?>
+
+
+          
+          <div class="form-campo">
+
+              <label for="name">Nome:</label><br>
+              <input type="text" id="name" name="name" placeholder="Nome" required>
+            
+          </div>
+          <div class="form-campo">
+
+                <label for="email">Email p/ contato:</label >  <br>   
+                <input type="email" id="email" name="email" placeholder="mail@exemplo.com" required>
+
+          </div>
+          <div class="form-campo">
+               <label for="whatsApp">whatsApp p/ contato:</label>  <br>   
+               <input type="whatsApp" id="whatsApp" name="whatsApp"placeholder="somente número" required>
+
+          </div>
       	
-      	<label for="email">Email p/ contato:</label><br>      	
-      	<input type="email" id="email" name="email"><br>
+      
+         
+            <label for="">O que deseja:</label><br>
+            <textarea rows="10" name="descrition" placeholder="Faça uma breve descrição do site que voçê deseja" required></textarea>
 
-		<label for="whatsApp">whatsApp p/ contato:</label><br>      	
-      	<input type="whatsApp" id="whatsApp" name="whatsApp"><br>
+        
+      	
 
+		   
 
-      	<label for="">Faça uma breve descrição do site que voçê deseja</label><br>
-      	<textarea cols="40" rows="5" name="descrition"></textarea><br>
-      	<input type="submit" name="btn_enviar"value="Enviar"><br>
+      	 <div class="form_btn">
+            <input type="submit" name="btn_enviar"value="Enviar">
+         </div>
+      	
       </form>
-
+  </div>
 
    <!-- </main>-->
 

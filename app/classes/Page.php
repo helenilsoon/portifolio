@@ -29,6 +29,7 @@ class Page
 
 	public function __construct($opts= array(), $tpl_dir = "/views/site/")
 	{
+
 		$this->options = array_merge($this->defaults , $opts);
 		$this->options['data']= array(
 			"url" => $_SERVER['DOCUMENT_ROOT'],
@@ -41,7 +42,7 @@ class Page
 		$config = array(
 			"tpl_dir"  => $pasta . $tpl_dir,
 			"cache_dir"=> $pasta . "/views/.cache/",
-			"debug"    => true
+			"debug"    => false
 		);
 
 
