@@ -99,7 +99,7 @@ final class CallableResolver implements AdvancedCallableResolverInterface
         }
         if (is_string($toResolve)) {
             [$instance, $method] = $this->resolveSlimNotation($toResolve);
-            if ($predicate($instance) && $method === null) {
+            if ($method === null && $predicate($instance)) {
                 $method = $defaultMethod;
             }
             $resolved = [$instance, $method ?? '__invoke'];
@@ -133,7 +133,7 @@ final class CallableResolver implements AdvancedCallableResolverInterface
      *
      * @throws RuntimeException
      *
-     * @return array [Instance, Method Name]
+     * @return array<object|string|null> [Instance, Method Name]
      */
     private function resolveSlimNotation(string $toResolve): array
     {

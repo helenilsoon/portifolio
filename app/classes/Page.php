@@ -22,19 +22,26 @@ class Page
 	private $tpl;
 	private $options=[];
 	private $defaults = [
-		"data" => []
+		"data"   => [],
+		"header" => true,
+		"footer" => true
 	];
 
-	public function __construct($opts= array())
+	public function __construct($opts= array(), $tpl_dir = "/views/site/")
 	{
 		$this->options = array_merge($this->defaults , $opts);
+		$this->options['data']= array(
+			"url" => $_SERVER['DOCUMENT_ROOT'],
+			"site"=> $_SERVER['HTTP_HOST']
+		);
+		 
+		$pasta = $_SERVER['DOCUMENT_ROOT']."/app";
 
-		$pasta = $_SERVER['DOCUMENT_ROOT'];
-
+		
 		$config = array(
-			"tpl_dir"  => $pasta . "/app/views/site/",
-			"cache_dir"=> $pasta . "/app/views/cache/site/",
-			"debug"    => false
+			"tpl_dir"  => $pasta . $tpl_dir,
+			"cache_dir"=> $pasta . "/views/.cache/",
+			"debug"    => true
 		);
 
 
@@ -46,7 +53,7 @@ class Page
 
 		$this->setData($this->options['data']);
 		//carregando a pagina header
-		$this->tpl->draw("header");				
+		if($this->options['header'] != false) $this->tpl->draw("header");				
 	}
 
 	//carrega o conteudo da pagina
@@ -63,6 +70,7 @@ class Page
 	{
 		foreach ($data as $key => $value) {
 				$this->tpl->assign($key,$value);
+				
 			}
 
 	}	
@@ -70,7 +78,7 @@ class Page
 	// carreando a pagina footer
 	public function __destruct()
 	{
-		$this->tpl->draw("footer");
+		if($this->options['footer'] != false) $this->tpl->draw("footer");
 	}
 
 
