@@ -33,7 +33,8 @@ class Page
 		$this->options = array_merge($this->defaults , $opts);
 		$this->options['data']= array(
 			"url" => $_SERVER['DOCUMENT_ROOT'],
-			"site"=> $_SERVER['HTTP_HOST']
+			"site"=> $_SERVER['HTTP_HOST'],
+			
 		);
 		 
 		$pasta = $_SERVER['DOCUMENT_ROOT']."/app";
@@ -62,6 +63,8 @@ class Page
 	public function setTpl($name, $data = array(), $returnHTML = false)
 	{
 		$this->setData($data);
+
+	
 
 		return $this->tpl->draw($name,$returnHTML);
 	}

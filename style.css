@@ -81,12 +81,13 @@ header nav a:hover {
   
 }
 
-.container {
+.container{
   margin: 10px auto;
   width: 100%;
   max-width: 1024px;
  
 }
+
 iframe{
   position: absolute;
   border: none;
@@ -103,6 +104,13 @@ iframe{
   color: #fff;
   border-bottom: 1px solid #fff;
   
+}
+.container a{
+  color: #fff;
+  text-decoration: none;
+}.container a:hover{
+  color: #f7f400;
+  text-decoration: none;
 }
 .header{
   background-image:url('/img/code-cafe.jpg');
@@ -402,6 +410,23 @@ form textarea{
   background-color: #2ecc71; 
 }
 
+
+.container-blog{
+    background-color: #fff;
+    padding: 20px;
+}
+.container-blog a{
+
+  text-decoration: none;
+  color:#000;
+
+}
+.container-blog a:hover{
+
+  text-decoration: underline;
+  color:#880a53;
+
+}
 
 @media screen and (max-width: 600px){ 
   #menu{

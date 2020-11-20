@@ -1,0 +1,247 @@
+<div class="header"><!--cabeçalho do body-->
+     <div class="header-chamada">
+        <div class="boasVindas">
+           <div class="titulo">blog</div>    
+
+      </div>
+     </div>
+  
+</div><!--end cabeçalho do body-->
+
+
+<div class="container"><!--Main-->
+
+	
+    
+    <h1> Blog</h1>
+    <!--<main id="janela">-->
+    <div class="container-blog">
+
+    	<h2 style="color:#000;">Aprenda de vez a usar o mod_rewrite do Apache</h2><br>    	
+    	<hr>
+    	<br>
+    	<p>
+    	O mod_rewrite do Apache é um módulo que trabalha com reescrita de URLs. Ele trabalha com expressões regulares, que são muito poderosas. Se você não conhece expressões regulares, a DevsChannel tem uma série de tutoriais de expressões regulares muito boa.</p>
+<p>
+Muita gente usa o mod_rewrite sem de fato entender como ele funciona, sem saber como criar suas próprias regras e condições de reescrita. Devido à necessidades pontuais e à falta de tempo, muitos acabam apenas dando o famoso Ctrl + C / Ctrl + V, sem sequer entender a sintaxe do código copiado.</p>
+<p>
+O objetivo desse post é explicar como o mod_rewrite funciona, pra que você consiga fazer suas próprias reescritas de URL e redirecionamentos. Esse post é também um complemento ao post de introdução ao .htaccess.</p>
+<p>
+O mod_rewrite usa o PCRE (Perl Compatible Regular Expressions), que é muito popular, compatível com a sintaxe do Perl, e é usada no PHP e em muitas outras tecnologias.</p>
+<p>
+A reescrita de URLs no mod_rewrite se baseia em dois conceitos principais: regras e condições de reescrita. As condições precisam ser cumpridas para que uma regra de reescrita seja aplicada a uma URL. Não há limites no número de regras que podem ser usadas nem no número de condições.</p>
+<p>
+Para usar o mod_rewrite no .htaccess, você precisa usar as diretivas RewriteEngine On e Options +FollowSymlinks. Exemplo: o .htaccess abaixo redireciona uma request de um domínio sem o www para um domínio com o www:</p><br>
+<pre>
+    Options +FollowSymlinks
+    RewriteEngine On
+    RewriteCond % ^seusite.com [NC]
+    RewriteRule ^(.*) https://www.seusite.com/$1 [NC,R=301]
+</pre>
+
+Regras de reescrita
+
+As Regras de reescrita (Rewrite rules) consistem de 3 partes: pattern (padrão), substituição e flags. O pattern define quais URLs devem ser afetadas pela rule. A substituição define pra onde as requests que casarem com o pattern serão enviadas.
+
+As flags são opcionais. Quando estão presentes, elas são especificadas entre colchetes. Algumas flags podem ter valor e outras não. Quando mais de uma flag é especificada, deve-se usar a vírgula para separar as flags.
+
+A regra de reescrita sempre compara a URL atual, e não a URL da request inicial. Ou seja, em um .htaccess com duas regras de reescrita, se a primeira reescrever a URL, mudando-a de x pra y, a segunda regra de reescrita vai trabalhar com a URL y, e não com a x. Da mesma forma, se a segunda regra transformar a URL y em z, e houver uma terceira regra, ela vai trabalhar com a URL z.
+
+Veja um exemplo de uma regra de reescrita:
+
+RewriteRule blog-antigo$ blog-novo [L]
+
+Nessa regra, o pattern é o blog-antigo$, a substituição é o blog-novo, e a parte das flags é [L]. Os elementos da regra sempre são informados nessa ordem. Agora, vou explicar em mais detalhes cada uma das partes que compõem a regra de reescrita, começando pelo pattern.
+Pattern
+
+O pattern é uma expressão regular que é comparada com o path da request relativa ao diretório onde o .htaccess é inserido. Ou seja: se o .htaccess for inserido no diretório blog do diretório raiz do site, as regras de reescrita só vão trabalhar com URLs referentes a recursos desse diretório, e não conseguem fazer verificações com diretórios de níveis superiores nem com outros diretórios que não sejam o próprio blog nem façam parte dele.
+
+Além disso, você não consegue trabalhar com o hostname no pattern, mesmo que você coloque o .htaccess no diretório raiz. Se você precisar fazer algum tipo de verificação com o hostname, use condições.
+
+Veja abaixo alguns exemplos de patterns:
+
+    blog$: casa com URLs cujo path termine com blog, tais como blog ou meu-blog. O $ é uma âncora que casa com o fim da string, que no caso é o path da URL relativo ao diretório do .htaccess.
+    blog/[a-zA-Z]: casa com paths que contenham blog/ seguido por uma letra minúscula ou maiúscula. Esse trecho pode estar em qualquer parte do path. Assim, blog/a casa, mas meu-blog/abc e meu-blog/abc123mosca também. O [a-zA-Z] é uma classe de caracteres, que informa que queremos uma letra.
+    blog/[a-zA-Z]$: casa com paths que terminem com blog/ seguido por uma letra minúscula ou maiúscula. Casa com blog/a e blog/X.
+    blog/[a-z-]+$: casa com paths que terminem com blog/ seguido por uma ou mais letras minúsculas ou hífens. Exemplo: blog/p e meu-blog/meu-primeiro-post. Não casa com meu-blog/abc123mosca.
+
+Substitution
+
+A substitution pode ser uma de três coisas: um filesystem path, uma URL, ou um hífen. Vamos ver cada uma delas a seguir.
+Filesystem path
+
+É simplesmente um path no seu sistema de arquivos. Exemplo:
+
+RewriteRule . index.php
+
+Esse exemplo simplesmente manda todos os requests pro index.php, já que o ponto é um metacaractere que casa com qualquer coisa nas expressões regulares, exceto uma quebra de linha. Note que foi usado um path relativo.
+
+RewriteRule blog/[a-zA-Z0-9-]+ /var/www/exemplo.com/app/blog/processa-post.php
+
+Já esse exemplo encaminha URLs de posts do blog para um arquivo em PHP que cuida do processamento dos posts. Note que paths absolutos também podem ser usados, como foi feito nesse exemplo.
+URL
+
+Usar uma URL na substituição é útil para fazer redirecionamentos:
+
+RewriteRule ^(.*)$ https://www.seunovosite.com/$1 [R=301]
+
+A flag R foi usada para informar que queremos redirecionar da URL da request para a URL da substituição. Note que ela tem um valor, que é 301 e serve para especificar o tipo de redirecionamento que será feito (permanente).
+
+Também foi usada uma parte que você pode não ter entendido se não souber expressões regulares, que é o $1. É uma backreference, que basicamente insere o que foi capturado no (.*) da regra de reescrita.
+
+Também dá pra inserir variáveis de ambiente na substituição:
+
+RewriteRule .* https://www.seunovosite.com/T%{REQUEST_URI} [R=301]
+Hífen
+
+Indica que nenhuma substituição deve ser feita. É útil quando uma regra precisa ser aplicada sem mudar o path. Exemplo:
+
+RewriteRule . - [F]
+
+Essa regra simplesmente proibe todas as requests. De forma isolada, ela pode não fazer muito sentido, mas junto com condições, ela passa a fazer sentido. Você pode usá-la para proibir o acesso de IPs específicos, por exemplo.
+Flags de reescrita
+
+Primeiramente, vou relembrar algumas coisas que já falei sobre flags:
+
+    Elas são especificadas entre colchetes.
+    Algumas tem valores, outras não. Exemplo: [NC, R=301].
+    Em caso de múltiplas flags, a vírgula é usada como separador. Exemplo: [NC, F].
+
+Veja abaixo uma lista das flags mais usadas:
+
+    NC: vem de Nocase. Torna a comparação do pattern com a URL case-insensitive. Assim, letras maiúsculas não são diferenciadas de minúsculas.
+    L: vem de Last. É usado para informar que a regra deve ser a última a ser interpretada;
+    R: vem de Redirect. Força um redirecionamento. Opcionalmente, pode ser informado o código do redirecionamento;
+    F: retorna um 403 (Forbidden, acesso proibido).
+    G: retorna um 410 (Gone, para páginas excluídas).
+    QSA: vem de Query String Append. quando a URI de substituição contém uma query string, o comportamento padrão da RewriteRule é descartar a query de string atual, e substitui-la com a recém-gerada. Usar essa flag faz com que as query strings sejam combinadas.
+
+Condições de reescrita
+Às vezes, você pode querer que uma regra de reescrita não seja sempre aplicada, mas sim apenas quando certas condições forem cumpridas. Aí que entram as condições de reescrita. Cada condição é criada pela diretiva RewriteCond. Cada RewriteCond é composta de 3 partes, que são especificadas nessa ordem: a string de teste, o pattern e as flags. Vou falar sobre cada um deles em mais detalhes.
+String de teste
+
+A string de teste pode usar variáveis do servidor ou backreferences de condições ou de regras. Backreferences são explicadas depois, então vamos nos concentrar nas variáveis do servidor. Elas são especificadas seguindo a sintaxe %{VARIAVEL}. Exemplo:
+
+RewriteCond %{HTTPS} off
+
+Essa condição verifica se o protocolo HTTPS não está sendo usado na request. A variável %{HTTPS} contém o texto off quando o HTTPS não está sendo usado, ou o texto on, caso contrário.
+
+Veja uma lista com algumas outras variáveis de servidor:
+
+    REQUEST_FILENAME: Caminho do arquivo correspondente ao request.
+    REMOTE_ADDR: IP do host remoto.
+    REQUEST_URI: É o path da request. Não inclui a query string.
+    DOCUMENT_ROOT: Diretório raiz do site.
+    REQUEST_SCHEME: Contém o scheme da request, que geralmente é http ou https.
+    QUERY_STRING: Query string da request. É a parte da request que vem depois do ?, se houver.
+    SERVER_NAME: host do site, definido no VirtualHost.
+    HTTP_HOST: também é o host do site, porém é definido pelo cliente, ao contrário do SERVER_NAME, que é definido pelo servidor.
+
+Pattern
+
+O pattern da condição pode ser representado de diversas formas. O mais comum é ele ser representado como uma expressão regular, que usa PCRE, assim como o pattern da regra. Exemplo:
+
+RewriteCond %{HTTP_HOST} ^www\.
+
+Esse exemplo verifica se um host contém www. O pattern é o ^www\.
+
+Perceba que antes do ponto, há uma barra invertida. Ela é um caractere de escape. Esse tipo de caractere é usado em expressões regulares para remover o significado especial de um caractere.
+
+O ponto é um metacaractere que casa com qualquer coisa, exceto uma quebra de linha. Quando é escapado, assim como qualquer outro metacaractere, o ponto passa a ser interpretado como caractere comum.
+
+O pattern também pode ser usado para fazer comparações lexicográficas entre a string de teste e o pattern. Exemplo:
+
+RewriteCond %{QUERY_STRING} >abc=def
+
+Veja outras comparações que podem ser feitas:
+
+    <Pattern: verifica se a string de teste é lexicograficamente menor do que o pattern.
+    =Pattern: verifica se a string de teste é lexicograficamente igual ao pattern.
+    >=Pattern: verifica se a string de teste é lexicograficamente maior ou igual ao pattern.
+    <=Pattern: verifica se a string de teste é lexicograficamente menor ou igual ao pattern.
+
+Também é possível realizar testes de atributos de arquivos. Esses testes são muito usados com a variável REQUEST_FILENAME. Exemplo:
+
+RewriteCond %{REQUEST_FILENAME} -d
+
+Essas condição verifica se o filename é um diretório. O -f poderia ser usado para verificar se o filename é um arquivo.
+
+Seja com expressões regulares ou com comparações, você pode colocar um ! imediatamente antes da condição para negá-la. O exemplo abaixo verifica se o filename não é um arquivo:
+
+RewriteCond %{REQUEST_FILENAME} !-d
+Flags
+Flags também são usadas em condições de reescrita. Elas alteram o comportamento padrão dela. As flags mais usadas são NC, que torna a interpretação da condição case-insensitive e OR, que usa o operador lógico OR para conectar a condição à condição seguinte. O operador padrão das condições é o AND. Ele faz com que todas as condições precisem ser cumpridas para que a regra de reescrita seja avaliada e aplicada. Assim como nas regras de reescrita, as flags são especificadas entre colchetes, e em caso de múltiplas flags, a vírgula é usada como separador. Veja um exemplo de uso da flag OR:
+
+    RewriteCond %{REMOTE_ADDR} ^145\.18\.98\.139 [OR]
+    RewriteCond %{REMOTE_ADDR} ^108\.97\.204\. [OR]
+    RewriteCond %{REMOTE_ADDR} ^208\.126\.
+
+O exemplo acima proíbe o acesso de qualquer IP que casar com um dos patterns. Note que na última condição não é necessário colocar a flag OR, já que não há nenhuma condição depois dela.
+Backreferences
+
+Backreferences são um recurso de expressões regulares que permite referenciar um trecho capturado anteriormente. As capturas podem ser feitas nos patterns das regras e das condições.
+
+As capturas feitas nas regras são referenciadas com $N, com 0 <= N <= 9. Já as capturas feitas nas condições são referenciadas com %N, com 0 <= N <= 9. O índice 0 dá acesso a string completa que casou com o pattern. Os grupos podem ser acessados a partir do índice 1. O índice do grupo depende da ordem na qual ele é criado.
+
+As backreferences podem ser usadas na string de teste das condições e na substituição das regras de escrita. Até mesmo grupos capturados em regras podem ser referenciados em strings de teste de condições. Isso é possível porque a regra de reescrita é avaliada antes das condições. Exemplo:
+
+    RewriteCond $1 !25
+    RewriteRule porta-([0-9]+)$ analise-porta.php?porta=$1
+
+O exemplo acima reescreve URLs com path porta-30 para analise-porta.php?porta=30. Porém, a porta fornecida não pode ser 25.
+Alguns casos de uso
+Redirecionamentos
+
+Como já foi mostrado, o mod_rewrite também é usado para fazer redirecionamentos. Alguns redirecionamentos genéricos são muito comuns e você pode precisar deles em várias situações. Por isso, decidi colocar os mais usados aqui. Vou começar com o redirecionamento de uma URL com domínio sem www para uma com o www (substitua https por http, se necessário):
+
+RewriteEngine On
+Options +FollowSymlinks
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301]
+
+Agora, o inverso:
+
+RewriteEngine On
+Options +FollowSymlinks
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule .* https://$1%{REQUEST_URI} [R=301]
+
+Por fim, veja como redirecionar de uma URL sem https para uma URL com https:
+
+RewriteEngine On
+Options +FollowSymlinks
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301]
+
+Bloqueando referrers
+
+Referer é um domínio que linka para o seu site. Em alguns casos, pode ser útil bloquear tráfego de alguns referers hostis e o mod_rewrite também pode ser usado pra isso. Basta usar o código abaixo:
+
+RewriteEngine On
+Options +FollowSymlinks
+RewriteCond %{HTTP_REFERER} ^.*siteruim\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} ^.*siteruim2\.com [NC]
+RewriteRule . - [F]
+
+Hotlinking
+
+Hotlinking basicamente é o ato de linkar para imagens, scripts, folhas de estilo e recursos similares de outro site, fazendo com que esse site gaste recursos do hardware. Muitas vezes, essa prática acaba sendo desvantajosa para o site que tem seus recursos linkados. No entanto, há casos em que o hotlinking é até incentivado, como o do jQuery. Para bloquear o hotlinking, você pode usar o código abaixo:
+
+RewriteEngine On
+Options +FollowSymlinks
+RewriteCond % !^$
+RewriteCond % !^https?://(www\.)?seusite.com/%{REQUEST_URI} [NC]
+RewriteRule \.(gif|jpg|jpeg|png|js|css)$ - [F]
+
+O código desse exemplo bloqueia requests aos arquivos dos formatos informados na regra de reescrita, a menos que a request parta do seu site. Você pode adicionar mais condições caso queira permitir outros sites confiáveis.
+
+    </div>	
+      
+   <!-- </main>-->
+
+
+  </div><!--end Main-->
+
+
+
+
