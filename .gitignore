@@ -1,0 +1,4 @@
+arquivos
+app/views/.cache/
+vendor/composer/sftp-config.json
+sftp-config.json
