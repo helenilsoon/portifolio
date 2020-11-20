@@ -1,0 +1,976 @@
+ 
+<!DOCTYPE html>
+<html class="html" lang="pt-BR" prefix="og: http://ogp.me/ns#" itemscope itemtype="http://schema.org/WebPage">
+<head>
+	<meta charset="UTF-8">
+	<link rel="profile" href="http://gmpg.org/xfn/11">
+
+	<title>Aprenda de vez a usar o mod_rewrite do Apache - Monosan</title>
+<link rel="pingback" href="https://www.monosan.com.br/xmlrpc.php">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- This site is optimized with the Yoast SEO plugin v9.3 - https://yoast.com/wordpress/plugins/seo/ -->
+<meta name="description" content="O mod_rewrite do Apache é usado para reescrita de URLs. Porém, muitos o usam sem realmente entendê-lo. Aprenda a usá-lo de forma consciente e segura."/>
+<link rel="canonical" href="https://www.monosan.com.br/geral/aprenda-a-usar-mod-rewrite/" />
+<meta property="og:locale" content="pt_BR" />
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Aprenda de vez a usar o mod_rewrite do Apache - Monosan" />
+<meta property="og:description" content="O mod_rewrite do Apache é usado para reescrita de URLs. Porém, muitos o usam sem realmente entendê-lo. Aprenda a usá-lo de forma consciente e segura." />
+<meta property="og:url" content="https://www.monosan.com.br/geral/aprenda-a-usar-mod-rewrite/" />
+<meta property="og:site_name" content="Monosan" />
+<meta property="article:section" content="Geral" />
+<meta property="article:published_time" content="2019-01-31T20:11:33+00:00" />
+<meta property="article:modified_time" content="2019-02-01T13:40:27+00:00" />
+<meta property="og:updated_time" content="2019-02-01T13:40:27+00:00" />
+<meta property="og:image" content="https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado.jpg" />
+<meta property="og:image:secure_url" content="https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado.jpg" />
+<meta property="og:image:width" content="833" />
+<meta property="og:image:height" content="555" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:description" content="O mod_rewrite do Apache é usado para reescrita de URLs. Porém, muitos o usam sem realmente entendê-lo. Aprenda a usá-lo de forma consciente e segura." />
+<meta name="twitter:title" content="Aprenda de vez a usar o mod_rewrite do Apache - Monosan" />
+<meta name="twitter:image" content="https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado.jpg" />
+<!-- / Yoast SEO plugin. -->
+
+<link rel='dns-prefetch' href='//fonts.googleapis.com' />
+<link rel='dns-prefetch' href='//s.w.org' />
+<link rel="alternate" type="application/rss+xml" title="Feed para Monosan &raquo;" href="https://www.monosan.com.br/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para Monosan &raquo;" href="https://www.monosan.com.br/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="Feed de comentários para Monosan &raquo; Aprenda de vez a usar o mod_rewrite do Apache" href="https://www.monosan.com.br/geral/aprenda-a-usar-mod-rewrite/feed/" />
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/11\/svg\/","svgExt":".svg","source":{"concatemoji":"https:\/\/www.monosan.com.br\/wp-includes\/js\/wp-emoji-release.min.js?ver=4.9.16"}};
+			!function(a,b,c){function d(a,b){var c=String.fromCharCode;l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,a),0,0);var d=k.toDataURL();l.clearRect(0,0,k.width,k.height),l.fillText(c.apply(this,b),0,0);var e=k.toDataURL();return d===e}function e(a){var b;if(!l||!l.fillText)return!1;switch(l.textBaseline="top",l.font="600 32px Arial",a){case"flag":return!(b=d([55356,56826,55356,56819],[55356,56826,8203,55356,56819]))&&(b=d([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]),!b);case"emoji":return b=d([55358,56760,9792,65039],[55358,56760,8203,9792,65039]),!b}return!1}function f(a){var c=b.createElement("script");c.src=a,c.defer=c.type="text/javascript",b.getElementsByTagName("head")[0].appendChild(c)}var g,h,i,j,k=b.createElement("canvas"),l=k.getContext&&k.getContext("2d");for(j=Array("flag","emoji"),c.supports={everything:!0,everythingExceptFlag:!0},i=0;i<j.length;i++)c.supports[j[i]]=e(j[i]),c.supports.everything=c.supports.everything&&c.supports[j[i]],"flag"!==j[i]&&(c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&c.supports[j[i]]);c.supports.everythingExceptFlag=c.supports.everythingExceptFlag&&!c.supports.flag,c.DOMReady=!1,c.readyCallback=function(){c.DOMReady=!0},c.supports.everything||(h=function(){c.readyCallback()},b.addEventListener?(b.addEventListener("DOMContentLoaded",h,!1),a.addEventListener("load",h,!1)):(a.attachEvent("onload",h),b.attachEvent("onreadystatechange",function(){"complete"===b.readyState&&c.readyCallback()})),g=c.source||{},g.concatemoji?f(g.concatemoji):g.wpemoji&&g.twemoji&&(f(g.twemoji),f(g.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+<link rel='stylesheet' id='ez-icomoon-css'  href='https://www.monosan.com.br/wp-content/plugins/easy-table-of-contents/vendor/icomoon/style.min.css?ver=1.7' type='text/css' media='all' />
+<link rel='stylesheet' id='ez-toc-css'  href='https://www.monosan.com.br/wp-content/plugins/easy-table-of-contents/assets/css/screen.min.css?ver=1.7' type='text/css' media='all' />
+<style id='ez-toc-inline-css' type='text/css'>
+div#ez-toc-container p.ez-toc-title {font-size: 120%;}div#ez-toc-container p.ez-toc-title {font-weight: 500;}div#ez-toc-container ul li {font-size: 95%;}
+</style>
+<link rel='stylesheet' id='font-awesome-css'  href='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/css/third/font-awesome.min.css?ver=4.7.0' type='text/css' media='all' />
+<link rel='stylesheet' id='simple-line-icons-css'  href='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/css/third/simple-line-icons.min.css?ver=2.4.0' type='text/css' media='all' />
+<link rel='stylesheet' id='magnific-popup-css'  href='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/css/third/magnific-popup.min.css?ver=1.0.0' type='text/css' media='all' />
+<link rel='stylesheet' id='slick-css'  href='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/css/third/slick.min.css?ver=1.6.0' type='text/css' media='all' />
+<link rel='stylesheet' id='oceanwp-style-css'  href='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/css/style.min.css?ver=1.5.27' type='text/css' media='all' />
+<link rel='stylesheet' id='oceanwp-google-font-lato-css'  href='//fonts.googleapis.com/css?family=Lato%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100i%2C200i%2C300i%2C400i%2C500i%2C600i%2C700i%2C800i%2C900i&#038;subset=latin&#038;ver=4.9.16' type='text/css' media='all' />
+<link rel='stylesheet' id='oceanwp-google-font-josefin-sans-css'  href='//fonts.googleapis.com/css?family=Josefin+Sans%3A100%2C200%2C300%2C400%2C500%2C600%2C700%2C800%2C900%2C100i%2C200i%2C300i%2C400i%2C500i%2C600i%2C700i%2C800i%2C900i&#038;subset=latin&#038;ver=4.9.16' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-icons-css'  href='https://www.monosan.com.br/wp-content/plugins/elementor/assets/lib/eicons/css/elementor-icons.min.css?ver=3.8.0' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-animations-css'  href='https://www.monosan.com.br/wp-content/plugins/elementor/assets/lib/animations/animations.min.css?ver=2.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-frontend-css'  href='https://www.monosan.com.br/wp-content/plugins/elementor/assets/css/frontend.min.css?ver=2.2.4' type='text/css' media='all' />
+<link rel='stylesheet' id='elementor-global-css'  href='https://www.monosan.com.br/wp-content/uploads/elementor/css/global.css?ver=1538359646' type='text/css' media='all' />
+<link rel='stylesheet' id='enlighter-local-css'  href='https://www.monosan.com.br/wp-content/plugins/enlighter/resources/EnlighterJS.min.css?ver=3.8.1' type='text/css' media='all' />
+<link rel='stylesheet' id='oe-widgets-style-css'  href='https://www.monosan.com.br/wp-content/plugins/ocean-extra/assets/css/widgets.css?ver=4.9.16' type='text/css' media='all' />
+<link rel='stylesheet' id='ops-styles-css'  href='https://www.monosan.com.br/wp-content/plugins/ocean-posts-slider/assets/css/style.min.css?ver=4.9.16' type='text/css' media='all' />
+<link rel='stylesheet' id='oss-social-share-style-css'  href='https://www.monosan.com.br/wp-content/plugins/ocean-social-sharing/assets/css/style.min.css?ver=4.9.16' type='text/css' media='all' />
+<script type='text/javascript' src='https://www.monosan.com.br/wp-includes/js/jquery/jquery.js?ver=1.12.4'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.4.1'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/ocean-extra//includes/widgets/js/mailchimp.min.js?ver=4.9.16'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/ocean-extra//includes/widgets/js/share.min.js?ver=4.9.16'></script>
+<link rel='https://api.w.org/' href='https://www.monosan.com.br/wp-json/' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://www.monosan.com.br/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://www.monosan.com.br/wp-includes/wlwmanifest.xml" /> 
+<meta name="generator" content="WordPress 4.9.16" />
+<link rel='shortlink' href='https://www.monosan.com.br/?p=2064' />
+<link rel="alternate" type="application/json+oembed" href="https://www.monosan.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" />
+<link rel="alternate" type="text/xml+oembed" href="https://www.monosan.com.br/wp-json/oembed/1.0/embed?url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F&#038;format=xml" />
+<script type="text/javascript">
+(function(url){
+	if(/(?:Chrome\/26\.0\.1410\.63 Safari\/537\.31|WordfenceTestMonBot)/.test(navigator.userAgent)){ return; }
+	var addEvent = function(evt, handler) {
+		if (window.addEventListener) {
+			document.addEventListener(evt, handler, false);
+		} else if (window.attachEvent) {
+			document.attachEvent('on' + evt, handler);
+		}
+	};
+	var removeEvent = function(evt, handler) {
+		if (window.removeEventListener) {
+			document.removeEventListener(evt, handler, false);
+		} else if (window.detachEvent) {
+			document.detachEvent('on' + evt, handler);
+		}
+	};
+	var evts = 'contextmenu dblclick drag dragend dragenter dragleave dragover dragstart drop keydown keypress keyup mousedown mousemove mouseout mouseover mouseup mousewheel scroll'.split(' ');
+	var logHuman = function() {
+		if (window.wfLogHumanRan) { return; }
+		window.wfLogHumanRan = true;
+		var wfscr = document.createElement('script');
+		wfscr.type = 'text/javascript';
+		wfscr.async = true;
+		wfscr.src = url + '&r=' + Math.random();
+		(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(wfscr);
+		for (var i = 0; i < evts.length; i++) {
+			removeEvent(evts[i], logHuman);
+		}
+	};
+	for (var i = 0; i < evts.length; i++) {
+		addEvent(evts[i], logHuman);
+	}
+})('//www.monosan.com.br/?wordfence_lh=1&hid=97988B7F8D0FA099E84DB80CE2CE3FD1');
+</script>		<style type="text/css">.recentcomments a{display:inline !important;padding:0 !important;margin:0 !important;}</style>
+		
+<!-- BEGIN ExactMetrics v5.3.7 Universal Analytics - https://exactmetrics.com/ -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-79586347-3', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- END ExactMetrics Universal Analytics -->
+		<style type="text/css" id="wp-custom-css">
+			/* Big title - Text margin left */.elementor-element.big-margin >.elementor-element-populated{margin-left:80px}#site-header.medium-header #site-logo #site-logo-inner{max-width:134px}#site-header.medium-header .top-header-wrap{padding:2em 0 !important}/* Full width buttons on the last section */.elementor-element.full-btn .elementor-button{display:block}/* Add simple line icons to the header social menu */#oceanwp-social-menu span{font-family:simple-line-icons;line-height:1;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}#oceanwp-social-menu .fa-twitter:before{content:"\e009"}#oceanwp-social-menu .fa-facebook:before{content:"\e00b"}#oceanwp-social-menu .fa-google-plus:before{content:"\e60d"}#oceanwp-social-menu .fa-instagram:before{content:"\e609"}/* Blog entries */.blog-entry.large-entry{max-width:833px;margin:0 auto 30px auto;text-align:center}.blog-entry.large-entry ul.meta li{float:none;display:inline-block}.blog-entry.large-entry ul.meta li:after{padding:0 4px 0 6px}.blog-entry.large-entry .blog-entry-summary{max-width:640px;margin:0 auto 20px auto}.blog-entry.large-entry .blog-entry-readmore a{font-weight:400;padding:10px 26px;border-radius:30px}ul.page-numbers{padding:30px 0 0}.page-numbers a,.page-numbers span:not(.elementor-screen-only),.page-links span{border-radius:50%}/* Widgets titles */.widget-title{position:relative;padding:0 0 10px;border:0}.widget-title:after{content:'';position:absolute;bottom:0;left:0;display:inline-block;background-color:#6e8fef;height:2px;width:28px}/* Footer bottom */#footer-bottom{padding:0}#footer-bottom-inner{padding:22px 0 20px;border-top:1px solid #eaeaea}#footer-bottom #footer-bottom-menu,#footer-bottom #copyright{float:none;width:100%;padding:0 !important;text-align:center}#footer-bottom #footer-bottom-menu a{padding:0 15px}#footer-bottom #footer-bottom-menu li:after{display:none}#footer-bottom #copyright{margin-top:20px}/* Responsive */@media (max-width:959px){.elementor-element.title-row >.elementor-element-populated{padding:20px}.elementor-element.big-title .elementor-heading-title{font-size:24px}.elementor-element.big-margin >.elementor-element-populated{margin-left:40px}}@media (max-width:767px){.elementor-element.big-margin >.elementor-element-populated{margin-top:20px;margin-left:0}}code,kbd{font-size:inherit}.elementor a{color:crimson}i,em{font-style:italic}b,strong{font-weight:bold}		</style>
+	<!-- OceanWP CSS -->
+<style type="text/css">
+/* General CSS */a:hover,a.light:hover,.theme-heading .text::before,#top-bar-content >a:hover,#top-bar-social li.oceanwp-email a:hover,#site-navigation-wrap .dropdown-menu >li >a:hover,#site-header.medium-header #medium-searchform button:hover,.oceanwp-mobile-menu-icon a:hover,.blog-entry.post .blog-entry-header .entry-title a:hover,.blog-entry.post .blog-entry-readmore a:hover,.blog-entry.thumbnail-entry .blog-entry-category a,ul.meta li a:hover,.dropcap,.single nav.post-navigation .nav-links .title,body .related-post-title a:hover,body #wp-calendar caption,body .contact-info-widget.default i,body .contact-info-widget.big-icons i,body .custom-links-widget .oceanwp-custom-links li a:hover,body .custom-links-widget .oceanwp-custom-links li a:hover:before,body .posts-thumbnails-widget li a:hover,body .social-widget li.oceanwp-email a:hover,.comment-author .comment-meta .comment-reply-link,#respond #cancel-comment-reply-link:hover,#footer-widgets .footer-box a:hover,#footer-bottom a:hover,#footer-bottom #footer-bottom-menu a:hover,.sidr a:hover,.sidr-class-dropdown-toggle:hover,.sidr-class-menu-item-has-children.active >a,.sidr-class-menu-item-has-children.active >a >.sidr-class-dropdown-toggle,input[type=checkbox]:checked:before,.oceanwp-post-list.one .oceanwp-post-category:hover,.oceanwp-post-list.one .oceanwp-post-category:hover a,.oceanwp-post-list.two .slick-arrow:hover,.oceanwp-post-list.two article:hover .oceanwp-post-category,.oceanwp-post-list.two article:hover .oceanwp-post-category a{color:#6e8fef}input[type="button"],input[type="reset"],input[type="submit"],button[type="submit"],.button,#site-navigation-wrap .dropdown-menu >li.btn >a >span,.thumbnail:hover i,.post-quote-content,.omw-modal .omw-close-modal,body .contact-info-widget.big-icons li:hover i,.oceanwp-post-list.one .readmore:hover,.oceanwp-post-list.one .oceanwp-post-category,.oceanwp-post-list.two .oceanwp-post-category,.oceanwp-post-list.two article:hover .slide-overlay-wrap{background-color:#6e8fef}.widget-title{border-color:#6e8fef}blockquote{border-color:#6e8fef}#searchform-dropdown{border-color:#6e8fef}.dropdown-menu .sub-menu{border-color:#6e8fef}.blog-entry.large-entry .blog-entry-readmore a:hover{border-color:#6e8fef}.oceanwp-newsletter-form-wrap input[type="email"]:focus{border-color:#6e8fef}.social-widget li.oceanwp-email a:hover{border-color:#6e8fef}#respond #cancel-comment-reply-link:hover{border-color:#6e8fef}body .contact-info-widget.big-icons li:hover i{border-color:#6e8fef}#footer-widgets .oceanwp-newsletter-form-wrap input[type="email"]:focus{border-color:#6e8fef}.oceanwp-post-list.one .readmore:hover{border-color:#6e8fef}input[type="button"]:hover,input[type="reset"]:hover,input[type="submit"]:hover,button[type="submit"]:hover,input[type="button"]:focus,input[type="reset"]:focus,input[type="submit"]:focus,button[type="submit"]:focus,.button:hover,#site-navigation-wrap .dropdown-menu >li.btn >a:hover >span,.post-quote-author,.omw-modal .omw-close-modal:hover{background-color:#39529a}table th,table td,hr,.content-area,body.content-left-sidebar #content-wrap .content-area,.content-left-sidebar .content-area,#top-bar-wrap,#site-header,#site-header.top-header #search-toggle,.dropdown-menu ul li,.centered-minimal-page-header,.blog-entry.post,.blog-entry.grid-entry .blog-entry-inner,.blog-entry.thumbnail-entry .blog-entry-bottom,.single-post .entry-title,.single .entry-share-wrap .entry-share,.single .entry-share,.single .entry-share ul li a,.single nav.post-navigation,.single nav.post-navigation .nav-links .nav-previous,#author-bio,#author-bio .author-bio-avatar,#author-bio .author-bio-social li a,#related-posts,#comments,.comment-body,#respond #cancel-comment-reply-link,#blog-entries .type-page,.page-numbers a,.page-numbers span:not(.elementor-screen-only),.page-links span,body #wp-calendar caption,body #wp-calendar th,body #wp-calendar tbody,body .contact-info-widget.default i,body .contact-info-widget.big-icons i,body .posts-thumbnails-widget li,body .tagcloud a{border-color:#eeeeee}#scroll-top{border-radius:50px}#scroll-top{background-color:#eeeeee}#scroll-top:hover{background-color:#6e8fef}#scroll-top{color:#222222}#scroll-top:hover{color:#fcfcfc}.page-numbers a,.page-numbers span:not(.elementor-screen-only),.page-links span{font-size:16px}form input[type="text"],form input[type="password"],form input[type="email"],form input[type="url"],form input[type="date"],form input[type="month"],form input[type="time"],form input[type="datetime"],form input[type="datetime-local"],form input[type="week"],form input[type="number"],form input[type="search"],form input[type="tel"],form input[type="color"],form select,form textarea{padding:10px 18px 10px 18px}form input[type="text"],form input[type="password"],form input[type="email"],form input[type="url"],form input[type="date"],form input[type="month"],form input[type="time"],form input[type="datetime"],form input[type="datetime-local"],form input[type="week"],form input[type="number"],form input[type="search"],form input[type="tel"],form input[type="color"],form select,form textarea{font-size:15px}form input[type="text"],form input[type="password"],form input[type="email"],form input[type="url"],form input[type="date"],form input[type="month"],form input[type="time"],form input[type="datetime"],form input[type="datetime-local"],form input[type="week"],form input[type="number"],form input[type="search"],form input[type="tel"],form input[type="color"],form select,form textarea,.woocommerce .woocommerce-checkout .select2-container--default .select2-selection--single{border-radius:30px}form input[type="text"],form input[type="password"],form input[type="email"],form input[type="url"],form input[type="date"],form input[type="month"],form input[type="time"],form input[type="datetime"],form input[type="datetime-local"],form input[type="week"],form input[type="number"],form input[type="search"],form input[type="tel"],form input[type="color"],form select,form textarea,.select2-container .select2-choice,.woocommerce .woocommerce-checkout .select2-container--default .select2-selection--single{border-color:#f5f5f5}form input[type="text"]:focus,form input[type="password"]:focus,form input[type="email"]:focus,form input[type="tel"]:focus,form input[type="url"]:focus,form input[type="search"]:focus,form textarea:focus,.select2-drop-active,.select2-dropdown-open.select2-drop-above .select2-choice,.select2-dropdown-open.select2-drop-above .select2-choices,.select2-drop.select2-drop-above.select2-drop-active,.select2-container-active .select2-choice,.select2-container-active .select2-choices{border-color:#eeeeee}form input[type="text"],form input[type="password"],form input[type="email"],form input[type="url"],form input[type="date"],form input[type="month"],form input[type="time"],form input[type="datetime"],form input[type="datetime-local"],form input[type="week"],form input[type="number"],form input[type="search"],form input[type="tel"],form input[type="color"],form select,form textarea,.woocommerce .woocommerce-checkout .select2-container--default .select2-selection--single{background-color:#f9f9f9}.theme-button,input[type="submit"],button[type="submit"],button,.button{border-radius:30px}body .theme-button:hover,body input[type="submit"]:hover,body button[type="submit"]:hover,body button:hover,body .button:hover{background-color:#222222}/* Header CSS */#site-header{border-color:rgba(255,255,255,0.5)}#site-header.medium-header .top-header-wrap{padding:0}#site-header.medium-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.medium-header .oceanwp-mobile-menu-icon a{line-height:50px}#site-header.medium-header #site-navigation-wrap,#site-header.medium-header .oceanwp-mobile-menu-icon,.is-sticky #site-header.medium-header.is-transparent #site-navigation-wrap,.is-sticky #site-header.medium-header.is-transparent .oceanwp-mobile-menu-icon,#site-header.medium-header.is-transparent .is-sticky #site-navigation-wrap,#site-header.medium-header.is-transparent .is-sticky .oceanwp-mobile-menu-icon{background-color:#750700}#site-header.has-header-media .overlay-header-media{background-color:rgba(0,0,0,0.5)}#site-logo #site-logo-inner a img,#site-header.center-header #site-navigation-wrap .middle-site-logo a img{max-width:134px}#site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a,#searchform-header-replace-close{color:#ffffff}#site-navigation-wrap .dropdown-menu >li >a:hover,.oceanwp-mobile-menu-icon a:hover,#searchform-header-replace-close:hover{color:#14e5fc}.oceanwp-social-menu.simple-social ul li a{color:#222222}/* Footer Widgets CSS */#footer-widgets{background-color:#ffffff}#footer-widgets,#footer-widgets p,#footer-widgets li a:before,#footer-widgets .contact-info-widget span.oceanwp-contact-title,#footer-widgets .recent-posts-date,#footer-widgets .recent-posts-comments,#footer-widgets .widget-recent-posts-icons li .fa{color:#777777}#footer-widgets li,#footer-widgets #wp-calendar caption,#footer-widgets #wp-calendar th,#footer-widgets #wp-calendar tbody,#footer-widgets .contact-info-widget i,#footer-widgets .oceanwp-newsletter-form-wrap input[type="email"],#footer-widgets .posts-thumbnails-widget li,#footer-widgets .social-widget li a{border-color:#eaeaea}#footer-widgets .footer-box a,#footer-widgets a{color:#333333}/* Footer Bottom CSS */#footer-bottom{background-color:#ffffff}#footer-bottom,#footer-bottom p{color:#adadad}#footer-bottom a,#footer-bottom #footer-bottom-menu a{color:#222222}/* Typography CSS */body{font-family:Lato;font-weight:300;font-size:15px;color:#000000}h1,h2,h3,h4,h5,h6,.theme-heading,.widget-title,.oceanwp-widget-recent-posts-title,.comment-reply-title,.entry-title,.sidebar-box .widget-title{font-family:Josefin Sans;font-weight:700}#site-navigation-wrap .dropdown-menu >li >a,#site-header.full_screen-header .fs-dropdown-menu >li >a,#site-header.top-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.center-header #site-navigation-wrap .dropdown-menu >li >a,#site-header.medium-header #site-navigation-wrap .dropdown-menu >li >a,.oceanwp-mobile-menu-icon a{font-family:Josefin Sans;font-weight:700;font-size:11px;letter-spacing:1px;text-transform:uppercase}.page-header .page-header-title,.page-header.background-image-page-header .page-header-title{font-weight:700;font-size:30px;letter-spacing:1px;text-transform:uppercase}.site-breadcrumbs{font-size:11px;letter-spacing:.6px;text-transform:uppercase}.sidebar-box .widget-title{font-size:11px;color:#222222}#footer-widgets .footer-box .widget-title{font-size:11px;color:#222222}#footer-bottom #copyright{font-family:Josefin Sans;font-weight:600;font-size:10px;letter-spacing:1px;text-transform:uppercase}#footer-bottom #footer-bottom-menu{font-family:Josefin Sans;font-weight:600;font-size:10px;letter-spacing:1px;text-transform:uppercase}
+</style></head>
+
+<body class="post-template-default single single-post postid-2064 single-format-standard wp-custom-logo oceanwp-theme sidebar-mobile medium-header-style default-breakpoint has-sidebar content-right-sidebar post-in-category-geral page-header-disabled has-breadcrumbs pagination-center elementor-default elementor-page elementor-page-2064">
+
+	
+	<div id="outer-wrap" class="site clr">
+
+		
+		<div id="wrap" class="clr">
+
+			
+			
+<header id="site-header" class="medium-header hidden-menu clr" data-height="99" itemscope="itemscope" itemtype="http://schema.org/WPHeader">
+
+	
+		
+
+<div id="site-header-inner" class="clr">
+
+	
+		<div class="top-header-wrap clr">
+			<div class="container clr">
+				<div class="top-header-inner clr">
+
+					
+						<div class="top-col clr col-1 logo-col">
+
+							
+
+<div id="site-logo" class="clr" itemscope itemtype="http://schema.org/Brand">
+
+	
+	<div id="site-logo-inner" class="clr">
+
+		<a href="https://www.monosan.com.br/" class="custom-logo-link" rel="home" itemprop="url"><img width="134" height="23" src="https://www.monosan.com.br/wp-content/uploads/2020/06/logo-monosan-b.png" class="custom-logo" alt="Monosan" itemprop="logo" srcset="https://www.monosan.com.br/wp-content/uploads/2020/06/logo-monosan-b.png 1x, https://architect.oceanwp.org/wp-content/uploads/2016/11/architect-retina-logo.png 2x" /></a>
+	</div><!-- #site-logo-inner -->
+
+	
+	
+</div><!-- #site-logo -->
+
+
+						</div>
+
+					
+						<div class="top-col clr col-2">
+
+							
+						</div>
+
+					
+						<div class="top-col clr col-3">
+
+							
+<div id="medium-searchform" class="header-searchform-wrap clr">
+	<form method="get" action="https://www.monosan.com.br/" class="header-searchform">
+		<input type="search" name="s" autocomplete="off" value="" />
+					<label>Pesquisa...</label>
+				<button class="search-submit"><i class="icon-magnifier"></i></button>
+		<div class="search-bg"></div>
+			</form>
+</div><!-- #medium-searchform -->
+						</div>
+
+					
+				</div>
+			</div>
+		</div>
+
+	
+	<div class="bottom-header-wrap clr">
+
+					<div id="site-navigation-wrap" class="clr center-menu">
+		
+			
+							<div class="container clr">
+			
+			<nav id="site-navigation" class="navigation main-navigation clr" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+
+				<ul id="menu-main-menu" class="main-menu dropdown-menu sf-menu"><li id="menu-item-377" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-377"><a href="/" class="menu-link"><span class="text-wrap">Home</span></a></li><li id="menu-item-3283" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3283"><a href="https://www.monosan.com.br/category/wordpress/" class="menu-link"><span class="text-wrap">WordPress</span></a></li><li id="menu-item-3282" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3282"><a href="https://www.monosan.com.br/category/seo/" class="menu-link"><span class="text-wrap">SEO</span></a></li><li id="menu-item-3285" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-3285"><a href="https://www.monosan.com.br/category/vps/" class="menu-link"><span class="text-wrap">VPS</span></a></li><li id="menu-item-3284" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-3284"><a href="https://www.monosan.com.br/category/geral/" class="menu-link"><span class="text-wrap">Geral</span></a></li></ul>
+			</nav><!-- #site-navigation -->
+
+							</div>
+			
+			
+					</div><!-- #site-navigation-wrap -->
+		
+		
+	
+		
+	<div class="oceanwp-mobile-menu-icon clr mobile-right">
+
+		
+		
+		
+		<a href="#" class="mobile-menu">
+							<i class="fa fa-bars"></i>
+							<span class="oceanwp-text">Menu</span>
+
+						</a>
+
+		
+		
+		
+	</div><!-- #oceanwp-mobile-menu-navbar -->
+
+
+		
+	</div>
+
+</div><!-- #site-header-inner -->
+
+
+				
+	
+</header><!-- #site-header -->
+
+
+						
+			<main id="main" class="site-main clr" >
+
+				
+	
+	<div id="content-wrap" class="container clr">
+
+		
+		<div id="primary" class="content-area clr">
+
+			
+			<div id="content" class="site-content clr">
+
+				
+				
+<article id="post-2064">
+
+	
+<div class="thumbnail">
+
+	<img width="833" height="555" src="https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado.jpg" class="attachment-full size-full wp-post-image" alt="Aprenda de vez a usar o mod_rewrite do Apache" itemprop="image" srcset="https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado.jpg 833w, https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado-300x200.jpg 300w, https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado-768x512.jpg 768w" sizes="(max-width: 833px) 100vw, 833px" />
+</div><!-- .thumbnail -->
+
+<header class="entry-header clr">
+	<h2 class="single-post-title entry-title" itemprop="headline">Aprenda de vez a usar o mod_rewrite do Apache</h2><!-- .single-post-title -->
+</header><!-- .entry-header -->
+
+
+
+<ul class="meta clr">
+
+	
+					<li class="meta-author" itemprop="name"><i class="icon-user"></i><a href="https://www.monosan.com.br/author/admin/" title="Posts de admin" rel="author"  itemprop="author" itemscope="itemscope" itemtype="http://schema.org/Person">admin</a></li>
+		
+		
+		
+		
+	
+		
+					<li class="meta-date" itemprop="datePublished"><i class="icon-clock"></i>31/01/2019</li>
+		
+		
+		
+	
+		
+		
+					<li class="meta-cat"><i class="icon-folder"></i><a href="https://www.monosan.com.br/category/geral/" rel="category tag">Geral</a></li>
+		
+		
+	
+		
+		
+		
+					<li class="meta-comments"><i class="icon-bubble"></i><a href="https://www.monosan.com.br/geral/aprenda-a-usar-mod-rewrite/#respond" class="comments-link local" >0 Comentários</a></li>
+		
+		
+</ul>
+
+
+
+<div class="entry-content clr" itemprop="text">
+			<div class="elementor elementor-2064">
+			<div class="elementor-inner">
+				<div class="elementor-section-wrap">
+							<section data-id="73f1b22f" class="elementor-element elementor-element-73f1b22f elementor-section-boxed elementor-section-height-default elementor-section-height-default elementor-section elementor-top-section" data-element_type="section">
+						<div class="elementor-container elementor-column-gap-default">
+				<div class="elementor-row">
+				<div data-id="5e6fd75b" class="elementor-element elementor-element-5e6fd75b elementor-column elementor-col-100 elementor-top-column" data-element_type="column">
+			<div class="elementor-column-wrap elementor-element-populated">
+					<div class="elementor-widget-wrap">
+				<div data-id="2e7bce73" class="elementor-element elementor-element-2e7bce73 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>O mod_rewrite do Apache é um módulo que trabalha com reescrita de URLs. Ele trabalha com expressões regulares, que são muito poderosas. Se você não conhece expressões regulares, a DevsChannel tem uma série de <a href="https://www.devschannel.com/expressoes-regulares/introducao" target="_blank" rel="noopener">tutoriais de expressões regulares</a> muito boa.</p><p>Muita gente usa o mod_rewrite sem de fato entender como ele funciona, sem saber como criar suas próprias regras e condições de reescrita. Devido à necessidades pontuais e à falta de tempo, muitos acabam apenas dando o famoso <kbd>Ctrl</kbd> + <kbd>C</kbd> / <kbd>Ctrl</kbd> + <kbd>V</kbd>, sem sequer entender a sintaxe do código copiado.</p><p>O objetivo desse post é explicar como o mod_rewrite funciona, pra que você consiga fazer suas próprias reescritas de URL e redirecionamentos. Esse post é também um complemento ao post de <a href="https://www.monosan.com.br/geral/introducao-ao-htaccess/">introdução ao .htaccess</a>.</p><p>O mod_rewrite usa o <strong>PCRE</strong> (Perl Compatible Regular Expressions), que é muito popular, compatível com a sintaxe do <strong>Perl</strong>, e é usada no PHP e em muitas outras tecnologias.</p><p>A reescrita de URLs no mod_rewrite se baseia em dois conceitos principais: <strong>regras</strong> e <strong>condições de reescrita</strong>. As condições precisam ser cumpridas para que uma regra de reescrita seja aplicada a uma URL. Não há limites no número de regras que podem ser usadas nem no número de condições.</p><p>Para usar o mod_rewrite no .htaccess, você precisa usar as diretivas <code>RewriteEngine On</code> e <code>Options +FollowSymlinks</code>. Exemplo: o .htaccess abaixo redireciona uma request de um domínio sem o <i>www</i> para um domínio com o <i>www</i>:</p><pre class="EnlighterJSRAW" data-enlighter-language="generic">Options +FollowSymlinks
+RewriteEngine On
+RewriteCond % ^seusite.com [NC]
+RewriteRule ^(.*) https://www.seusite.com/$1 [NC,R=301]</pre></div>
+				</div>
+				</div>
+				<div data-id="16158fc" class="elementor-element elementor-element-16158fc elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<div id="ez-toc-container" class="counter-hierarchy counter-decimal ez-toc-grey">
+<div class="ez-toc-title-container">
+<p class="ez-toc-title">&Iacute;ndice</p>
+<span class="ez-toc-title-toggle"><a class="ez-toc-pull-right ez-toc-btn ez-toc-btn-xs ez-toc-btn-default ez-toc-toggle"><i class="ez-toc-glyphicon ez-toc-icon-toggle"></i></a></span></div>
+<nav><ul class="ez-toc-list"><li><a href="#Regras-de-reescrita" title="Regras de reescrita">Regras de reescrita</a><ul><li><a href="#Pattern" title="Pattern">Pattern</a></li><li><a href="#Substitution" title="Substitution">Substitution</a></li><li><a href="#Flags-de-reescrita" title="Flags de reescrita">Flags de reescrita</a></li></ul></li><li><a href="#Condicoes-de-reescrita" title="Condições de reescrita">Condições de reescrita</a><ul><li><a href="#String-de-teste" title="String de teste">String de teste</a></li><li><a href="#Pattern-2" title="Pattern">Pattern</a></li><li><a href="#Flags" title="Flags">Flags</a></li></ul></li><li><a href="#Backreferences" title="Backreferences">Backreferences</a></li><li><a href="#Alguns-casos-de-uso" title="Alguns casos de uso">Alguns casos de uso</a><ul><li><a href="#Redirecionamentos" title="Redirecionamentos">Redirecionamentos</a></li><li><a href="#Bloqueando-referrers" title="Bloqueando referrers">Bloqueando referrers</a></li><li><a href="#Hotlinking" title="Hotlinking">Hotlinking</a></li></ul></li></ul></nav></div>
+<h2 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Regras-de-reescrita">Regras de reescrita</span></h2>		</div>
+				</div>
+				<div data-id="df1b522" class="elementor-element elementor-element-df1b522 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>As Regras de reescrita (Rewrite rules) consistem de 3 partes: <strong>pattern</strong> (padrão), <strong>substituição</strong> e <strong>flags</strong>. O pattern define quais URLs devem ser afetadas pela rule. A substituição define pra onde as requests que casarem com o pattern serão enviadas.</p><p>As flags são opcionais. Quando estão presentes, elas são especificadas entre colchetes. Algumas flags podem ter valor e outras não. Quando mais de uma flag é especificada, deve-se usar a vírgula para separar as flags.</p><p>A regra de reescrita sempre compara a URL atual, e não a URL da request inicial. Ou seja, em um .htaccess com duas regras de reescrita, se a primeira reescrever a URL, mudando-a de x pra y, a segunda regra de reescrita vai trabalhar com a URL y, e não com a x. Da mesma forma, se a segunda regra transformar a URL y em z, e houver uma terceira regra, ela vai trabalhar com a URL z.</p><p>Veja um exemplo de uma regra de reescrita:</p><p><code>RewriteRule blog-antigo$ blog-novo [L]</code></p><p>Nessa regra, o pattern é o <code>blog-antigo$</code>, a substituição é o <code>blog-novo</code>, e a parte das flags é <code>[L]</code>. Os elementos da regra sempre são informados nessa ordem. Agora, vou explicar em mais detalhes cada uma das partes que compõem a regra de reescrita, começando pelo pattern.</p></div>
+				</div>
+				</div>
+				<div data-id="9d36a8b" class="elementor-element elementor-element-9d36a8b elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Pattern">Pattern</span></h3>		</div>
+				</div>
+				<div data-id="afc1a33" class="elementor-element elementor-element-afc1a33 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p><span style="font-size: 15px;">O pattern é uma expressão regular que é comparada com o path da request relativa ao diretório onde o .htaccess é inserido. Ou seja: se o .htaccess for inserido no diretório blog do diretório raiz do site, as regras de reescrita só vão trabalhar com URLs referentes a recursos desse diretório, e não conseguem fazer verificações com diretórios de níveis superiores nem com outros diretórios que não sejam o próprio blog nem façam parte dele.</span></p><p>Além disso, você não consegue trabalhar com o hostname no pattern, mesmo que você coloque o .htaccess no diretório raiz. Se você precisar fazer algum tipo de verificação com o hostname, use condições.</p><p>Veja abaixo alguns exemplos de patterns:</p><ul><li><code style="font-size: 15px;">blog$</code><span style="font-size: 15px;">: casa com URLs cujo path termine com blog, tais como </span><i style="font-size: 15px;">blog</i><span style="font-size: 15px;"> ou </span><i style="font-size: 15px;">meu-blog</i><span style="font-size: 15px;">. O </span><i style="font-size: 15px;">$</i><span style="font-size: 15px;"> é uma âncora que casa com o fim da string, que no caso é o path da URL relativo ao diretório do .htaccess.</span></li><li><span style="font-size: 15px;"><code>blog/[a-zA-Z]</code>: casa com paths que contenham <i>blog/</i> seguido por uma letra minúscula ou maiúscula. Esse trecho pode estar em qualquer parte do path. Assim, <i>blog/a</i> casa, mas <i>meu-blog/abc</i> e <i>meu-blog/abc123mosca</i> também. O <code style="font-variant-ligatures: normal; font-variant-caps: normal; font-size: 15px; font-style: normal; font-weight: 300;">[a-zA-Z]</code><span style="font-family: Lato; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300;"> é uma classe de caracteres, que informa que queremos uma letra.</span></span></li><li><span style="font-size: 15px;"><code>blog/[a-zA-Z]$</code>: casa com paths que terminem com <i>blog/</i> seguido por uma letra minúscula ou maiúscula. Casa com <i>blog/a</i> e <i>blog/X.</i></span></li><li><span style="font-size: 15px;"><code>blog/[a-z-]+$</code>: casa com paths que terminem com <i>blog/</i> seguido por uma ou mais letras minúsculas ou hífens. Exemplo: <i>blog/p</i> e <i>meu-blog/meu-primeiro-post</i>. Não casa com <i>meu-blog/abc123mosca</i>.</span></li></ul></div>
+				</div>
+				</div>
+				<div data-id="bbcff95" class="elementor-element elementor-element-bbcff95 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Substitution">Substitution</span></h3>		</div>
+				</div>
+				<div data-id="8715aba" class="elementor-element elementor-element-8715aba elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>A substitution pode ser uma de três coisas: um filesystem path, uma URL, ou um hífen. Vamos ver cada uma delas a seguir.</p></div>
+				</div>
+				</div>
+				<div data-id="56387b2" class="elementor-element elementor-element-56387b2 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default">Filesystem path</h4>		</div>
+				</div>
+				<div data-id="18f222b" class="elementor-element elementor-element-18f222b elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>É simplesmente um path no seu sistema de arquivos. Exemplo:</p><p><code>RewriteRule . index.php</code></p><p>Esse exemplo simplesmente manda todos os requests pro index.php, já que o ponto é um metacaractere que casa com qualquer coisa nas expressões regulares, exceto uma quebra de linha. Note que foi usado um path relativo.</p><p><code>RewriteRule blog/[a-zA-Z0-9-]+ /var/www/exemplo.com/app/blog/processa-post.php</code></p><p>Já esse exemplo encaminha URLs de posts do blog para um arquivo em PHP que cuida do processamento dos posts. Note que paths absolutos também podem ser usados, como foi feito nesse exemplo.</p></div>
+				</div>
+				</div>
+				<div data-id="2da0fc1" class="elementor-element elementor-element-2da0fc1 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default">URL</h4>		</div>
+				</div>
+				<div data-id="96dd4cf" class="elementor-element elementor-element-96dd4cf elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Usar uma URL na substituição é útil para fazer redirecionamentos:</p><p><code>RewriteRule ^(.*)$ https://www.seunovosite.com/$1 [R=301]</code></p><p>A flag <i>R</i> foi usada para informar que queremos redirecionar da URL da request para a URL da substituição. Note que ela tem um valor, que é 301 e serve para especificar o tipo de redirecionamento que será feito (permanente).</p><p>Também foi usada uma parte que você pode não ter entendido se não souber expressões regulares, que é o <code>$1</code>. É uma backreference, que basicamente insere o que foi capturado no <code>(.*)</code> da regra de reescrita.</p><p>Também dá pra inserir variáveis de ambiente na substituição:</p><p><span style="color: #2080ad; font-family: monospace, monospace; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300;">RewriteRule .* https://www.seunovosite.com/T%{REQUEST_URI} [R=301]</span></p></div>
+				</div>
+				</div>
+				<div data-id="8d21b43" class="elementor-element elementor-element-8d21b43 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h4 class="elementor-heading-title elementor-size-default">Hífen</h4>		</div>
+				</div>
+				<div data-id="901672d" class="elementor-element elementor-element-901672d elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Indica que nenhuma substituição deve ser feita. É útil quando uma regra precisa ser aplicada sem mudar o path. Exemplo:</p><p><code>RewriteRule . - [F]</code></p><p>Essa regra simplesmente proibe todas as requests. De forma isolada, ela pode não fazer muito sentido, mas junto com condições, ela passa a fazer sentido. Você pode usá-la para proibir o acesso de IPs específicos, por exemplo.</p></div>
+				</div>
+				</div>
+				<div data-id="0ef7478" class="elementor-element elementor-element-0ef7478 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Flags-de-reescrita">Flags de reescrita</span></h3>		</div>
+				</div>
+				<div data-id="e825c27" class="elementor-element elementor-element-e825c27 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Primeiramente, vou relembrar algumas coisas que já falei sobre flags:</p><ul><li>Elas são especificadas entre colchetes.</li><li>Algumas tem valores, outras não. Exemplo: <code>[NC, R=301]</code>.</li><li>Em caso de múltiplas flags, a vírgula é usada como separador. Exemplo: <code>[NC, F]</code>.</li></ul><p>Veja abaixo uma lista das flags mais usadas:</p><ul><li>NC: vem de Nocase. Torna a comparação do pattern com a URL case-insensitive. Assim, letras maiúsculas não são diferenciadas de minúsculas.</li><li>L: vem de Last. É usado para informar que a regra deve ser a última a ser interpretada;</li><li>R: vem de Redirect. Força um redirecionamento. Opcionalmente, pode ser informado o código do redirecionamento;</li><li>F: retorna um 403 (Forbidden, acesso proibido).</li><li>G: retorna um 410 (Gone, para páginas excluídas).</li><li>QSA: vem de Query String Append. quando a URI de substituição contém uma query string, o comportamento padrão da RewriteRule é descartar a query de string atual, e substitui-la com a recém-gerada. Usar essa flag faz com que as query strings sejam combinadas.</li></ul></div>
+				</div>
+				</div>
+				<div data-id="82373cf" class="elementor-element elementor-element-82373cf elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Condicoes-de-reescrita">Condições de reescrita</span></h2>		</div>
+				</div>
+				<div data-id="7c32926" class="elementor-element elementor-element-7c32926 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix">Às vezes, você pode querer que uma regra de reescrita não seja sempre aplicada, mas sim apenas quando certas condições forem cumpridas. Aí que entram as condições de reescrita. Cada condição é criada pela diretiva <strong>RewriteCond</strong>. Cada RewriteCond é composta de 3 partes, que são especificadas nessa ordem: a <strong>string de teste</strong>, o <strong>pattern</strong> e as <strong>flags</strong>. Vou falar sobre cada um deles em mais detalhes.</div>
+				</div>
+				</div>
+				<div data-id="1698a38" class="elementor-element elementor-element-1698a38 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="String-de-teste">String de teste</span></h3>		</div>
+				</div>
+				<div data-id="c0ae997" class="elementor-element elementor-element-c0ae997 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>A string de teste pode usar variáveis do servidor ou backreferences de condições ou de regras. Backreferences são explicadas depois, então vamos nos concentrar nas variáveis do servidor. Elas são especificadas seguindo a sintaxe <code>%{VARIAVEL}</code>. Exemplo:</p><p><code>RewriteCond %{HTTPS} off</code></p><p>Essa condição verifica se o protocolo HTTPS não está sendo usado na request. A variável <code>%{HTTPS}</code> contém o texto <i>off</i> quando o HTTPS não está sendo usado, ou o texto <i>on</i>, caso contrário.</p><p>Veja uma lista com algumas outras variáveis de servidor:</p><ul><li>REQUEST_FILENAME: C<span style="font-family: Lato; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300;">aminho do arquivo correspondente ao request.</span></li><li>REMOTE_ADDR: IP do host remoto.</li><li>REQUEST_URI: É o path da request. Não inclui a query string.</li><li>DOCUMENT_ROOT: Diretório raiz do site.</li><li>REQUEST_SCHEME: Contém o scheme da request, que geralmente é http ou https.</li><li>QUERY_STRING: Query string da request. É a parte da request que vem depois do <i>?</i>, se houver.</li><li>SERVER_NAME: host do site, definido no VirtualHost.</li><li>HTTP_HOST: também é o host do site, porém é definido pelo cliente, ao contrário do <i>SERVER_NAME</i>, que é definido pelo servidor.</li></ul></div>
+				</div>
+				</div>
+				<div data-id="8c58145" class="elementor-element elementor-element-8c58145 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Pattern-2">Pattern</span></h3>		</div>
+				</div>
+				<div data-id="c4369d0" class="elementor-element elementor-element-c4369d0 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>O pattern da condição pode ser representado de diversas formas. O mais comum é ele ser representado como uma expressão regular, que usa PCRE, assim como o pattern da regra. Exemplo:</p><p><code>RewriteCond %{HTTP_HOST} ^www\.</code></p><p>Esse exemplo verifica se um host contém www. O pattern é o <code>^www\</code>.</p><p>Perceba que antes do ponto, há uma barra invertida. Ela é um caractere de escape. Esse tipo de caractere é usado em expressões regulares para remover o significado especial de um caractere.</p><p>O ponto é um metacaractere que casa com qualquer coisa, exceto uma quebra de linha. Quando é escapado, assim como qualquer outro metacaractere, o ponto passa a ser interpretado como caractere comum.</p><p>O pattern também pode ser usado para fazer <strong>comparações lexicográficas</strong> entre a string de teste e o pattern. Exemplo:</p><p><code>RewriteCond %{QUERY_STRING} &gt;abc=def</code></p><p>Veja outras comparações que podem ser feitas:</p><ul><li><i>&lt;Pattern</i>: verifica se a string de teste é lexicograficamente menor do que o pattern.</li><li><i>=Pattern</i>: verifica se a string de teste é lexicograficamente igual ao pattern.</li><li><i>&gt;=Pattern</i>: verifica se a string de teste é lexicograficamente maior ou igual ao pattern.</li><li><i>&lt;=Pattern</i>: verifica se a string de teste é lexicograficamente menor ou igual ao pattern.</li></ul><p><span style="font-size: 15px;">Também é possível realizar <strong>testes de atributos de arquivos</strong>. Esses testes são muito usados com a variável <i>REQUEST_FILENAME</i>. Exemplo:</span></p><p><code>RewriteCond %{REQUEST_FILENAME} -d</code></p><p>Essas condição verifica se o filename é um diretório. O <i>-f</i> poderia ser usado para verificar se o filename é um arquivo.</p><p><span style="font-size: 15px;">Seja com expressões regulares ou com comparações, você pode colocar um ! imediatamente antes da condição para negá-la. O exemplo abaixo verifica se o filename não é um arquivo:</span></p><p><span style="font-family: Lato; font-size: 15px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 300;"><code>RewriteCond %{REQUEST_FILENAME} !-d</code></span></p></div>
+				</div>
+				</div>
+				<div data-id="3856e8a" class="elementor-element elementor-element-3856e8a elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Flags">Flags</span></h3>		</div>
+				</div>
+				<div data-id="48cae0a" class="elementor-element elementor-element-48cae0a elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix">Flags também são usadas em condições de reescrita. Elas alteram o comportamento padrão dela. As flags mais usadas são <i>NC</i>, que torna a interpretação da condição case-insensitive e <i>OR</i>, que usa o operador lógico OR para conectar a condição à condição seguinte. O operador padrão das condições é o <i>AND</i>. Ele faz com que todas as condições precisem ser cumpridas para que a regra de reescrita seja avaliada e aplicada.
+
+Assim como nas regras de reescrita, as flags são especificadas entre colchetes, e em caso de múltiplas flags, a vírgula é usada como separador. Veja um exemplo de uso da flag OR:
+<pre class="EnlighterJSRAW" data-enlighter-language="generic">RewriteCond %{REMOTE_ADDR} ^145\.18\.98\.139 [OR]
+RewriteCond %{REMOTE_ADDR} ^108\.97\.204\. [OR]
+RewriteCond %{REMOTE_ADDR} ^208\.126\.</pre>
+O exemplo acima proíbe o acesso de qualquer IP que casar com um dos patterns. Note que na última condição não é necessário colocar a flag OR, já que não há nenhuma condição depois dela.</div>
+				</div>
+				</div>
+				<div data-id="6c9e933" class="elementor-element elementor-element-6c9e933 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Backreferences">Backreferences</span></h2>		</div>
+				</div>
+				<div data-id="26bc9d4" class="elementor-element elementor-element-26bc9d4 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Backreferences são um recurso de expressões regulares que permite referenciar um trecho capturado anteriormente. As capturas podem ser feitas nos patterns das regras e das condições.</p><p>As capturas feitas nas regras são referenciadas com $N, com 0 &lt;= N &lt;= 9. Já as capturas feitas nas condições são referenciadas com %N, com 0 &lt;= N &lt;= 9. O índice 0 dá acesso a string completa que casou com o pattern. Os grupos podem ser acessados a partir do índice 1. O índice do grupo depende da ordem na qual ele é criado.</p><p>As backreferences podem ser usadas na string de teste das condições e na substituição das regras de escrita. Até mesmo grupos capturados em regras podem ser referenciados em strings de teste de condições. Isso é possível porque a regra de reescrita é avaliada antes das condições. Exemplo:</p><pre class="EnlighterJSRAW" data-enlighter-language="generic">RewriteCond $1 !25
+RewriteRule porta-([0-9]+)$ analise-porta.php?porta=$1</pre><p>O exemplo acima reescreve URLs com path <i>porta-30</i> para <i>analise-porta.php?porta=30</i>. Porém, a porta fornecida não pode ser 25.</p></div>
+				</div>
+				</div>
+				<div data-id="726fa88" class="elementor-element elementor-element-726fa88 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h2 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Alguns-casos-de-uso">Alguns casos de uso</span></h2>		</div>
+				</div>
+				<div data-id="05a34b7" class="elementor-element elementor-element-05a34b7 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Redirecionamentos">Redirecionamentos</span></h3>		</div>
+				</div>
+				<div data-id="97ac185" class="elementor-element elementor-element-97ac185 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Como já foi mostrado, o mod_rewrite também é usado para fazer redirecionamentos. Alguns redirecionamentos genéricos são muito comuns e você pode precisar deles em várias situações. Por isso, decidi colocar os mais usados aqui. Vou começar com o redirecionamento de uma URL com domínio sem www para uma com o www (substitua https por http, se necessário):</p><pre data-enlighter-language="generic">RewriteEngine On
+Options +FollowSymlinks
+RewriteCond %{HTTP_HOST} !^www\.
+RewriteRule .* https://www.%{HTTP_HOST}%{REQUEST_URI} [R=301]</pre><p>Agora, o inverso:</p><pre style="font-variant-ligatures: normal; font-variant-caps: normal; font-style: normal; font-weight: 300;" data-enlighter-language="generic">RewriteEngine On
+Options +FollowSymlinks
+RewriteCond %{HTTP_HOST} ^www\.(.*)$
+RewriteRule .* https://$1%{REQUEST_URI} [R=301]</pre><p>Por fim, veja como redirecionar de uma URL sem https para uma URL com https:</p><pre style="font-variant-ligatures: normal; font-variant-caps: normal; font-style: normal; font-weight: 300;" data-enlighter-language="generic">RewriteEngine On
+Options +FollowSymlinks
+RewriteCond %{HTTPS} off
+RewriteRule .* https://%{HTTP_HOST}%{REQUEST_URI} [R=301]</pre></div>
+				</div>
+				</div>
+				<div data-id="d5b71e8" class="elementor-element elementor-element-d5b71e8 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Bloqueando-referrers">Bloqueando referrers</span></h3>		</div>
+				</div>
+				<div data-id="cb9be19" class="elementor-element elementor-element-cb9be19 elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Referer é um domínio que linka para o seu site. Em alguns casos, pode ser útil bloquear tráfego de alguns referers hostis e o mod_rewrite também pode ser usado pra isso. Basta usar o código abaixo:</p><pre data-enlighter-language="generic">RewriteEngine On<br />Options +FollowSymlinks
+RewriteCond %{HTTP_REFERER} ^.*siteruim\.com [NC,OR]
+RewriteCond %{HTTP_REFERER} ^.*siteruim2\.com [NC]
+RewriteRule . - [F]</pre></div>
+				</div>
+				</div>
+				<div data-id="a022857" class="elementor-element elementor-element-a022857 elementor-widget elementor-widget-heading" data-element_type="heading.default">
+				<div class="elementor-widget-container">
+			<h3 class="elementor-heading-title elementor-size-default"><span class="ez-toc-section" id="Hotlinking">Hotlinking</span></h3>		</div>
+				</div>
+				<div data-id="4ff8c0a" class="elementor-element elementor-element-4ff8c0a elementor-widget elementor-widget-text-editor" data-element_type="text-editor.default">
+				<div class="elementor-widget-container">
+					<div class="elementor-text-editor elementor-clearfix"><p>Hotlinking basicamente é o ato de linkar para imagens, scripts, folhas de estilo e recursos similares de outro site, fazendo com que esse site gaste recursos do hardware. Muitas vezes, essa prática acaba sendo desvantajosa para o site que tem seus recursos linkados. No entanto, há casos em que o hotlinking é até incentivado, como o do jQuery. Para bloquear o hotlinking, você pode usar o código abaixo:</p><pre data-enlighter-language="generic">RewriteEngine On
+Options +FollowSymlinks
+RewriteCond % !^$
+RewriteCond % !^https?://(www\.)?seusite.com/%{REQUEST_URI} [NC]
+RewriteRule \.(gif|jpg|jpeg|png|js|css)$ - [F]</pre><p>O código desse exemplo bloqueia requests aos arquivos dos formatos informados na regra de reescrita, a menos que a request parta do seu site. Você pode adicionar mais condições caso queira permitir outros sites confiáveis.</p></div>
+				</div>
+				</div>
+						</div>
+			</div>
+		</div>
+						</div>
+			</div>
+		</section>
+						</div>
+			</div>
+		</div>
+		</div><!-- .entry -->
+
+<div class="post-tags clr">
+	</div>
+<div class="entry-share clr minimal side">
+
+	
+		<h3 class="theme-heading social-share-title">
+			<span class="text">Please Share This</span>
+		</h3>
+
+	
+	<ul class="oss-social-share clr">
+
+		
+				<li class="twitter">
+					<a href="https://twitter.com/share?text=Aprenda de vez a usar o mod_rewrite do Apache&amp;url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" title="Share on Twitter" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M23.954 4.569c-.885.389-1.83.654-2.825.775 1.014-.611 1.794-1.574 2.163-2.723-.951.555-2.005.959-3.127 1.184-.896-.959-2.173-1.559-3.591-1.559-2.717 0-4.92 2.203-4.92 4.917 0 .39.045.765.127 1.124C7.691 8.094 4.066 6.13 1.64 3.161c-.427.722-.666 1.561-.666 2.475 0 1.71.87 3.213 2.188 4.096-.807-.026-1.566-.248-2.228-.616v.061c0 2.385 1.693 4.374 3.946 4.827-.413.111-.849.171-1.296.171-.314 0-.615-.03-.916-.086.631 1.953 2.445 3.377 4.604 3.417-1.68 1.319-3.809 2.105-6.102 2.105-.39 0-.779-.023-1.17-.067 2.189 1.394 4.768 2.209 7.557 2.209 9.054 0 13.999-7.496 13.999-13.986 0-.209 0-.42-.015-.63.961-.689 1.8-1.56 2.46-2.548l-.047-.02z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="facebook">
+					<a href="https://www.facebook.com/sharer.php?u=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" title="Share on Facebook" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M5.677,12.998V8.123h3.575V6.224C9.252,2.949,11.712,0,14.736,0h3.94v4.874h-3.94
+								c-0.432,0-0.934,0.524-0.934,1.308v1.942h4.874v4.874h-4.874V24H9.252V12.998H5.677z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="googleplus">
+					<a href="https://plus.google.com/share?url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" title="Share on Google+" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M7.636,10.929V13.5h4.331c-0.175,1.104-1.309,3.236-4.331,3.236c-2.607,0-4.735-2.121-4.735-4.736
+								s2.127-4.736,4.735-4.736c1.484,0,2.476,0.621,3.044,1.157l2.073-1.961C11.422,5.239,9.698,4.5,7.636,4.5C3.415,4.5,0,7.854,0,12
+								s3.415,7.5,7.636,7.5c4.407,0,7.331-3.043,7.331-7.329c0-0.493-0.055-0.868-0.12-1.243H7.636z"/>
+								<path d="M21.818,10.929V8.786h-2.182v2.143h-2.182v2.143h2.182v2.143h2.182v-2.143H24c0,0.022,0-2.143,0-2.143
+								H21.818z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="pinterest">
+					<a href="https://www.pinterest.com/pin/create/button/?url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F&amp;media=https://www.monosan.com.br/wp-content/uploads/2019/01/mao-feminina-escrevendo-redimensionado.jpg&amp;description=O+mod_rewrite+do+Apache+%C3%A9+um+m%C3%B3dulo+que+trabalha+com+reescrita+de+URLs.+Ele+trabalha+com+express%C3%B5es+regulares%2C+que+s%C3%A3o+muito+poderosas.+Se+voc%C3%AA+n%C3%A3o+conhece+express%C3%B5es+regulares%2C+a+DevsChannel+tem+uma+s%C3%A9rie+de%C2%A0tutoriais+de+express%C3%B5es+regulares%C2%A0muito+boa.Muita+gente+usa%26hellip%3B" title="Share on Pinterest" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M13.757,17.343c-1.487,0-2.886-0.804-3.365-1.717c0,0-0.8,3.173-0.969,3.785
+								c-0.596,2.165-2.35,4.331-2.487,4.508c-0.095,0.124-0.305,0.085-0.327-0.078c-0.038-0.276-0.485-3.007,0.041-5.235
+								c0.264-1.118,1.772-7.505,1.772-7.505s-0.44-0.879-0.44-2.179c0-2.041,1.183-3.565,2.657-3.565c1.252,0,1.857,0.94,1.857,2.068
+								c0,1.26-0.802,3.142-1.216,4.888c-0.345,1.461,0.734,2.653,2.174,2.653c2.609,0,4.367-3.352,4.367-7.323
+								c0-3.018-2.032-5.278-5.731-5.278c-4.177,0-6.782,3.116-6.782,6.597c0,1.2,0.355,2.047,0.909,2.701
+								c0.255,0.301,0.29,0.422,0.198,0.767c-0.067,0.254-0.218,0.864-0.281,1.106c-0.092,0.349-0.375,0.474-0.69,0.345
+								c-1.923-0.785-2.82-2.893-2.82-5.262c0-3.912,3.3-8.604,9.844-8.604c5.259,0,8.72,3.805,8.72,7.89
+								C21.188,13.307,18.185,17.343,13.757,17.343z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="linkedin">
+					<a href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F&amp;title=Aprenda de vez a usar o mod_rewrite do Apache&amp;summary=O+mod_rewrite+do+Apache+%C3%A9+um+m%C3%B3dulo+que+trabalha+com+reescrita+de+URLs.+Ele+trabalha+com+express%C3%B5es+regulares%2C+que+s%C3%A3o+muito+poderosas.+Se+voc%C3%AA+n%C3%A3o+conhece+express%C3%B5es+regulares%2C+a+DevsChannel+tem+uma+s%C3%A9rie+de%C2%A0tutoriais+de+express%C3%B5es+regulares%C2%A0muito+boa.Muita+gente+usa%26hellip%3B&amp;source=https://www.monosan.com.br/" title="Share on LinkedIn" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M6.52,22h-4.13V8.667h4.13V22z M4.436,6.92
+								c-1.349,0-2.442-1.101-2.442-2.46C1.994,3.102,3.087,2,4.436,2s2.442,1.102,2.442,2.46C6.877,5.819,5.784,6.92,4.436,6.92z
+								M21.994,22h-4.109c0,0,0-5.079,0-6.999c0-1.919-0.73-2.991-2.249-2.991c-1.652,0-2.515,1.116-2.515,2.991c0,2.054,0,6.999,0,6.999
+								h-3.96V8.667h3.96v1.796c0,0,1.191-2.202,4.02-2.202c2.828,0,4.853,1.727,4.853,5.298C21.994,17.129,21.994,22,21.994,22z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="viber">
+					<a href="viber://forward?text=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" title="Share on Viber" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M14.957,5.825c0.764,0.163,1.349,0.453,1.849,0.921c0.643,0.608,0.996,1.343,1.151,2.4
+								c0.105,0.689,0.062,0.96-0.182,1.184c-0.229,0.209-0.651,0.217-0.907,0.019c-0.186-0.139-0.244-0.286-0.287-0.685
+								c-0.05-0.53-0.143-0.902-0.302-1.246c-0.341-0.731-0.942-1.111-1.957-1.235c-0.477-0.058-0.62-0.112-0.775-0.294
+								c-0.283-0.337-0.174-0.883,0.217-1.084c0.147-0.074,0.209-0.081,0.535-0.062C14.5,5.755,14.798,5.79,14.957,5.825z M14.131,2.902
+								c2.353,0.344,4.175,1.436,5.369,3.209c0.671,0.999,1.089,2.171,1.233,3.429c0.05,0.461,0.05,1.3-0.004,1.44
+								c-0.051,0.131-0.213,0.309-0.353,0.383c-0.151,0.078-0.473,0.07-0.651-0.023c-0.298-0.151-0.388-0.391-0.388-1.041
+								c0-1.002-0.26-2.059-0.709-2.88c-0.512-0.937-1.256-1.711-2.163-2.249c-0.779-0.465-1.93-0.809-2.981-0.894
+								c-0.38-0.031-0.589-0.108-0.733-0.275c-0.221-0.252-0.244-0.592-0.058-0.875C12.895,2.813,13.205,2.763,14.131,2.902z
+								M5.002,0.514c0.136,0.047,0.345,0.155,0.465,0.232c0.736,0.488,2.787,3.108,3.458,4.416c0.384,0.747,0.512,1.3,0.392,1.711
+								C9.193,7.314,8.988,7.547,8.069,8.286C7.701,8.584,7.356,8.89,7.301,8.971C7.162,9.172,7.049,9.567,7.049,9.846
+								c0.004,0.646,0.423,1.819,0.973,2.721c0.426,0.7,1.19,1.598,1.946,2.287c0.888,0.813,1.671,1.366,2.555,1.804
+								c1.136,0.565,1.83,0.708,2.337,0.472c0.128-0.058,0.264-0.135,0.306-0.17c0.039-0.035,0.337-0.399,0.663-0.801
+								c0.628-0.79,0.771-0.917,1.202-1.065c0.547-0.186,1.105-0.135,1.667,0.151c0.427,0.221,1.357,0.797,1.957,1.215
+								c0.791,0.553,2.481,1.931,2.71,2.206c0.403,0.495,0.473,1.13,0.202,1.831c-0.287,0.739-1.403,2.125-2.182,2.717
+								c-0.705,0.534-1.206,0.739-1.865,0.77c-0.543,0.027-0.768-0.019-1.461-0.306c-5.442-2.241-9.788-5.585-13.238-10.179
+								c-1.802-2.4-3.175-4.888-4.113-7.47c-0.547-1.505-0.574-2.16-0.124-2.93c0.194-0.325,1.019-1.13,1.62-1.579
+								c1-0.743,1.461-1.018,1.83-1.095C4.285,0.371,4.723,0.414,5.002,0.514z M13.864,0.096c1.334,0.166,2.411,0.487,3.593,1.065
+								c1.163,0.569,1.907,1.107,2.892,2.086c0.923,0.925,1.434,1.626,1.977,2.713c0.756,1.517,1.186,3.321,1.26,5.306
+								c0.027,0.677,0.008,0.828-0.147,1.022c-0.294,0.375-0.942,0.313-1.163-0.108c-0.07-0.139-0.089-0.259-0.112-0.801
+								c-0.039-0.832-0.097-1.37-0.213-2.013c-0.458-2.52-1.667-4.532-3.597-5.976c-1.609-1.208-3.272-1.796-5.45-1.924
+								c-0.737-0.043-0.864-0.07-1.031-0.197c-0.31-0.244-0.326-0.817-0.027-1.084c0.182-0.166,0.31-0.19,0.942-0.17
+								C13.116,0.027,13.6,0.065,13.864,0.096z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="vk">
+					<a href="https://vk.com/share.php?url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" title="Share on VK" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M11.701 18.771h1.437s.433-.047.654-.284c.21-.221.21-.63.21-.63s-.031-1.927.869-2.21c.887-.281 2.012 1.86 3.211 2.683.916.629 1.605.494 1.605.494l3.211-.044s1.682-.105.887-1.426c-.061-.105-.451-.975-2.371-2.76-2.012-1.861-1.742-1.561.676-4.787 1.469-1.965 2.07-3.166 1.875-3.676-.166-.48-1.26-.361-1.26-.361l-3.602.031s-.27-.031-.465.09c-.195.119-.314.391-.314.391s-.572 1.529-1.336 2.82c-1.623 2.729-2.268 2.879-2.523 2.699-.604-.391-.449-1.58-.449-2.432 0-2.641.404-3.75-.781-4.035-.39-.091-.681-.15-1.685-.166-1.29-.014-2.378.01-2.995.311-.405.203-.72.652-.539.675.24.03.779.146 1.064.537.375.506.359 1.636.359 1.636s.211 3.116-.494 3.503c-.495.262-1.155-.28-2.595-2.756-.735-1.26-1.291-2.67-1.291-2.67s-.105-.256-.299-.406c-.227-.165-.557-.225-.557-.225l-3.435.03s-.51.016-.689.24c-.166.195-.016.615-.016.615s2.686 6.287 5.732 9.453c2.79 2.902 5.956 2.715 5.956 2.715l-.05-.055z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="reddit">
+					<a href="https://www.reddit.com/submit?url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F&amp;title=Aprenda de vez a usar o mod_rewrite do Apache" title="Share on Reddit" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M23.999,11.786c0-1.576-1.294-2.858-2.885-2.858c-0.689,0-1.321,0.241-1.817,0.641
+								c-1.759-1.095-3.991-1.755-6.383-1.895l1.248-3.91l3.43,0.8c0.09,1.237,1.134,2.217,2.405,2.217c1.33,0,2.412-1.072,2.412-2.391
+								c0-1.318-1.082-2.39-2.412-2.39c-0.93,0-1.739,0.525-2.141,1.291l-3.985-0.93c-0.334-0.078-0.671,0.112-0.775,0.436L11.547,7.65
+								C8.969,7.712,6.546,8.375,4.658,9.534c-0.49-0.38-1.105-0.607-1.774-0.607C1.293,8.927,0,10.209,0,11.785
+								c0,0.974,0.495,1.836,1.249,2.351c-0.031,0.227-0.048,0.455-0.048,0.686c0,1.97,1.156,3.803,3.254,5.16
+								C6.468,21.283,9.13,22,11.952,22s5.485-0.716,7.496-2.018c2.099-1.357,3.254-3.19,3.254-5.16c0-0.21-0.014-0.419-0.041-0.626
+								C23.464,13.689,23.999,12.798,23.999,11.786 M19.997,3.299c0.607,0,1.102,0.49,1.102,1.091c0,0.602-0.494,1.092-1.102,1.092
+								s-1.102-0.49-1.102-1.092C18.896,3.789,19.389,3.299,19.997,3.299 M6.805,13.554c0-0.888,0.752-1.633,1.648-1.633
+								c0.897,0,1.625,0.745,1.625,1.633c0,0.889-0.728,1.61-1.625,1.61C7.557,15.163,6.805,14.442,6.805,13.554 M15.951,18.288
+								c-0.836,0.827-2.124,1.229-3.939,1.229c-0.004,0-0.008-0.001-0.013-0.001c-0.004,0-0.008,0.001-0.013,0.001
+								c-1.815,0-3.103-0.402-3.938-1.229c-0.256-0.254-0.256-0.665,0-0.919c0.256-0.253,0.671-0.253,0.927,0
+								c0.576,0.571,1.561,0.849,3.01,0.849c0.005,0,0.009,0.001,0.013,0.001c0.005,0,0.009-0.001,0.013-0.001
+								c1.45,0,2.435-0.278,3.012-0.849c0.256-0.254,0.671-0.253,0.927,0C16.206,17.623,16.206,18.034,15.951,18.288 M15.569,15.163
+								c-0.897,0-1.651-0.721-1.651-1.61s0.754-1.633,1.651-1.633s1.625,0.745,1.625,1.633C17.193,14.442,16.466,15.163,15.569,15.163"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="tumblr">
+					<a href="https://www.tumblr.com/widgets/share/tool?canonicalUrl=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" title="Share on Tumblr" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M19.44,22.887c-1.034,0.487-1.97,0.828-2.808,1.024
+								c-0.838,0.195-1.744,0.293-2.718,0.293c-1.106,0-2.083-0.14-2.933-0.418c-0.851-0.279-1.575-0.677-2.175-1.194
+								c-0.6-0.518-1.017-1.067-1.248-1.649c-0.231-0.581-0.347-1.425-0.347-2.53V9.93H4.56V6.482c0.947-0.309,1.759-0.751,2.434-1.327
+								C7.67,4.58,8.212,3.889,8.62,3.081C9.029,2.274,9.311,1.247,9.464,0h3.429v6.131h5.747V9.93h-5.747v6.208
+								c0,1.403,0.074,2.304,0.223,2.702c0.149,0.399,0.426,0.718,0.829,0.954c0.536,0.322,1.148,0.483,1.838,0.483
+								c1.225,0,2.444-0.399,3.657-1.196V22.887L19.44,22.887z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+				<li class="viadeo">
+					<a href="https://partners.viadeo.com/share?url=https%3A%2F%2Fwww.monosan.com.br%2Fgeral%2Faprenda-a-usar-mod-rewrite%2F" title="Share on Viadeo" onclick="oss_onClick( this.href );return false;">
+						<span class="oss-icon-wrap">
+							<svg class="oss-icon" role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+								<path d="M21.046,0.546c-1.011,2.159-2.882,2.557-2.882,2.557c-1.87,0.476-2.525,1.202-2.525,1.202
+								c-1.871,1.889-0.396,4.181-0.396,4.181c4.039-0.922,5.514-4.259,5.514-4.259c-0.181,2.242-4.986,4.887-4.986,4.887
+								c1.592,1.565,3.111,1.374,4.112,0.775c1.328-0.795,1.968-2.537,1.968-2.537C23.142,3.484,21.046,0.546,21.046,0.546z
+								M14.424,7.082c0.044,0.662,0.772,12.464-5.445,14.829c0,0,0.571,0.108,1.216,0.079c0,0,7.912-5.015,4.283-14.745
+								C14.478,7.244,14.463,7.185,14.424,7.082z M11.113,0c1.988,3.356,3.067,6.364,3.311,7.081V7.052C13.936,1.88,11.113,0,11.113,0z"/>
+								<path d="M16.465,15.438c0,1.192-0.283,2.301-0.85,3.332c-0.566,1.031-1.328,1.825-2.295,2.385
+								c-0.962,0.559-2.022,0.839-3.169,0.839c-1.153,0-2.207-0.28-3.169-0.839C6.02,20.595,5.253,19.8,4.687,18.769
+								c-0.566-1.03-0.85-2.139-0.85-3.332c0-1.845,0.62-3.42,1.861-4.725c1.24-1.3,2.725-1.953,4.454-1.953
+								c0.82,0,1.587,0.152,2.3,0.447c0.073-0.756,0.337-1.457,0.625-2.032c-0.899-0.329-1.87-0.491-2.92-0.491
+								c-2.496,0-4.561,0.923-6.197,2.772c-1.485,1.673-2.232,3.656-2.232,5.932c0,2.301,0.786,4.313,2.354,6.031
+								C5.655,23.141,7.677,24,10.152,24c2.466,0,4.488-0.859,6.056-2.581c1.573-1.722,2.354-3.734,2.354-6.031
+								c0-1.232-0.215-2.375-0.645-3.425c-0.723,0.447-1.406,0.677-1.973,0.8C16.295,13.578,16.465,14.471,16.465,15.438z"/>
+							</svg>
+						</span>
+											</a>
+				</li>
+
+			
+		
+	</ul>
+
+</div><!-- .entry-share -->
+
+
+
+	<section id="related-posts" class="clr">
+
+		<h3 class="theme-heading related-posts-title">
+			<span class="text">Talvez você goste também</span>
+		</h3>
+
+		<div class="oceanwp-row clr">
+
+			
+			
+				
+				<article class="related-post clr col span_1_of_3 col-1 post-504 post type-post status-publish format-standard has-post-thumbnail hentry category-geral entry has-media">
+
+					
+						<figure class="related-post-media clr">
+
+							<a href="https://www.monosan.com.br/geral/vantagens-de-camuflar-links-de-afiliados/" class="related-thumb">
+
+								<img width="300" height="200" src="https://www.monosan.com.br/wp-content/uploads/2018/12/camuflar-links-afiliados-redimensionado-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Vantagens de camuflar links de afiliados" itemprop="image" srcset="https://www.monosan.com.br/wp-content/uploads/2018/12/camuflar-links-afiliados-redimensionado-300x200.jpg 300w, https://www.monosan.com.br/wp-content/uploads/2018/12/camuflar-links-afiliados-redimensionado-768x512.jpg 768w, https://www.monosan.com.br/wp-content/uploads/2018/12/camuflar-links-afiliados-redimensionado.jpg 833w" sizes="(max-width: 300px) 100vw, 300px" />							</a>
+
+						</figure>
+
+					
+					<h3 class="related-post-title">
+						<a href="https://www.monosan.com.br/geral/vantagens-de-camuflar-links-de-afiliados/" title="Vantagens de camuflar links de afiliados" rel="bookmark">Vantagens de camuflar links de afiliados</a>
+					</h3><!-- .related-post-title -->
+									
+					<time class="published" datetime="2018-12-28T14:13:22+00:00"><i class="icon-clock"></i>28/12/2018</time>
+
+				</article><!-- .related-post -->
+				
+				
+			
+				
+				<article class="related-post clr col span_1_of_3 col-2 post-402 post type-post status-publish format-standard has-post-thumbnail hentry category-geral entry has-media">
+
+					
+						<figure class="related-post-media clr">
+
+							<a href="https://www.monosan.com.br/geral/instalacao-e-configuracao-simplescreenrecorder-ubuntu/" class="related-thumb">
+
+								<img width="300" height="200" src="https://www.monosan.com.br/wp-content/uploads/2018/12/simple-screen-recorder-capa-redimensionado-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Instalação e configuração do SimpleScreenRecorder no Ubuntu" itemprop="image" srcset="https://www.monosan.com.br/wp-content/uploads/2018/12/simple-screen-recorder-capa-redimensionado-300x200.jpg 300w, https://www.monosan.com.br/wp-content/uploads/2018/12/simple-screen-recorder-capa-redimensionado-768x512.jpg 768w, https://www.monosan.com.br/wp-content/uploads/2018/12/simple-screen-recorder-capa-redimensionado.jpg 833w" sizes="(max-width: 300px) 100vw, 300px" />							</a>
+
+						</figure>
+
+					
+					<h3 class="related-post-title">
+						<a href="https://www.monosan.com.br/geral/instalacao-e-configuracao-simplescreenrecorder-ubuntu/" title="Instalação e configuração do SimpleScreenRecorder no Ubuntu" rel="bookmark">Instalação e configuração do SimpleScreenRecorder no Ubuntu</a>
+					</h3><!-- .related-post-title -->
+									
+					<time class="published" datetime="2018-12-29T12:13:14+00:00"><i class="icon-clock"></i>29/12/2018</time>
+
+				</article><!-- .related-post -->
+				
+				
+			
+				
+				<article class="related-post clr col span_1_of_3 col-3 post-589 post type-post status-publish format-standard has-post-thumbnail hentry category-geral entry has-media">
+
+					
+						<figure class="related-post-media clr">
+
+							<a href="https://www.monosan.com.br/geral/conheca-os-5-melhores-bancos-de-imagens-pagos/" class="related-thumb">
+
+								<img width="300" height="200" src="https://www.monosan.com.br/wp-content/uploads/2019/01/melhores-bancos-imagens-pagos-capa-redimensionado-300x200.jpg" class="attachment-medium size-medium wp-post-image" alt="Conheça os 5 melhores bancos de imagens pagos" itemprop="image" srcset="https://www.monosan.com.br/wp-content/uploads/2019/01/melhores-bancos-imagens-pagos-capa-redimensionado-300x200.jpg 300w, https://www.monosan.com.br/wp-content/uploads/2019/01/melhores-bancos-imagens-pagos-capa-redimensionado-768x512.jpg 768w, https://www.monosan.com.br/wp-content/uploads/2019/01/melhores-bancos-imagens-pagos-capa-redimensionado.jpg 833w" sizes="(max-width: 300px) 100vw, 300px" />							</a>
+
+						</figure>
+
+					
+					<h3 class="related-post-title">
+						<a href="https://www.monosan.com.br/geral/conheca-os-5-melhores-bancos-de-imagens-pagos/" title="Conheça os 5 melhores bancos de imagens pagos" rel="bookmark">Conheça os 5 melhores bancos de imagens pagos</a>
+					</h3><!-- .related-post-title -->
+									
+					<time class="published" datetime="2019-01-02T11:19:20+00:00"><i class="icon-clock"></i>02/01/2019</time>
+
+				</article><!-- .related-post -->
+				
+				
+			
+		</div><!-- .oceanwp-row -->
+
+	</section><!-- .related-posts -->
+
+
+
+ 
+<section id="comments" class="comments-area clr">
+
+	
+	
+		<div id="respond" class="comment-respond">
+		<h3 id="reply-title" class="comment-reply-title">Deixe uma resposta <small><a rel="nofollow" id="cancel-comment-reply-link" href="/geral/aprenda-a-usar-mod-rewrite/#respond" style="display:none;">Cancelar resposta</a></small></h3>			<form action="https://www.monosan.com.br/wp-comments-post.php" method="post" id="commentform" class="comment-form" novalidate>
+				<div class="comment-textarea"><textarea name="comment" id="comment" cols="39" rows="4" tabindex="100" class="textarea-comment" placeholder="Your Comment Here..."></textarea></div><div class="comment-form-author"><input type="text" name="author" id="author" value="" placeholder="Name (required)" size="22" tabindex="101" aria-required="true" class="input-name" /></div>
+<div class="comment-form-email"><input type="text" name="email" id="email" value="" placeholder="Email (required)" size="22" tabindex="102" aria-required="true" class="input-email" /></div>
+<p class="form-submit"><input name="submit" type="submit" id="comment-submit" class="submit" value="Comente" /> <input type='hidden' name='comment_post_ID' value='2064' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+</p>			</form>
+			</div><!-- #respond -->
+	
+</section><!-- #comments -->
+</article>
+				
+			</div><!-- #content -->
+
+			
+		</div><!-- #primary -->
+
+		
+		
+
+<aside id="right-sidebar" class="sidebar-container widget-area sidebar-primary" itemscope="itemscope" itemtype="http://schema.org/WPSideBar">
+
+	
+	<div id="right-sidebar-inner" class="clr">
+
+		<div id="categories-3" class="sidebar-box widget_categories clr"><h4 class="widget-title">Categorias</h4>		<ul>
+	<li class="cat-item cat-item-9"><a href="https://www.monosan.com.br/category/geral/" >Geral</a> <span class="cat-count-span">(11)
+</li>
+	<li class="cat-item cat-item-12"><a href="https://www.monosan.com.br/category/seo/" >SEO</a> <span class="cat-count-span">(21)
+</li>
+	<li class="cat-item cat-item-10"><a href="https://www.monosan.com.br/category/vps/" >VPS</a> <span class="cat-count-span">(11)
+</li>
+	<li class="cat-item cat-item-11"><a href="https://www.monosan.com.br/category/wordpress/" >WordPress</a> <span class="cat-count-span">(15)
+</li>
+		</ul>
+</div>		<div id="recent-posts-3" class="sidebar-box widget_recent_entries clr">		<h4 class="widget-title">Posts recentes</h4>		<ul>
+											<li>
+					<a href="https://www.monosan.com.br/seo/long-tail-keywords/">Long tail keywords</a>
+											<span class="post-date">19/10/2019</span>
+									</li>
+											<li>
+					<a href="https://www.monosan.com.br/seo/dominios/">Domínios</a>
+											<span class="post-date">18/10/2019</span>
+									</li>
+											<li>
+					<a href="https://www.monosan.com.br/seo/black-hat-white-hat-e-gray-hat/">Black hat, white hat e gray hat</a>
+											<span class="post-date">14/10/2019</span>
+									</li>
+											<li>
+					<a href="https://www.monosan.com.br/seo/10-dicas-para-criar-backlinks/">10 Dicas para criar backlinks</a>
+											<span class="post-date">13/10/2019</span>
+									</li>
+											<li>
+					<a href="https://www.monosan.com.br/seo/tipos-de-links/">Tipos de links</a>
+											<span class="post-date">12/10/2019</span>
+									</li>
+					</ul>
+		</div>
+	</div><!-- #sidebar-inner -->
+
+	
+</aside><!-- #right-sidebar -->
+
+
+	</div><!-- #content-wrap -->
+
+	
+
+        </main><!-- #main -->
+
+        
+        
+        
+            
+<footer id="footer" class="site-footer" itemscope="itemscope" itemtype="http://schema.org/WPFooter">
+
+    
+    <div id="footer-inner" class="clr">
+
+        
+
+<div id="footer-bottom" class="clr no-footer-nav">
+
+	
+	<div id="footer-bottom-inner" class="container clr">
+
+		
+		
+			<div id="copyright" class="clr" role="contentinfo">
+				© 2018 - 2020 Monosan. Todos os direitos reservados.			</div><!-- #copyright -->
+
+		
+	</div><!-- #footer-bottom-inner -->
+
+	
+</div><!-- #footer-bottom -->
+
+        
+    </div><!-- #footer-inner -->
+
+    
+</footer><!-- #footer -->            
+        
+                        
+    </div><!-- #wrap -->
+
+    
+</div><!-- #outer-wrap -->
+
+
+
+<a id="scroll-top" class="scroll-top-right" href="#"><span class="fa fa-angle-up"></span></a>
+
+
+<div id="sidr-close">
+	<a href="#" class="toggle-sidr-close">
+		<i class="icon icon-close"></i><span class="close-text">Fechar Menu</span>
+	</a>
+</div>
+    
+    
+<div id="mobile-menu-search" class="clr">
+	<form method="get" action="https://www.monosan.com.br/" class="mobile-searchform">
+		<input type="search" name="s" autocomplete="off" placeholder="Pesquisa" />
+		<button type="submit" class="searchform-submit">
+			<i class="icon icon-magnifier"></i>
+		</button>
+			</form>
+</div><!-- .mobile-menu-search -->
+
+<script type='text/javascript' src='https://www.monosan.com.br/wp-includes/js/comment-reply.min.js?ver=4.9.16'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-includes/js/imagesloaded.min.js?ver=3.2.0'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/js/third/magnific-popup.min.js?ver=1.5.27'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/js/third/lightbox.min.js?ver=1.5.27'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var oceanwpLocalize = {"isRTL":"","menuSearchStyle":"disabled","sidrSource":"#sidr-close, #site-navigation, #mobile-menu-search","sidrDisplace":"1","sidrSide":"left","sidrDropdownTarget":"icon","verticalHeaderTarget":"icon","customSelects":".woocommerce-ordering .orderby, #dropdown_product_cat, .widget_categories select, .widget_archive select, .single-product .variations_form .variations select","ajax_url":"https:\/\/www.monosan.com.br\/wp-admin\/admin-ajax.php"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/js/main.min.js?ver=1.5.27'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/enlighter/resources/mootools-core-yc.js?ver=3.8.1'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/enlighter/resources/EnlighterJS.min.js?ver=3.8.1'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/ocean-posts-slider/assets/js/main.min.js'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/ocean-social-sharing/assets/js/social.min.js?ver=1.0.13'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-includes/js/wp-embed.min.js?ver=4.9.16'></script>
+<!--[if lt IE 9]>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/themes/oceanwp/assets/js//third/html5.min.js?ver=1.5.27'></script>
+<![endif]-->
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/easy-table-of-contents/vendor/smooth-scroll/jquery.smooth-scroll.min.js?ver=1.5.5'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/easy-table-of-contents/vendor/js-cookie/js.cookie.min.js?ver=2.0.3'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/easy-table-of-contents/vendor/sticky-kit/jquery.sticky-kit.min.js?ver=1.9.2'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/easy-table-of-contents/vendor/waypoints/jquery.waypoints.min.js?ver=1.9.2'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var ezTOC = {"smooth_scroll":"1","visibility_hide_by_default":"","width":"auto","scroll_offset":"30"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/easy-table-of-contents/assets/js/front.min.js?ver=1.7'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-includes/js/jquery/ui/position.min.js?ver=1.11.4'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/elementor/assets/lib/dialog/dialog.min.js?ver=4.5.0'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/elementor/assets/lib/waypoints/waypoints.min.js?ver=4.0.2'></script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/elementor/assets/lib/swiper/swiper.jquery.min.js?ver=4.4.3'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var elementorFrontendConfig = {"isEditMode":"","is_rtl":"","breakpoints":{"xs":0,"sm":480,"md":768,"lg":1025,"xl":1440,"xxl":1600},"version":"2.2.4","urls":{"assets":"https:\/\/www.monosan.com.br\/wp-content\/plugins\/elementor\/assets\/"},"settings":{"page":[],"general":{"elementor_global_image_lightbox":"yes","elementor_enable_lightbox_in_editor":"yes"}},"post":{"id":2064,"title":"Aprenda de vez a usar o mod_rewrite do Apache","excerpt":""}};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://www.monosan.com.br/wp-content/plugins/elementor/assets/js/frontend.min.js?ver=2.2.4'></script>
+<script type="text/javascript">/* <![CDATA[ */EnlighterJS_Config = {"selector":{"block":"pre.EnlighterJSRAW","inline":"code.EnlighterJSRAW"},"language":"generic","theme":"enlighter","indent":2,"hover":"hoverEnabled","showLinenumbers":true,"rawButton":true,"infoButton":true,"windowButton":true,"rawcodeDoubleclick":false,"grouping":true,"cryptex":{"enabled":false,"email":"mail@example.tld"}};!function(){var a=function(a){var b="Enlighter Error: ";console.error?console.error(b+a):console.log&&console.log(b+a)};return window.addEvent?"undefined"==typeof EnlighterJS?void a("Javascript Resources not loaded yet!"):"undefined"==typeof EnlighterJS_Config?void a("Configuration not loaded yet!"):void window.addEvent("domready",function(){EnlighterJS.Util.Init(EnlighterJS_Config.selector.block,EnlighterJS_Config.selector.inline,EnlighterJS_Config)}):void a("MooTools Framework not loaded yet!")}();;/* ]]> */</script></body>
+</html>
