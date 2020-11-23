@@ -1,0 +1,199 @@
+///variavei
+
+$corYellow:  #f7f400;
+$corGradient: linear-gradient(to right, #860a41, #880a54, #630068);
+$fontAdventPro:"Advent Pro";
+$fontBebasNeue:"Bebas-Neue";
+
+@font-face{
+
+		src: url('../font/Advent_Pro/AdventPro-Regular.ttf'),
+		 	 url('../font/Advent_Pro/AdventPro-SemiBold'),
+		  	 url('../font/Advent_Pro/AdventPro-Bold.ttf');
+		font-family: "Advent Pro";
+}
+
+@font-face{
+		font-family: "Bebas-Neue";
+		src: url("../font/Bebas_Neue/BebasNeue-Regular.ttf");	
+		
+}
+
+@mixin display($justifyContent, $flexDirection){
+	
+	display:flex;
+	justify-content:$justifyContent;
+	flex-direction:$flexDirection;
+
+}
+
+// defini width and height 
+
+@mixin size($width,$height){
+
+	width:$width;
+	height:$height;
+}
+@mixin layout{
+	max-width:1024px;
+	width:100%;
+	margin:0 auto;
+
+}
+*{
+	margin:0;
+	padding: 0;
+
+}
+
+body{
+	background-image: $corGradient;
+	font-family: $fontAdventPro, Sans-serif;
+}
+
+/*======== header =========*/ 
+header{
+	width:100%;
+
+	nav{
+		@include layout;
+
+		.container-menu{
+
+			@include size(100%, 70px);
+			@include display(end, row);
+
+			.icon-menu{
+
+				visibility: hidden;
+				background-image: url("../img/menu.svg");
+				background-repeat: no-repeat;
+			    height: 30px;
+		    	margin: 15px;
+			}
+
+			.brand{
+				
+				@include display(center, row);
+
+				width: 100%;			
+				
+				a{
+				  font-family:$fontBebasNeue;
+				  line-height: 70px;
+				  padding-left:20px;
+				  width: 100%;
+				  font-size: 3em;
+				  color: $corYellow;
+				  text-decoration: none;
+				  text-align: center;
+
+					  &:hover{
+					  		background: $corYellow;
+	  						color: #000;
+	  						border-radius: 10px;
+					  }
+					  &:before{
+					  	content:"{ }" ;
+					    font-weight:500 ;
+				    	color:#fff;
+					  }
+					  &:hover:before{
+					  	color:red;
+					  }
+				}
+			}
+
+			#menu{
+
+				@include size( 100%, 70px);
+				@include display(end,row);
+
+				a{
+
+					@include size(100px, 70px);
+					font-family: $fontAdventPro;
+				    font-size: 1.2em;
+				    font-weight: 700;
+				    text-decoration: none;
+				    color:$corYellow;
+				    text-align: center;				  
+				    line-height: 70px;
+
+				   	&:hover{
+
+				   		background: $corYellow;
+  						color: #000;
+
+				   	}
+
+				}
+					.close{
+					visibility: hidden;
+				}
+			}
+
+
+
+
+		}
+	}
+
+}
+
+/*======== Header-home =========*/ 
+/* header da pagina home*/  
+.header{
+
+
+  &-home{
+
+	@include size(100%, 350px);
+
+	background-image: url('/img/code-cafe.jpg');
+	background-size: 100%;
+	overflow: hidden;
+
+	.header-chamada{
+
+		/*classe excusiva somente da pagina home*/
+		&-home{
+			
+
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 350px;
+
+		.boasVindas{
+
+			.titulo{
+
+				a{
+
+				}
+			}
+
+		}
+	  }
+	}
+  }
+}
+
+/*======== container =========*/ 
+
+.container{
+
+	main{
+
+		.container-img{
+
+			.bordar-img{
+
+			}
+
+		}
+
+	}
+
+}

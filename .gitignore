@@ -1,4 +1,5 @@
 arquivos
-app/views/.cache/
-vendor/composer/sftp-config.json
+.rtpl.php
+
 sftp-config.json
+/Mail.php
