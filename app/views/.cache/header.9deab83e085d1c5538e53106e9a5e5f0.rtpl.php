@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <html lang="pt-br">
 
 <head>
   <meta charset="utf-8">
   <title>Bem vindo | Portifolio helenilson</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="https://{$site}/style.css">
-  <link rel="shortcut icon" href="https://{$site}/img/favicon_site.png" type="image/png">
+  <link rel="stylesheet" type="text/css" href="https://<?php echo htmlspecialchars( $site, ENT_COMPAT, 'UTF-8', FALSE ); ?>/style.css">
+  <link rel="shortcut icon" href="https://<?php echo htmlspecialchars( $site, ENT_COMPAT, 'UTF-8', FALSE ); ?>/img/favicon_site.png" type="image/png">
   <meta name="author" content="Helenilson oliveira">
 </head>
 

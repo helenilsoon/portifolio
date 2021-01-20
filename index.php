@@ -1,9 +1,7 @@
 <?php
-// echo "<pre>";
-// var_dump($_SERVER);
-// echo "</pre>";
-ini_set("display_errors",1);
-error_reporting(E_ERROR | E_WARNING | E_PARSE | E_NOTICE);
+
+##ini_set("display_errors",1);
+##error_reporting(E_ERROR  |E_WARNING | E_PARSE | E_NOTICE);
 
 require __DIR__ . '/vendor/autoload.php';
 
@@ -13,7 +11,9 @@ use app\classes\Page;
 use app\classes\PageAdmin;
 use app\classes\Site;
 use app\controllers\MailController;
+use app\classes\Visitantes;
 
+$visitantes = new Visitantes();
 
 $app = AppFactory::create();
 
@@ -31,29 +31,53 @@ $app->get("/", function($request, $response){
 	$page->setTpl("index", array(
 		"sites" => $listaAllSites
 	));
-
+  
 	return $response;
 });
 
 
 
 // Envio de email atraves da pagina contanto pelo metodo post
-$app->post("/contato", function($request, $response){
+$app->post("/contato", function($request, $response){	
+	 
 
-	session_start();
+	if(isset($_SESSION['contador']) ==  $_SESSION['contador']){
+		 $cont = $_SESSION['contador'];
+		 $cont ++;
+
+		 
+	}else{
+		$cont = 1;
+	}
 	
-	$mail = new MailController($_POST);
+	 var_dump( $_SESSION['contador']);
+
+     $_SESSION['contador'] =  $cont ;
+
+     if($cont >= 5){
+		 	$_SESSION['MSG']['AVISO']="você so poderar enviar mensagem novamente em 30 minutos";
+		 	header("Location: /contato");
+		 	
+		 }else{
+
+		 	$mail = new MailController($_POST);
+		 	$data= $_SESSION['MSG'];
+		 	$page = new Page();
+
+			$page->setTpl("contato",$data);
+
+			header("Location: /contato");
+
+			return $response;
+
+		 }
 	
-	$data= $_SESSION['MSG'];
+    
+    	
 
-	$page = new Page();
+    
 
-	$page->setTpl("contato",$data);
-
-	unset($_SESSION['MSG']);
-
-	return $response;
-
+	
 
 	
 });
@@ -64,7 +88,6 @@ $app->get("/admin", function($request, $response){
 	$page = new PageAdmin();
 	$pasta = $_SERVER['DOCUMENT_ROOT'];
 
-
 	
 	$page->setTpl("index", array('url' => $pasta ));
 
@@ -74,11 +97,16 @@ $app->get("/admin", function($request, $response){
 });
 
 $app->get("/{url}", function($request, $response, $url){
-	
+
+    
 	$page = new Page();
 	try {
+		$data= isset($_SESSION['MSG'])? $_SESSION['MSG']: '';
+
+		$page->setTpl($url['url'],$data);
+
 		
-		$page->setTpl($url['url']);
+
 
 	} catch (Exception $e) {
 		
@@ -87,8 +115,12 @@ $app->get("/{url}", function($request, $response, $url){
 
 	}
 	
+	
 
+unset($_SESSION['MSG']);
 	return $response;
+
+
 
 	
 });
@@ -105,6 +137,7 @@ $app->get("/blog/{url}", function($request, $response,$url){
 
 	} catch (Exception $e) {
 		
+		echo $e->getMessage();
 		$page->setTpl('Ooops');
 	}
 	

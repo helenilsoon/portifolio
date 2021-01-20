@@ -1,0 +1,117 @@
+@font-face {
+  src: url("../font/Advent_Pro/AdventPro-Regular.ttf"), url("../font/Advent_Pro/AdventPro-SemiBold"), url("../font/Advent_Pro/AdventPro-Bold.ttf");
+  font-family: "Advent Pro";
+}
+@font-face {
+  font-family: "Bebas-Neue";
+  src: url("../font/Bebas_Neue/BebasNeue-Regular.ttf");
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-image: linear-gradient(to right, #860a41, #880a54, #630068);
+  font-family: "Advent Pro", Sans-serif;
+}
+
+/*======== header =========*/
+header {
+  width: 100%;
+}
+header nav {
+  max-width: 1024px;
+  width: 100%;
+  margin: 0 auto;
+}
+header nav .container-menu {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: end;
+  flex-direction: row;
+}
+header nav .container-menu .icon-menu {
+  visibility: hidden;
+  background-image: url("../img/menu.svg");
+  background-repeat: no-repeat;
+  height: 30px;
+  margin: 15px;
+}
+header nav .container-menu .brand {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
+  width: 100%;
+}
+header nav .container-menu .brand a {
+  font-family: "Bebas-Neue";
+  line-height: 70px;
+  padding-left: 20px;
+  width: 100%;
+  font-size: 3em;
+  color: #f7f400;
+  text-decoration: none;
+  text-align: center;
+}
+header nav .container-menu .brand a:hover {
+  background: #f7f400;
+  color: #000;
+  border-radius: 10px;
+}
+header nav .container-menu .brand a:before {
+  content: "{ }";
+  font-weight: 500;
+  color: #fff;
+}
+header nav .container-menu .brand a:hover:before {
+  color: red;
+}
+header nav .container-menu #menu {
+  width: 100%;
+  height: 70px;
+  display: flex;
+  justify-content: end;
+  flex-direction: row;
+}
+header nav .container-menu #menu a {
+  width: 100px;
+  height: 70px;
+  font-family: "Advent Pro";
+  font-size: 1.2em;
+  font-weight: 700;
+  text-decoration: none;
+  color: #f7f400;
+  text-align: center;
+  line-height: 70px;
+}
+header nav .container-menu #menu a:hover {
+  background: #f7f400;
+  color: #000;
+}
+header nav .container-menu #menu .close {
+  visibility: hidden;
+}
+
+/*======== Header-home =========*/
+/* header da pagina home*/
+.header-home {
+  width: 100%;
+  height: 350px;
+  background-image: url("/img/code-cafe.jpg");
+  background-size: 100%;
+  overflow: hidden;
+}
+.header-home .header-chamada {
+  /*classe excusiva somente da pagina home*/
+}
+.header-home .header-chamada-home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 350px;
+}
+/*======== container =========*/
+
+/*# sourceMappingURL=style.css.map */

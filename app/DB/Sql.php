@@ -14,14 +14,21 @@ use PDO;
 class Sql extends PDO
 {
 	private $conn;
+	 
+
+
 
 	public function __construct()
-	{
+	{ 
+		$config = "configDb.ini";
+	 	$confiDb = parse_ini_file($config);
+
 		$this->conn = new PDO(
-			"mysql:host=localhost;dbname=mydb",
-			"root",
-			"1234"
+			"mysql:host={$confiDb['host']};dbname={$confiDb['dbname']}",
+			$confiDb['user'],
+			$confiDb['password']
 		);
+		
 
 	}
 

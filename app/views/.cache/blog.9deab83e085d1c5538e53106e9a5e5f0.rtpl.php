@@ -1,4 +1,4 @@
-<div class="header"><!--cabeçalho do body-->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="header"><!--cabeçalho do body-->
      <div class="header-chamada">
         <div class="boasVindas">
            <div class="titulo">blog</div>    

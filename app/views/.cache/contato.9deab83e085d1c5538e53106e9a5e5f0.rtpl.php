@@ -1,4 +1,4 @@
-<div class="header"><!--cabeçalho do body-->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><div class="header"><!--cabeçalho do body-->
      <div class="header-chamada">
         <div class="boasVindas">
            <div class="titulo">Contato</div>    
@@ -23,20 +23,26 @@
       
       <form action="/contato" method="POST" class="form-contato"  >
 
-          {if="isset($AVISO)"}
+          <?php if( isset($AVISO) ){ ?>
 
-            <div class="msg-erro"> {$AVISO} </div>       
 
-                {/if}
+            <div class="msg-erro"> <?php echo htmlspecialchars( $AVISO, ENT_COMPAT, 'UTF-8', FALSE ); ?> </div>       
 
-          {if="isset($retornoEmail)"}
-                    <div class="msg-sucess">{$retornoEmail}  </div>          
-                {/if}
+                <?php } ?>
+
+
+          <?php if( isset($retornoEmail) ){ ?>
+
+                    <div class="msg-sucess"><?php echo htmlspecialchars( $retornoEmail, ENT_COMPAT, 'UTF-8', FALSE ); ?>  </div>          
+                <?php } ?>
+
               
-         {if="isset($retornoEmailErro)"}
-                    <div class="msg-erro"> {$retornoEmailErro} </div>            
+         <?php if( isset($retornoEmailErro) ){ ?>
 
-                {/if}
+                    <div class="msg-erro"> <?php echo htmlspecialchars( $retornoEmailErro, ENT_COMPAT, 'UTF-8', FALSE ); ?> </div>            
+
+                <?php } ?>
+
 
          <div class="continer-campo"> 
           <div class="form-campo">
