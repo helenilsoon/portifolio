@@ -1,4 +1,4 @@
-<footer><!--footer-->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><footer><!--footer-->
 
   <div>
     <div class="footer-header"><!-- footer-header -->
@@ -60,7 +60,7 @@
       <div class="footer-footer"><!-- footer-footer -->
           <div class="mandeinbrasil">
                helenilson &copy; 2020 made in Brazil
-            <img src="https://{$site}/img/brasil.svg">
+            <img src="https://<?php echo htmlspecialchars( $site, ENT_COMPAT, 'UTF-8', FALSE ); ?>/img/brasil.svg">
          </div>
       </div><!-- end footer-footer  -->
        
