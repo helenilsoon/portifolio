@@ -1,117 +1,628 @@
-@font-face {
-  src: url("../font/Advent_Pro/AdventPro-Regular.ttf"), url("../font/Advent_Pro/AdventPro-SemiBold"), url("../font/Advent_Pro/AdventPro-Bold.ttf");
-  font-family: "Advent Pro";
-}
-@font-face {
-  font-family: "Bebas-Neue";
-  src: url("../font/Bebas_Neue/BebasNeue-Regular.ttf");
-}
-* {
-  margin: 0;
-  padding: 0;
+@import url('https://fonts.googleapis.com/css?family=Advent+Pro:400,500,600&display=swap');
+@font-face{
+    font-family: "Bebas-Neue";
+    src: url("res/font/Bebas_Neue/BebasNeue-Regular.ttf"); 
+    
 }
 
-body {
-  background-image: linear-gradient(to right, #860a41, #880a54, #630068);
-  font-family: "Advent Pro", Sans-serif;
+:root {
+  --color-segundacor: #f7f400;
+  --bg-gradiente:linear-gradient(to right, #860a41, #880a54, #630068);
 }
 
-/*======== header =========*/
+* {margin: 0; padding: 0;
+  font-family: Advent Pro;
+  box-sizing: border-box;
+}
+body {  background: var(--bg-gradiente);}
+
 header {
+  background-image: var(--bg-gradiente);
   width: 100%;
 }
-header nav {
-  max-width: 1024px;
+nav {
   width: 100%;
+  max-width: 1024px;
   margin: 0 auto;
 }
-header nav .container-menu {
+.container-menu {
   width: 100%;
   height: 70px;
   display: flex;
   justify-content: end;
   flex-direction: row;
 }
-header nav .container-menu .icon-menu {
+.icon-menu{
   visibility: hidden;
-  background-image: url("../img/menu.svg");
+  background-image: url("img/menu.svg");
   background-repeat: no-repeat;
-  height: 30px;
-  margin: 15px;
+   height: 30px;
+   margin: 15px;
 }
-header nav .container-menu .brand {
-  display: flex;
-  justify-content: center;
-  flex-direction: row;
+.brand{
   width: 100%;
+  
+  display: flex;
+  flex-direction: row;
 }
-header nav .container-menu .brand a {
-  font-family: "Bebas-Neue";
+.brand a {
+  font-family:"Bebas-Neue";
   line-height: 70px;
-  padding-left: 20px;
+  padding-left:20px;
   width: 100%;
   font-size: 3em;
-  color: #f7f400;
-  text-decoration: none;
-  text-align: center;
+  color: var(--color-segundacor);
 }
-header nav .container-menu .brand a:hover {
-  background: #f7f400;
-  color: #000;
-  border-radius: 10px;
+.brand a:before{
+  content:"{ }" ;
+  font-weight:500 ;
+  color:#fff;
+}.brand a:hover:before{
+ color: red;
 }
-header nav .container-menu .brand a:before {
-  content: "{ }";
-  font-weight: 500;
-  color: #fff;
-}
-header nav .container-menu .brand a:hover:before {
-  color: red;
-}
-header nav .container-menu #menu {
+
+
+#menu {
   width: 100%;
   height: 70px;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   flex-direction: row;
 }
-header nav .container-menu #menu a {
+header nav a {
+  font-size: 1.2em;
+  text-decoration: none;
+  color: var(--color-segundacor);
+  text-align: center;
   width: 100px;
   height: 70px;
-  font-family: "Advent Pro";
-  font-size: 1.2em;
-  font-weight: 700;
-  text-decoration: none;
-  color: #f7f400;
-  text-align: center;
   line-height: 70px;
 }
-header nav .container-menu #menu a:hover {
-  background: #f7f400;
+header nav a:hover {
+  background: var(--color-segundacor);
   color: #000;
 }
-header nav .container-menu #menu .close {
+.close{
   visibility: hidden;
+  
 }
 
-/*======== Header-home =========*/
-/* header da pagina home*/
-.header-home {
+.container{
+  margin: 10px auto;
   width: 100%;
-  height: 350px;
-  background-image: url("/img/code-cafe.jpg");
-  background-size: 100%;
+  max-width: 1024px;
+ 
+}
+
+iframe{
+  position: absolute;
+  border: none;
+  margin: 0 auto;
+  left: 0;
+  width:100%;
+  height:100%;
+}
+.container h1{
+  
+  padding: 20px;
+  margin: 10px;
+  font-size: 1.7em ;
+  color: #fff;
+  border-bottom: 1px solid #fff;
+  
+}
+.container a{
+  color: #fff;
+  text-decoration: none;
+}.container a:hover{
+  color: #f7f400;
+  text-decoration: none;
+}
+.header{
+  background-image:url('/img/code-cafe.jpg');
+  background-size: 100%; 
+  width: 100%;
+  height: auto;
   overflow: hidden;
+  height: 200px;/* propriedade que muda na pagina home pra outra paginas*/
+  
 }
-.header-home .header-chamada {
-  /*classe excusiva somente da pagina home*/
+.header-home{
+  background-image:url('/img/code-cafe.jpg');
+  background-size: 100%; 
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+  height:350px; /* propriedade que muda na pagina home pra outra paginas*/
 }
-.header-home .header-chamada-home {
+.header img{
+  width: 100%;
+}
+.header-chamada{
+  
+  display: flex;
+  justify-content: center;
+  align-items:   center;
+  height: 200px;
+  
+
+}
+
+.header-chamada-home{
+  display: flex;
+  justify-content: center;
+  align-items:   center;
+  height: 350px;
+  
+}
+.boasVindas{  
+ 
+  text-align: center;
+  
+  
+}
+.boasVindas .titulo{
+  font-size: 2em;
+  color: #860a41;
+  background:#f7f400 ;
+  padding: 5px;
+  margin-bottom:  50px;
+}
+.boasVindas .titulo:after{
+  content: "|";
+  font-weight:700 ; 
+  font-size: 0.9em;
+  padding-right: 5px;
+  animation: piscar 1s  infinite ease;
+}
+
+@keyframes piscar{
+  0%{
+    visibility: visible;
+  }50%{
+    visibility: hidden
+  }
+  
+  100%{
+    visibility:hidden ;
+  }
+}
+.boasVindas .nao{
+  border: 1px solid #fff;
+  border-radius:10px ;
+  margin-top: 5px;
+  padding: 10px 50px;
+  color: #fff;
+  text-decoration: non  e;
+}
+.boasVindas .sim{
+  border-radius:10px ;
+  text-decoration: none;
+  background:#860a41 ;
+  width: 300px;
+  border: 1px solid #fff;
+  margin-top: 5px;
+  margin-left:5px;
+  padding: 10px 50px;
+  color:#f7f400 ;
+  font-weight: 700;
+}
+.boasVindas .sim:hover{
+  animation: zoom 2s  ease infinite ;
+  -moz-animation: zoom 2s ease infinite;
+}
+@keyframes zoom{
+  0%{
+        transform: rotate(-5deg);
+  }50%{
+   
+    transform: rotate(5deg);
+  } 
+  100%{
+   
+      transform: rotate(-5deg);
+  }
+}
+
+/*  
+* conteúdo principal 
+*/
+main {
+ 
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  
+}
+h2{
+  color:#fff;
+}
+main p{
+  color:#fff;
+  text-align: left;
+}
+/* 
+*   Container da imagem
+*/
+ 
+.container-img {
+  margin: 5px;
+  width: 230px;
+  height: 260px;
+
+  /* background-color: #c600f7; */
+  /* background-color: rgba(255, 255, 255, 0.52); */
+  /* border: 1px solid #fff; */
+  /* box-shadow: 0px 0px 5px #fff; */
+  border-radius: 15px;
+  padding: 2px;
+}
+
+.borda-img {
+  border: 3px solid var(--color-segundacor);
+  overflow: hidden;
+  border-radius: 50%;
+  width: 180px;
+  height: 180px;
+  display: flex;
+  align-items: center;
+  margin: 15px auto;
+  background-color:#E8E8E8; 
+}
+.borda-img:hover{
+  border-color: #E8E8E8;
+  box-shadow: 0 0 5px #f7f400;
+}
+
+.borda-img img {
+  width: 100%;
+  
+}
+/* evento*/
+/* .container-img:hover{
+   border: 1px solid #fff;
+  box-shadow: 0px 0px 2px #fff;
+ 
+} */
+
+
+.nome_projeto {
+  margin-top: 10px;
+  width: 100%;
+  height: 30px;
+  
+  
+}
+
+.nome_projeto p {
+  color:#fff;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+/*
+*
+*Footer
+* 
+ */
+footer{
+  background-color: #3d3d3d;
+  max-width: 100%;
+}
+.footer{
+  
+  max-width: 100%;
+  width: 1024px;
+  margin: 0 auto;
+  height: 300px;
+}
+.footer-header{
+  width: 100%;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 350px;
+  background-color: #f3e305;
+  box-shadow: 0px 0px 2px #000;
+   margin:50px auto 10px;
+  box-sizing: border-box;
 }
-/*======== container =========*/
+.newsllater{
 
-/*# sourceMappingURL=style.css.map */
+   max-width: 1024px;
+   height: 70px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+.newsllater h2{
+  color: #000;
+  margin-right: 5px;
+}
+.footer-body{
+  display: flex;
+  margin:5px;
+}
+
+.footer-body-cols{
+ 
+  height: 250px;
+  width: 25%;
+}
+.footer-body > div:last-child{
+  width: 50%;
+}
+
+.footer-body-cols h2{
+ margin: 20px 0;
+}
+.footer-body-cols ul{
+  list-style: none;
+  padding-left: 15px;
+}
+.footer-body-cols ul li a{
+  color:#fff;
+  text-decoration: none;
+}
+.mandeinbrasil{
+  width: 100%;
+  height: 40px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items:  center;.
+  color: #fff;
+}
+.mandeinbrasil img{
+  width: 2%;
+  padding-left: 15px;
+}
+
+/* para todos os fomularios*/
+
+
+form {
+    margin: 15px auto;
+    padding:15px;
+    display: flex;
+    flex-wrap: wrap;    
+    align-items: center;
+    box-sizing: border-box;
+    
+}
+
+form label{
+  font-size: 13pt;   
+}
+input{
+  border: 1px solid #ccc;
+  border-radius:2px;
+  width: 25%;
+  margin: 0 3px;
+  box-shadow: 0 1px 1px #ccc;
+  padding: 5px;
+  font-size: 13pt;
+  box-sizing: border-box;
+}
+
+.form-contato input{  
+  border: 1px solid #ccc;
+  border-radius:2px;
+  height:35px;
+  width: 92%;
+  box-shadow: 0 1px 1px #ccc;
+  padding: 5px;
+  font-size: 13pt;
+   
+}
+input:focus, textarea:focus, input:hover,textarea:hover{
+  border-color: green;
+}
+form textarea{
+  margin: 10px auto;
+  width: 98%;
+  padding: 5px ;
+  height: auto;
+  box-shadow: 0 1px 4px  #ccc;
+}
+
+/*Formulario de contato*/
+
+.form-contato{    
+  max-width: 600px;
+  width:100%;
+  border-radius: 5px;
+  background-color: #fff;
+  box-shadow: 0 1px 5px  #000;
+   
+}
+
+.form-contato .msg-sucess,.form-contato .msg-erro{
+  padding: 10px;
+  color:#fff;
+  margin:10px 0;
+}
+
+.form-contato .msg-sucess{
+  background-color:#27ae60;
+}
+
+.form-contato .msg-erro{
+  background-color: #e74c3c;
+ 
+}
+.form-contato .continer-campo{
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+.form-contato .form-campo{
+  margin:5px 2px;
+  flex:45%;
+
+  
+}
+.container-textarea{
+width: 100%;
+
+}
+.form-textarea{
+  margin:0 auto;
+  width: 90%;
+ 
+  
+}
+.form_btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin:20px 10px 50px;
+   width: 90%;
+  
+}
+.form_btn>input{
+  display: block;
+  width: 50%;
+  height: 40px;
+  background-color: #27ae60;
+  color:#fff;
+  font-size: 13pt;
+  box-shadow: 0 1px 5px  #ccc;
+
+}
+, .form_btn>input:hover{
+  background-color: #2ecc71; 
+}
+
+
+.btn, .btn-newsllater{
+  margin: 0 auto;
+  border: none;  
+  box-shadow: 1px 1px 5px  #000;
+  background-color: #27ae60;
+  height: 40px;
+  width: 25%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+.btn-newsllater{
+  height: 35px;
+  color: #fff;
+  font-size: 13pt;
+}
+.btn a{
+  text-decoration: none;
+  color:#fff;
+}
+
+.container-blog{
+    background-color: #fff;
+    padding: 20px;
+}
+.container-blog a{
+
+  text-decoration: none;
+  color:#000;
+
+}
+.container-blog a:hover{
+
+  text-decoration: underline;
+  color:#880a53;
+
+}
+
+
+@media screen and (max-width: 600px){ 
+  #menu{
+    visibility: hidden;
+    position: absolute;
+    z-index: 1;
+    flex-direction: column ;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to right, #860a41, #880a54, #630068);
+    height: 100vh;
+    transition: width 2s linear 1s;
+  }
+ 
+  #menu .close{
+    
+    position: absolute;
+    top:20px;
+    right: 20px;
+    font-size: 2em;
+    font-weight: 600;
+     color: #f7f400;
+     transition: width 5s linear 6s;
+    cursor: pointer;
+  }
+  #menu a{
+    padding: -5px;
+    font-size: 1.5em;
+  }
+  .icon-menu{
+    width: 8%;
+    visibility: visible;
+  }
+  
+  .brand{
+    font-size: 0.8em;
+    justify-content: center;
+  }
+ 
+   /*
+   *  Container da imagem
+  
+  .container-img {
+    margin: 5px;
+   
+  }
+  .borda-img {
+   
+    width: 170px;
+    height: 170px;
+  }
+  .borda-img img {
+    width: 100%;
+  }
+}
+
+/*  Media max -width 480 */
+
+@media screen and (max-width:480px){
+  #menu{
+    border: 1px solid;
+   
+  }
+  #menu a{
+    width: 50%;
+   
+    top:-7;
+    margin-top:2px;
+    padding-top: -20px 
+
+  }
+    .header{
+    height: 35vh ;
+  }
+  .header .boasVindas{
+   top:15%;
+    width: 90%;
+    
+    
+  }
+  /* Container da imagem */
+  .container-img{
+    width: 100%;
+   
+    
+    height: 240px;
+
+  }
+
+}
