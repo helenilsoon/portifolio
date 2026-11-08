@@ -3,29 +3,29 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Gerador Completo de Perfil GitHub | Helenilson Oliveira</title>
+  <title>Gerador Cyber-Neon GitHub | Helenilson Oliveira</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="shortcut icon" href="img/favicon_site.png" type="image/png">
   <meta name="author" content="Helenilson oliveira">
   <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
-  
+
   <style>
-    /* Estilos customizados integrados ao layout nativo */
-    .gen-wrap {
-      max-width: 1040px;
-      margin: 15px auto 80px auto;
+    /* Estilos integrados ao portfólio */
+    .profile-canvas-wrap {
+      max-width: 960px;
+      margin: 20px auto 80px auto;
       padding: 0 16px;
       font-family: 'Inter', -apple-system, sans-serif;
     }
 
-    /* BARRA FIXA DE CONTROLE */
-    .sticky-actions-bar {
+    /* BARRA FIXA DE AÇÃO */
+    .sticky-control-bar {
       position: sticky;
       top: 15px;
       z-index: 1000;
-      background: rgba(10, 15, 29, 0.92);
-      backdrop-filter: blur(12px);
+      background: rgba(10, 15, 29, 0.94);
+      backdrop-filter: blur(14px);
       border: 1.5px solid #00f0ff;
       border-radius: 14px;
       padding: 12px 20px;
@@ -34,11 +34,11 @@
       justify-content: space-between;
       align-items: center;
       gap: 12px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 240, 255, 0.25);
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 240, 255, 0.3);
       margin-bottom: 25px;
     }
 
-    .sticky-title {
+    .bar-brand {
       font-family: 'Fira Code', monospace;
       font-size: 13px;
       color: #67e8f9;
@@ -48,14 +48,14 @@
       gap: 8px;
     }
 
-    .btn-group {
+    .bar-buttons {
       display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: 10px;
     }
 
-    .btn-main-copy {
+    .btn-copy-main {
       background: linear-gradient(90deg, #00f0ff, #3b82f6);
       color: #060911;
       border: none;
@@ -68,18 +68,18 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      box-shadow: 0 0 18px rgba(0, 240, 255, 0.5);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.6);
       transition: all 0.2s ease;
     }
 
-    .btn-main-copy:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 0 25px rgba(0, 240, 255, 0.8);
+    .btn-copy-main:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 30px rgba(0, 240, 255, 0.9);
       background: linear-gradient(90deg, #38bdf8, #60a5fa);
     }
 
-    .btn-secondary {
-      background: rgba(8, 51, 68, 0.6);
+    .btn-opt {
+      background: rgba(8, 51, 68, 0.7);
       border: 1px solid #06b6d4;
       color: #67e8f9;
       padding: 9px 16px;
@@ -91,13 +91,13 @@
       transition: all 0.2s ease;
     }
 
-    .btn-secondary:hover {
+    .btn-opt:hover {
       background: #083344;
       border-color: #00f0ff;
       color: #ffffff;
     }
 
-    .alert-box {
+    .alert-copy-ok {
       display: none;
       color: #34d399;
       font-family: 'Fira Code', monospace;
@@ -105,441 +105,212 @@
       font-weight: bold;
     }
 
-    /* CABEÇALHO DO GERADOR */
-    .gen-header {
+    /* HEADER TITULO */
+    .title-area {
       text-align: center;
       margin-bottom: 25px;
     }
 
-    .gen-header h1 {
+    .title-area h1 {
       font-family: "Bebas-Neue", sans-serif;
-      font-size: 44px;
+      font-size: 46px;
       letter-spacing: 2px;
       color: #ffffff;
-      margin-bottom: 6px;
-      text-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+      margin-bottom: 4px;
+      text-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
     }
 
-    .gen-hint {
+    .title-sub {
       color: #fce7f3;
       font-size: 14px;
       opacity: 0.95;
     }
 
-    /* CARD BASE E COMETA ANIMADO */
-    .neon-box {
-      position: relative;
-      background: linear-gradient(135deg, #07090e 0%, #0c101a 100%);
-      border: 1.5px solid rgba(6, 182, 212, 0.5);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
-      margin-bottom: 20px;
-      overflow: hidden;
-    }
-
-    .comet-svg {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-    }
-
-    .comet-path {
-      fill: none;
-      stroke: url(#neonCometLive);
-      stroke-width: 2.8;
-      stroke-linecap: round;
-      stroke-dasharray: 240 2000;
-      animation: runComet 7s linear infinite;
-    }
-
-    @keyframes runComet {
-      0% { stroke-dashoffset: 2240; }
-      100% { stroke-dashoffset: 0; }
-    }
-
-    /* CAMPOS EDITÁVEIS INLINE WYSIWYG */
-    .edit-item {
-      outline: none;
-      cursor: text;
-      transition: all 0.2s ease;
-      border-radius: 5px;
-      padding: 1px 4px;
-    }
-
-    .edit-item:hover {
-      background: rgba(6, 182, 212, 0.15);
-      outline: 1px dashed #00f0ff;
-    }
-
-    .edit-item:focus {
-      background: rgba(6, 182, 212, 0.25);
-      outline: 1.5px solid #00f0ff;
-      box-shadow: 0 0 10px rgba(0, 240, 255, 0.35);
-    }
-
-    /* ESTILOS DO HEADER CARD */
-    .header-topbar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-    }
-
-    .status-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 7px;
-      background: rgba(8, 51, 68, 0.7);
+    /* PAINEL DE PERSONALIZAÇÃO ACORDEON */
+    .customizer-accordion {
+      background: #080c16;
       border: 1px solid rgba(6, 182, 212, 0.4);
-      padding: 4px 12px;
       border-radius: 12px;
-      color: #67e8f9;
-      font-family: 'Fira Code', monospace;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .dot-pulse {
-      width: 7px;
-      height: 7px;
-      border-radius: 50%;
-      background: #22d3ee;
-      box-shadow: 0 0 8px #22d3ee;
-      animation: pulse 2s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.35; transform: scale(0.85); }
-    }
-
-    .loc-tag {
-      color: #f472b6;
-      font-family: 'Fira Code', monospace;
-      font-size: 11px;
-      font-weight: 600;
-    }
-
-    .h-name {
-      font-size: 36px;
-      font-weight: 900;
-      background: linear-gradient(90deg, #22d3ee, #99f6e4, #d946ef);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 6px;
-      display: inline-block;
-    }
-
-    .h-role {
-      color: #67e8f9;
-      font-family: 'Fira Code', monospace;
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 8px;
-    }
-
-    .h-bio {
-      color: #94a3b8;
-      font-family: 'Fira Code', monospace;
-      font-size: 12px;
-      line-height: 1.5;
-      margin-bottom: 22px;
-    }
-
-    .h-badges {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-    }
-
-    .badge-card {
-      background: rgba(0, 0, 0, 0.65);
-      border-radius: 10px;
-      padding: 10px 14px;
-      font-family: 'Fira Code', monospace;
-    }
-
-    .badge-card.c-cyan { border: 1.2px solid rgba(6, 182, 212, 0.35); }
-    .badge-card.c-magenta { border: 1.2px solid rgba(217, 70, 239, 0.35); }
-    .badge-card.c-emerald { border: 1.2px solid rgba(16, 185, 129, 0.35); }
-    .badge-card.c-purple { border: 1.2px solid rgba(192, 132, 252, 0.35); }
-
-    .b-label { font-size: 10px; font-weight: bold; margin-bottom: 3px; }
-    .c-cyan .b-label { color: #22d3ee; }
-    .c-magenta .b-label { color: #f472b6; }
-    .c-emerald .b-label { color: #34d399; }
-    .c-purple .b-label { color: #c084fc; }
-    .b-val { color: #ffffff; font-size: 12px; font-weight: bold; }
-
-    /* SEÇÃO DE PROJETOS */
-    .section-title {
-      font-family: "Bebas-Neue", sans-serif;
-      font-size: 28px;
-      letter-spacing: 1px;
-      color: #ffffff;
-      margin: 30px 0 15px 0;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .projects-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 16px;
-    }
-
-    @media (max-width: 768px) {
-      .projects-grid {
-        grid-template-columns: 1fr;
-      }
-      .h-badges {
-        grid-template-columns: repeat(2, 1fr);
-      }
-      .h-name {
-        font-size: 26px;
-      }
-    }
-
-    .project-card {
-      position: relative;
-      background: linear-gradient(135deg, #070a12 0%, #0d121e 100%);
-      border: 1.3px solid rgba(16, 185, 129, 0.4);
-      border-radius: 14px;
-      padding: 20px;
-      overflow: hidden;
+      padding: 16px 20px;
+      margin-bottom: 25px;
       box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
     }
 
-    .project-card.full-w {
-      grid-column: 1 / -1;
-      border-color: rgba(217, 70, 239, 0.4);
-    }
-
-    .p-head {
+    .customizer-summary {
       display: flex;
       justify-content: space-between;
-      align-items: flex-start;
-      margin-bottom: 12px;
-    }
-
-    .p-meta {
-      max-width: 75%;
-    }
-
-    .p-cat {
-      font-family: 'Fira Code', monospace;
-      font-size: 10px;
-      font-weight: bold;
-      color: #34d399;
-      letter-spacing: 0.5px;
-    }
-
-    .p-url {
-      font-family: 'Fira Code', monospace;
-      font-size: 11px;
-      color: #38bdf8;
-      font-weight: 600;
-    }
-
-    .p-3d-model {
-      width: 50px;
-      height: 50px;
-      display: flex;
       align-items: center;
-      justify-content: center;
-    }
-
-    .p-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: #ffffff;
-      margin-bottom: 6px;
-    }
-
-    .p-desc {
-      font-size: 11.5px;
-      color: #94a3b8;
-      line-height: 1.4;
-      margin-bottom: 14px;
-    }
-
-    .p-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
-    .tag-chip {
-      background: rgba(6, 78, 59, 0.4);
-      border: 1px solid rgba(16, 185, 129, 0.3);
-      color: #34d399;
+      cursor: pointer;
       font-family: 'Fira Code', monospace;
-      font-size: 9.5px;
-      font-weight: 600;
-      padding: 3px 8px;
-      border-radius: 6px;
+      font-size: 13px;
+      font-weight: bold;
+      color: #22d3ee;
+      user-select: none;
     }
 
-    /* SEÇÃO STACK E CONEXÕES (50% / 50%) */
-    .split-grid {
+    .customizer-body {
+      margin-top: 16px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .form-grid-3 {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 16px;
-      margin-bottom: 25px;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 12px;
     }
 
     @media (max-width: 768px) {
-      .split-grid {
-        grid-template-columns: 1fr;
-      }
+      .form-grid-3 { grid-template-columns: 1fr; }
     }
 
-    .split-col {
-      background: #080c14;
-      border: 1.3px solid rgba(6, 182, 212, 0.4);
-      border-radius: 14px;
-      padding: 20px;
+    .input-field {
+      width: 100%;
+      background: #04060b;
+      border: 1px solid #1e293b;
+      border-radius: 6px;
+      padding: 8px 12px;
+      color: #ffffff;
       font-family: 'Fira Code', monospace;
-    }
-
-    .split-title {
       font-size: 12px;
-      font-weight: bold;
-      color: #22d3ee;
-      margin-bottom: 14px;
-      border-bottom: 1px solid rgba(6, 182, 212, 0.2);
-      padding-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
+      box-sizing: border-box;
+      outline: none;
     }
 
-    .stack-group {
-      margin-bottom: 12px;
+    .input-field:focus {
+      border-color: #00f0ff;
+      box-shadow: 0 0 8px rgba(0, 240, 255, 0.3);
     }
 
-    .stack-lbl {
-      font-size: 10px;
-      color: #f472b6;
-      font-weight: bold;
+    .field-lbl {
+      display: block;
+      font-family: 'Fira Code', monospace;
+      font-size: 11px;
+      color: #94a3b8;
       margin-bottom: 4px;
     }
 
-    .stack-val {
+    /* PREVIEW DO PERFIL GITHUB (IDÊNTICO AOS ARQUIVOS SVG REAIS) */
+    .profile-live-preview {
+      background: #0d1117;
+      border: 1px solid #30363d;
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.9);
+      margin-bottom: 30px;
+    }
+
+    .preview-badge {
+      display: inline-block;
+      background: #238636;
+      color: #ffffff;
+      font-family: 'Fira Code', monospace;
       font-size: 11px;
-      color: #e2e8f0;
-      background: rgba(255, 255, 255, 0.04);
-      padding: 5px 8px;
-      border-radius: 6px;
+      font-weight: bold;
+      padding: 3px 10px;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .profile-section-title {
+      color: #f0f6fc;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 28px 0 16px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid #21262d;
+      padding-bottom: 8px;
+    }
+
+    .center-box {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+
+    .preview-card-img {
+      max-width: 100%;
+      height: auto;
+      display: inline-block;
+      vertical-align: middle;
+      border-radius: 10px;
+    }
+
+    /* Grade 50/50 de Projetos */
+    .projects-duo {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .projects-duo a {
+      flex: 1;
       display: block;
     }
 
-    .conn-item {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      padding: 8px 12px;
-      border-radius: 8px;
-      margin-bottom: 8px;
-      font-size: 11px;
-    }
-
-    .conn-label {
-      color: #38bdf8;
-      font-weight: bold;
-    }
-
-    .conn-link {
-      color: #94a3b8;
-    }
-
-    /* TROPHIES RPG */
-    .trophies-card {
-      background: #07090e;
-      border: 1.3px solid rgba(217, 70, 239, 0.4);
-      border-radius: 14px;
-      padding: 20px;
-      margin-bottom: 25px;
-    }
-
-    .gems-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      text-align: center;
-      font-family: 'Fira Code', monospace;
-    }
-
-    @media (max-width: 600px) {
-      .gems-grid {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    .gem-box {
-      background: rgba(0, 0, 0, 0.5);
+    .projects-duo img {
+      width: 100%;
+      height: auto;
       border-radius: 10px;
-      padding: 12px 8px;
-      border: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    .gem-icon {
-      font-size: 24px;
-      margin-bottom: 4px;
+    /* Tabela Stack & Conexões */
+    .preview-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 12px 0;
+      margin-bottom: 16px;
     }
 
-    .gem-title {
-      font-size: 11px;
-      font-weight: bold;
-      color: #ffffff;
+    .preview-table td {
+      vertical-align: top;
+      width: 50%;
     }
 
-    .gem-rank {
-      font-size: 9.5px;
-      color: #cbd5e1;
+    .connections-col a, .connections-col img {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
     }
 
     /* BLOCO FINAL DO README */
-    .final-output {
+    .code-box-section {
       background: #04060a;
       border: 1.5px solid #00f0ff;
       border-radius: 14px;
       padding: 24px;
-      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.9);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.95);
     }
 
-    .output-top {
+    .code-box-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 14px;
     }
 
-    .output-heading {
+    .code-box-title {
       font-family: 'Fira Code', monospace;
       font-size: 14px;
       color: #00f0ff;
       font-weight: bold;
     }
 
-    .readme-code {
+    .readme-textarea {
       width: 100%;
-      height: 320px;
+      height: 340px;
       background: #060911;
       border: 1px solid #1e293b;
       border-radius: 8px;
       color: #38bdf8;
       font-family: 'Fira Code', monospace;
-      font-size: 11.5px;
+      font-size: 12px;
       line-height: 1.6;
-      padding: 14px;
+      padding: 16px;
       box-sizing: border-box;
       resize: vertical;
       outline: none;
@@ -568,315 +339,183 @@
     </nav>
   </header>
 
-  <main class="gen-wrap">
+  <main class="profile-canvas-wrap">
 
-    <!-- BARRA FIXA SUPERIOR -->
-    <div class="sticky-actions-bar">
-      <div class="sticky-title">
-        <span>⚡</span> GERADOR DE PERFIL GITHUB COMPLETO
+    <!-- BARRA FIXA DE CONTROLE -->
+    <div class="sticky-control-bar">
+      <div class="bar-brand">
+        <span>⚡</span> GERADOR DE PERFIL CYBER-NEON COMPLETO
       </div>
-      <div class="btn-group">
-        <button id="btnCopyAll" class="btn-main-copy">
+      <div class="bar-buttons">
+        <button id="btnTopCopy" class="btn-copy-main">
           <span>🚀</span> COPIAR README.MD COMPLETO
         </button>
-        <button id="btnScrollCode" class="btn-secondary">
+        <button id="btnScrollToCode" class="btn-opt">
           <span>👁️</span> Ver Código
         </button>
-        <button id="btnResetAll" class="btn-secondary">
+        <button id="btnResetAll" class="btn-opt">
           <span>🔄</span> Restaurar Padrão
         </button>
       </div>
-      <span id="copyAlertTop" class="alert-box">✓ README.md completo copiado para a área de transferência!</span>
+      <span id="alertTopOk" class="alert-copy-ok">✓ README.md completo copiado para a área de transferência!</span>
     </div>
 
-    <div class="gen-header">
-      <h1>PERFIL CYBER-NEON COMPLETO</h1>
-      <p class="gen-hint">✏️ <strong>Clique diretamente em qualquer texto</strong> (Banner, Projetos, Stack, Conexões) para editar seu perfil completo em tempo real!</p>
+    <!-- TÍTULO -->
+    <div class="title-area">
+      <h1>SEU PERFIL CYBER-NEON OFICIAL</h1>
+      <p class="title-sub">Visualização 100% idêntica com <strong>Modelos 3D Isométricos</strong>, Cometas Sincronizados (21s) e Links Interativos.</p>
     </div>
 
-    <!-- 1. BANNER PRINCIPAL (HEADER) -->
-    <div class="neon-box">
-      <svg class="comet-svg" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="neonCometLive" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#00f0ff" />
-            <stop offset="30%" stop-color="#3b82f6" />
-            <stop offset="65%" stop-color="#a855f7" />
-            <stop offset="100%" stop-color="#ec4899" />
-          </linearGradient>
-        </defs>
-        <rect class="comet-path" x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="16" />
-      </svg>
-
-      <div class="header-topbar">
-        <div class="status-badge">
-          <span class="dot-pulse"></span>
-          <span id="hStatus" class="edit-item" contenteditable="true">STATUS: SYSTEM ONLINE • READY</span>
+    <!-- PAINEL OPCIONAL DE CUSTOMIZAÇÃO -->
+    <details class="customizer-accordion">
+      <summary class="customizer-summary">
+        <span>⚙️ CLIQUE AQUI PARA EDITAR OS DADOS DO CARD (NOME, CARGO, LINKS)</span>
+        <span>▼</span>
+      </summary>
+      <div class="customizer-body">
+        <div class="form-grid-3">
+          <div>
+            <label class="field-lbl">Nome do Desenvolvedor</label>
+            <input type="text" id="cfgName" class="input-field" value="HELENILSON OLIVEIRA" />
+          </div>
+          <div>
+            <label class="field-lbl">Cargo / Especialidade</label>
+            <input type="text" id="cfgRole" class="input-field" value="FULL STACK SOFTWARE DEVELOPER • WEB ARCHITECT" />
+          </div>
+          <div>
+            <label class="field-lbl">Organização Oficial</label>
+            <input type="text" id="cfgOrg" class="input-field" value="@WebuildSoft ↗" />
+          </div>
         </div>
-        <div class="loc-tag">
-          <span id="hLoc" class="edit-item" contenteditable="true">MANAUS, BR (GMT-4)</span>
+
+        <div class="form-grid-3">
+          <div>
+            <label class="field-lbl">Bio / Resumo Profissional</label>
+            <input type="text" id="cfgBio" class="input-field" value="Construindo soluções web escaláveis, sistemas digitais e ecossistemas de alta performance." />
+          </div>
+          <div>
+            <label class="field-lbl">Status do Sistema</label>
+            <input type="text" id="cfgStatus" class="input-field" value="STATUS: SYSTEM ONLINE • READY" />
+          </div>
+          <div>
+            <label class="field-lbl">Localização / Timezone</label>
+            <input type="text" id="cfgLoc" class="input-field" value="MANAUS, BR (GMT-4)" />
+          </div>
+        </div>
+
+        <div class="form-grid-3">
+          <div>
+            <label class="field-lbl">Link do seu Portfólio</label>
+            <input type="text" id="cfgPortfolioUrl" class="input-field" value="https://helenilsoon.github.io/portifolio/" />
+          </div>
+          <div>
+            <label class="field-lbl">Seu E-mail Profissional</label>
+            <input type="text" id="cfgEmail" class="input-field" value="helenilsoon@gmail.com" />
+          </div>
+          <div>
+            <label class="field-lbl">Link da sua Organização GitHub</label>
+            <input type="text" id="cfgOrgUrl" class="input-field" value="https://github.com/WebuildSoft" />
+          </div>
         </div>
       </div>
+    </details>
 
-      <div>
-        <span id="hName" class="h-name edit-item" contenteditable="true">HELENILSON OLIVEIRA</span>
+    <!-- LIVE PREVIEW IDÊNTICO AO GITHUB DO USUÁRIO -->
+    <div class="profile-live-preview">
+      <div class="preview-badge">● PREVIEW OFICIAL GITHUB PROFILE</div>
+
+      <!-- 1. HEADER SVG REAL -->
+      <div class="center-box">
+        <img id="viewHeader" class="preview-card-img" src="assets/header.svg" width="100%" alt="Header Cyberpunk" />
       </div>
 
-      <div class="h-role">
-        <span>&gt; </span><span id="hRole" class="edit-item" contenteditable="true">FULL STACK SOFTWARE DEVELOPER • WEB ARCHITECT</span>
+      <!-- 2. STACK E CONEXÕES (50% / 50%) -->
+      <div class="profile-section-title">⚡ Stack de Produção &amp; Conexões</div>
+
+      <table class="preview-table">
+        <tr>
+          <!-- Coluna 1: Stack Real -->
+          <td>
+            <img class="preview-card-img" src="assets/card_stack.svg" width="100%" alt="Stack de Produção" />
+          </td>
+          <!-- Coluna 2: Conexões Reais -->
+          <td class="connections-col">
+            <a id="linkPort" href="https://helenilsoon.github.io/portifolio/" target="_blank">
+              <img src="assets/btn_portfolio.svg" alt="Portfólio Live" />
+            </a>
+            <a id="linkMail" href="mailto:helenilsoon@gmail.com">
+              <img src="assets/btn_email.svg" alt="E-mail Direto" />
+            </a>
+            <a id="linkOrg" href="https://github.com/WebuildSoft" target="_blank">
+              <img src="assets/btn_org.svg" alt="Organização Oficial WebuildSoft" />
+            </a>
+            <img src="assets/btn_location.svg" alt="Localização" />
+            <a href="https://open.spotify.com" target="_blank">
+              <img src="assets/spotify.svg" alt="Spotify" />
+            </a>
+          </td>
+        </tr>
+      </table>
+
+      <!-- 3. PROJETOS EM DESTAQUE COM MODELOS 3D ISOMÉTRICOS REAIS -->
+      <div class="profile-section-title">🚀 Projetos em Destaque</div>
+
+      <!-- Par 1: Moeda Pix 3D (MyRifa) + Monitor 3D (WebuildSites) -->
+      <div class="projects-duo">
+        <a href="https://myrifa.com.br" target="_blank">
+          <img id="viewMyRifa" src="assets/card_myrifa.svg" alt="MyRifa • Moeda Pix 3D" />
+        </a>
+        <a href="https://www.webuildsites.com.br" target="_blank">
+          <img id="viewWebuild" src="assets/card_webuildsites.svg" alt="WebuildSites • Monitor 3D" />
+        </a>
       </div>
 
-      <div class="h-bio">
-        <span id="hBio" class="edit-item" contenteditable="true">Construindo soluções web escaláveis, sistemas digitais e ecossistemas de alta performance.</span>
+      <!-- Par 2: Corrente 3D (Lnki.pro) + Caixa de Presente 3D (LenaMimos) -->
+      <div class="projects-duo">
+        <a href="https://lnki.pro" target="_blank">
+          <img id="viewLnki" src="assets/card_lnki.svg" alt="Lnki.pro • Elo de Corrente 3D" />
+        </a>
+        <a href="https://lenamimos.com.br" target="_blank">
+          <img id="viewLena" src="assets/card_lenamimos.svg" alt="Lena Mimos • Caixa de Presente 3D" />
+        </a>
       </div>
 
-      <div class="h-badges">
-        <div class="badge-card c-cyan">
-          <div class="b-label">ORGANIZAÇÃO</div>
-          <span id="hOrg" class="b-val edit-item" contenteditable="true">@WebuildSoft ↗</span>
-        </div>
-        <div class="badge-card c-magenta">
-          <div class="b-label">REPOSITÓRIOS</div>
-          <span id="hRepos" class="b-val edit-item" contenteditable="true">37+ Criados</span>
-        </div>
-        <div class="badge-card c-emerald">
-          <div class="b-label">DISPONIBILIDADE</div>
-          <span id="hAvail" class="b-val edit-item" contenteditable="true">Freelance &amp; Contratos</span>
-        </div>
-        <div class="badge-card c-purple">
-          <div class="b-label">ATUAÇÃO</div>
-          <span id="hBadge4" class="b-val edit-item" contenteditable="true">Full Stack Dev</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 2. PROJETOS EM DESTAQUE COM MODELOS 3D -->
-    <div class="section-title">
-      <span>🚀</span> PROJETOS EM DESTAQUE (MODELOS 3D ISOMÉTRICOS)
-    </div>
-
-    <div class="projects-grid">
-      <!-- Projeto 1: MyRifa (Moeda Pix 3D) -->
-      <div class="project-card">
-        <div class="p-head">
-          <div class="p-meta">
-            <div id="p1Cat" class="p-cat edit-item" contenteditable="true">PLATAFORMA SAAS</div>
-            <div id="p1Url" class="p-url edit-item" contenteditable="true">myrifa.com.br ↗</div>
-          </div>
-          <div class="p-3d-model" title="Moeda Pix 3D">
-            <svg width="40" height="40" viewBox="0 0 40 40">
-              <ellipse cx="20" cy="20" rx="16" ry="8" fill="#ca8a04" stroke="#fef08a" stroke-width="1.2" />
-              <polygon points="20,16 24,20 20,24 16,20" fill="#064e3b" stroke="#34d399" stroke-width="1" />
-            </svg>
-          </div>
-        </div>
-        <div id="p1Title" class="p-title edit-item" contenteditable="true">MyRifa • Campanhas &amp; Rifas Online</div>
-        <div id="p1Desc" class="p-desc edit-item" contenteditable="true">Arquitetura de pagamentos instantâneos com webhooks, isolamento de concorrência e alta escala.</div>
-        <div class="p-tags">
-          <span id="p1Tag1" class="tag-chip edit-item" contenteditable="true">Next.js 14</span>
-          <span id="p1Tag2" class="tag-chip edit-item" contenteditable="true">PostgreSQL</span>
-          <span id="p1Tag3" class="tag-chip edit-item" contenteditable="true">Mercado Pago</span>
-        </div>
+      <!-- Projeto Full: Smartphone 3D (Antigravity Mobile) -->
+      <div class="center-box">
+        <a href="https://github.com/WebuildSoft/antigravity-mobile-releases/releases/latest" target="_blank">
+          <img id="viewAntigravity" class="preview-card-img" src="assets/card_antigravity.svg" width="100%" alt="Antigravity • Smartphone 3D" />
+        </a>
       </div>
 
-      <!-- Projeto 2: WebuildSites (Monitor 3D) -->
-      <div class="project-card">
-        <div class="p-head">
-          <div class="p-meta">
-            <div id="p2Cat" class="p-cat edit-item" contenteditable="true">PLATAFORMA WEB</div>
-            <div id="p2Url" class="p-url edit-item" contenteditable="true">webuildsites.com.br ↗</div>
-          </div>
-          <div class="p-3d-model" title="Monitor 3D Isométrico">
-            <svg width="40" height="40" viewBox="0 0 40 40">
-              <polygon points="8,10 32,6 32,28 8,32" fill="#021526" stroke="#00f0ff" stroke-width="1.2" />
-              <polygon points="12,14 28,11 28,24 12,27" fill="#0c4a6e" stroke="#38bdf8" stroke-width="0.8" />
-            </svg>
-          </div>
-        </div>
-        <div id="p2Title" class="p-title edit-item" contenteditable="true">WebuildSites • Agência &amp; Software House</div>
-        <div id="p2Desc" class="p-desc edit-item" contenteditable="true">Desenvolvimento de sistemas corporativos, landing pages modernas e aplicações de alta conversão.</div>
-        <div class="p-tags">
-          <span id="p2Tag1" class="tag-chip edit-item" contenteditable="true">TypeScript</span>
-          <span id="p2Tag2" class="tag-chip edit-item" contenteditable="true">Tailwind CSS</span>
-          <span id="p2Tag3" class="tag-chip edit-item" contenteditable="true">Docker</span>
-        </div>
+      <!-- 4. RPG TROPHIES COM AS 4 GEMAS 3D ISOMÉTRICAS REAIS -->
+      <div class="profile-section-title">🏆 Conquistas &amp; Ranks do Desenvolvedor</div>
+
+      <div class="center-box">
+        <img class="preview-card-img" src="assets/trophies.svg" width="100%" alt="RPG Trophies" />
       </div>
 
-      <!-- Projeto 3: Lnki.pro (Elo de Corrente 3D) -->
-      <div class="project-card">
-        <div class="p-head">
-          <div class="p-meta">
-            <div id="p3Cat" class="p-cat edit-item" contenteditable="true">SAAS LINK MANAGEMENT</div>
-            <div id="p3Url" class="p-url edit-item" contenteditable="true">lnki.pro ↗</div>
-          </div>
-          <div class="p-3d-model" title="Elo de Corrente 3D Neon">
-            <svg width="40" height="40" viewBox="0 0 40 40">
-              <ellipse cx="16" cy="20" rx="10" ry="6" stroke="#3b82f6" stroke-width="2.5" fill="none" transform="rotate(-35 16 20)" />
-              <ellipse cx="24" cy="20" rx="10" ry="6" stroke="#60a5fa" stroke-width="2.5" fill="none" transform="rotate(35 24 20)" />
-            </svg>
-          </div>
-        </div>
-        <div id="p3Title" class="p-title edit-item" contenteditable="true">Lnki.pro • Bio &amp; Encurtador Inteligente</div>
-        <div id="p3Desc" class="p-desc edit-item" contenteditable="true">Encurtamento de URLs, analytics avançado de tráfego, QR Code dinâmico e agregação de links.</div>
-        <div class="p-tags">
-          <span id="p3Tag1" class="tag-chip edit-item" contenteditable="true">Go</span>
-          <span id="p3Tag2" class="tag-chip edit-item" contenteditable="true">Redis</span>
-          <span id="p3Tag3" class="tag-chip edit-item" contenteditable="true">Cloudflare</span>
-        </div>
-      </div>
+      <!-- 5. HISTÓRICO DE CONTRIBUIÇÕES SNAKE -->
+      <div class="profile-section-title">🐍 Histórico de Contribuições</div>
 
-      <!-- Projeto 4: LenaMimos (Caixa de Presente 3D) -->
-      <div class="project-card">
-        <div class="p-head">
-          <div class="p-meta">
-            <div id="p4Cat" class="p-cat edit-item" contenteditable="true">E-COMMERCE PERSONALIZADO</div>
-            <div id="p4Url" class="p-url edit-item" contenteditable="true">lenamimos.com.br ↗</div>
-          </div>
-          <div class="p-3d-model" title="Caixa de Presente 3D">
-            <svg width="40" height="40" viewBox="0 0 40 40">
-              <polygon points="20,8 32,14 20,20 8,14" fill="#831843" stroke="#f472b6" stroke-width="1.2" />
-              <polygon points="8,14 20,20 20,32 8,26" fill="#500724" stroke="#f472b6" stroke-width="1.2" />
-              <polygon points="20,20 32,14 32,26 20,32" fill="#700936" stroke="#f472b6" stroke-width="1.2" />
-            </svg>
-          </div>
-        </div>
-        <div id="p4Title" class="p-title edit-item" contenteditable="true">Lena Mimos • Presentes &amp; Personalizados</div>
-        <div id="p4Desc" class="p-desc edit-item" contenteditable="true">Plataforma de e-commerce e catálogo com cálculo dinâmico de frete e integração de pedidos via WhatsApp.</div>
-        <div class="p-tags">
-          <span id="p4Tag1" class="tag-chip edit-item" contenteditable="true">React</span>
-          <span id="p4Tag2" class="tag-chip edit-item" contenteditable="true">Stripe</span>
-          <span id="p4Tag3" class="tag-chip edit-item" contenteditable="true">Node.js</span>
-        </div>
-      </div>
-
-      <!-- Projeto 5: Antigravity Mobile (Full Width com Smartphone 3D) -->
-      <div class="project-card full-w">
-        <div class="p-head">
-          <div class="p-meta">
-            <div id="p5Cat" class="p-cat edit-item" style="color:#f472b6;" contenteditable="true">MOBILE APPLICATION &amp; SERVER RUNTIME</div>
-            <div id="p5Url" class="p-url edit-item" style="color:#00f0ff;" contenteditable="true">github.com/WebuildSoft/antigravity ↗</div>
-          </div>
-          <div class="p-3d-model" title="Smartphone 3D Isométrico">
-            <svg width="40" height="40" viewBox="0 0 40 40">
-              <polygon points="14,10 26,4 32,8 20,14" fill="#032541" stroke="#00f0ff" stroke-width="1" />
-              <polygon points="14,10 14,30 20,34 20,14" fill="#021526" stroke="#00f0ff" stroke-width="1" />
-              <polygon points="20,14 32,8 32,28 20,34" fill="#082f49" stroke="#38bdf8" stroke-width="1" />
-            </svg>
-          </div>
-        </div>
-        <div id="p5Title" class="p-title edit-item" contenteditable="true">Antigravity • Mobile Client &amp; Background Automation Server</div>
-        <div id="p5Desc" class="p-desc edit-item" contenteditable="true">Aplicativo mobile moderno integrado a um servidor em Go de alto rendimento com notificações push e sincronização em tempo real.</div>
-        <div class="p-tags">
-          <span id="p5Tag1" class="tag-chip edit-item" style="color:#67e8f9;" contenteditable="true">Go 1.24</span>
-          <span id="p5Tag2" class="tag-chip edit-item" style="color:#f472b6;" contenteditable="true">Flutter Client</span>
-          <span id="p5Tag3" class="tag-chip edit-item" style="color:#34d399;" contenteditable="true">WebSockets</span>
-        </div>
+      <div class="center-box">
+        <img class="preview-card-img" src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/output/github-contribution-grid-snake-dark.svg" width="100%" alt="Snake Game" />
       </div>
     </div>
 
-    <!-- 3. STACK DE PRODUÇÃO & CONEXÕES (50% / 50%) -->
-    <div class="section-title">
-      <span>⚡</span> STACK DE PRODUÇÃO &amp; CONEXÕES (50% / 50%)
-    </div>
-
-    <div class="split-grid">
-      <!-- Coluna 1: Stack -->
-      <div class="split-col">
-        <div class="split-title">
-          <span>🛠️ STACK TECNOLÓGICA</span>
-          <span style="color:#34d399;">PROD READY</span>
-        </div>
-        <div class="stack-group">
-          <div class="stack-lbl">FRONTEND</div>
-          <span id="stkFront" class="stack-val edit-item" contenteditable="true">React, Next.js 14, TypeScript, Tailwind CSS, Vue.js</span>
-        </div>
-        <div class="stack-group">
-          <div class="stack-lbl">BACKEND &amp; RUNTIME</div>
-          <span id="stkBack" class="stack-val edit-item" contenteditable="true">Go (Golang), Node.js, Express, Fastify, REST APIs</span>
-        </div>
-        <div class="stack-group">
-          <div class="stack-lbl">DEVOPS &amp; CLOUD</div>
-          <span id="stkCloud" class="stack-val edit-item" contenteditable="true">Docker, Cloudflare Workers, GitHub Actions, Nginx</span>
-        </div>
-        <div class="stack-group">
-          <div class="stack-lbl">BANCO DE DADOS</div>
-          <span id="stkDb" class="stack-val edit-item" contenteditable="true">PostgreSQL, Redis, MySQL, MongoDB, Prisma ORM</span>
-        </div>
-      </div>
-
-      <!-- Coluna 2: Conexões -->
-      <div class="split-col">
-        <div class="split-title">
-          <span>🌐 CONEXÕES OFICIAIS</span>
-          <span style="color:#f472b6;">ONLINE</span>
-        </div>
-        <div class="conn-item">
-          <span class="conn-label">PORTFÓLIO:</span>
-          <span id="connPort" class="conn-link edit-item" contenteditable="true">https://helenilsoon.github.io/portifolio/</span>
-        </div>
-        <div class="conn-item">
-          <span class="conn-label">E-MAIL:</span>
-          <span id="connEmail" class="conn-link edit-item" contenteditable="true">helenilsoon@gmail.com</span>
-        </div>
-        <div class="conn-item">
-          <span class="conn-label">GITHUB ORG:</span>
-          <span id="connOrg" class="conn-link edit-item" contenteditable="true">https://github.com/WebuildSoft</span>
-        </div>
-        <div class="conn-item">
-          <span class="conn-label">LOCALIZAÇÃO:</span>
-          <span id="connLoc" class="conn-link edit-item" contenteditable="true">Manaus, AM - Brasil (GMT-4)</span>
-        </div>
-        <div class="conn-item">
-          <span class="conn-label">SPOTIFY:</span>
-          <span id="connSpot" class="conn-link edit-item" contenteditable="true">Open for Coding Soundtrack</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. RPG TROPHIES -->
-    <div class="section-title">
-      <span>🏆</span> CONQUISTAS RPG &amp; RANKS
-    </div>
-
-    <div class="trophies-card">
-      <div class="gems-grid">
-        <div class="gem-box">
-          <div class="gem-icon">💎</div>
-          <div id="gem1Title" class="gem-title edit-item" contenteditable="true">Full Stack Architect</div>
-          <div id="gem1Rank" class="gem-rank edit-item" contenteditable="true">RANK: OURO S+</div>
-        </div>
-        <div class="gem-box">
-          <div class="gem-icon">🔷</div>
-          <div id="gem2Title" class="gem-title edit-item" contenteditable="true">SaaS Builder Master</div>
-          <div id="gem2Rank" class="gem-rank edit-item" contenteditable="true">RANK: PLATINUM S</div>
-        </div>
-        <div class="gem-box">
-          <div class="gem-icon">🛡️</div>
-          <div id="gem3Title" class="gem-title edit-item" contenteditable="true">Cloud &amp; DevOps Engineer</div>
-          <div id="gem3Rank" class="gem-rank edit-item" contenteditable="true">RANK: ESMERALDA A+</div>
-        </div>
-        <div class="gem-box">
-          <div class="gem-icon">⭐</div>
-          <div id="gem4Title" class="gem-title edit-item" contenteditable="true">Antigravity Specialist</div>
-          <div id="gem4Rank" class="gem-rank edit-item" contenteditable="true">RANK: MAGENTA X</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 5. BLOCO FINAL: README.MD COMPLETO GERADO -->
-    <div id="codeSection" class="final-output">
-      <div class="output-top">
-        <div class="output-heading">&gt; README.MD COMPLETO GERADO EM TEMPO REAL:</div>
-        <button id="btnCopyBottom" class="btn-main-copy">
+    <!-- BLOCO DE CÓDIGO README.MD COMPLETO -->
+    <div id="codeAreaWrap" class="code-box-section">
+      <div class="code-box-header">
+        <div class="code-box-title">&gt; README.MD COMPLETO PRONTO PARA COPIAR:</div>
+        <button id="btnBottomCopy" class="btn-copy-main">
           <span>📋</span> COPIAR README.MD COMPLETO
         </button>
       </div>
-      <textarea id="fullReadmeArea" class="readme-code" readonly></textarea>
+      <textarea id="fullMarkdownCode" class="readme-textarea" readonly></textarea>
     </div>
 
   </main>
 
-  <!-- Scripts: Menu + Gerador Completo -->
+  <!-- Script do Menu e Gerador de Markdown -->
   <script>
     // Menu nativo do portfólio
     var media = window.matchMedia("(max-width:600px)");
@@ -896,57 +535,46 @@
       if (iconClose) iconClose.style = "visibility:hidden;";
     }
 
-    // Gerador de Perfil Completo
-    const API_HOST = "https://neon-profile-cards.lnki.pro";
+    // Gerador de Markdown Completo
+    const API_ENGINE = "https://neon-profile-cards.lnki.pro";
 
-    function getVal(id) {
-      const el = document.getElementById(id);
-      return el ? el.innerText.trim() : "";
-    }
+    function updateProfileMarkdown() {
+      const name = document.getElementById("cfgName").value.trim();
+      const role = document.getElementById("cfgRole").value.trim();
+      const bio = document.getElementById("cfgBio").value.trim();
+      const org = document.getElementById("cfgOrg").value.trim();
+      const status = document.getElementById("cfgStatus").value.trim();
+      const loc = document.getElementById("cfgLoc").value.trim();
+      const portUrl = document.getElementById("cfgPortfolioUrl").value.trim();
+      const email = document.getElementById("cfgEmail").value.trim();
+      const orgUrl = document.getElementById("cfgOrgUrl").value.trim();
 
-    function generateFullReadme() {
-      // 1. Header Params
-      const hP = new URLSearchParams();
-      hP.set("name", getVal("hName"));
-      hP.set("role", getVal("hRole"));
-      hP.set("bio", getVal("hBio"));
-      hP.set("status", getVal("hStatus"));
-      hP.set("location", getVal("hLoc"));
-      hP.set("org", getVal("hOrg"));
-      hP.set("repos", getVal("hRepos"));
-      hP.set("availability", getVal("hAvail"));
-      hP.set("badge4", getVal("hBadge4"));
-      const headerUrl = `${API_HOST}/api/header?${hP.toString()}`;
+      // Monta a URL dinâmica do Header na API
+      const p = new URLSearchParams();
+      p.set("name", name);
+      p.set("role", role);
+      p.set("bio", bio);
+      p.set("org", org);
+      p.set("status", status);
+      p.set("location", loc);
+      const apiHeaderUrl = `${API_ENGINE}/api/header?${p.toString()}`;
 
-      // 2. Projects URLs
-      const mkProj = (cat, url, title, desc, t1, t2, t3, model) => {
-        const p = new URLSearchParams();
-        p.set("category", getVal(cat));
-        p.set("url", getVal(url));
-        p.set("title", getVal(title));
-        p.set("desc1", getVal(desc));
-        p.set("tag1", getVal(t1));
-        p.set("tag2", getVal(t2));
-        p.set("tag3", getVal(t3));
-        p.set("model", model);
-        return `${API_HOST}/api/project?${p.toString()}`;
-      };
+      // Atualiza o preview do header
+      const viewHeader = document.getElementById("viewHeader");
+      if (name !== "HELENILSON OLIVEIRA" || role !== "FULL STACK SOFTWARE DEVELOPER • WEB ARCHITECT") {
+        viewHeader.src = apiHeaderUrl;
+      } else {
+        viewHeader.src = "assets/header.svg";
+      }
 
-      const p1Img = mkProj("p1Cat", "p1Url", "p1Title", "p1Desc", "p1Tag1", "p1Tag2", "p1Tag3", "coin");
-      const p2Img = mkProj("p2Cat", "p2Url", "p2Title", "p2Desc", "p2Tag1", "p2Tag2", "p2Tag3", "monitor");
-      const p3Img = mkProj("p3Cat", "p3Url", "p3Title", "p3Desc", "p3Tag1", "p3Tag2", "p3Tag3", "chain");
-      const p4Img = mkProj("p4Cat", "p4Url", "p4Title", "p4Desc", "p4Tag1", "p4Tag2", "p4Tag3", "gift");
-      const p5Img = mkProj("p5Cat", "p5Url", "p5Title", "p5Desc", "p5Tag1", "p5Tag2", "p5Tag3", "mobile");
+      // Atualiza links das conexões no preview
+      document.getElementById("linkPort").href = portUrl;
+      document.getElementById("linkMail").href = `mailto:${email}`;
+      document.getElementById("linkOrg").href = orgUrl;
 
-      const p1Link = getVal("p1Url").replace(" ↗", "").startsWith("http") ? getVal("p1Url").replace(" ↗", "") : `https://${getVal("p1Url").replace(" ↗", "")}`;
-      const p2Link = getVal("p2Url").replace(" ↗", "").startsWith("http") ? getVal("p2Url").replace(" ↗", "") : `https://${getVal("p2Url").replace(" ↗", "")}`;
-      const p3Link = getVal("p3Url").replace(" ↗", "").startsWith("http") ? getVal("p3Url").replace(" ↗", "") : `https://${getVal("p3Url").replace(" ↗", "")}`;
-      const p4Link = getVal("p4Url").replace(" ↗", "").startsWith("http") ? getVal("p4Url").replace(" ↗", "") : `https://${getVal("p4Url").replace(" ↗", "")}`;
-      const p5Link = getVal("p5Url").replace(" ↗", "").startsWith("http") ? getVal("p5Url").replace(" ↗", "") : `https://${getVal("p5Url").replace(" ↗", "")}`;
-
-      // Montagem do README.md oficial idêntico à arquitetura
+      // Monta o código README.md completo do perfil com todas as tags oficiais
       const md = `<p align="center">
-  <img src="${headerUrl}" width="100%" alt="${getVal("hName")} - Banner Neon Cyberpunk" />
+  <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/header.svg" width="100%" alt="${name} - Banner Neon Cyberpunk" />
 </p>
 
 ---
@@ -955,21 +583,21 @@
 
 <table>
   <tr>
-    <!-- Coluna 1: Stack de Produção (50% / 425px) -->
+    <!-- Coluna 1: Stack de Produção Neon (50% / 425px) -->
     <td width="425" valign="top">
       <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/card_stack.svg" width="425" alt="Stack de Produção Neon" />
     </td>
-    <!-- Coluna 2: Conexões Oficiais & Redes (50% / 425px) -->
+    <!-- Coluna 2: Conexões Oficiais, Organização e Spotify (50% / 425px) -->
     <td width="425" valign="top">
-      <a href="${getVal("connPort")}" target="_blank">
+      <a href="${portUrl}" target="_blank">
         <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/btn_portfolio.svg" width="425" alt="Portfólio Live" />
       </a>
       <br/><br/>
-      <a href="mailto:${getVal("connEmail")}">
+      <a href="mailto:${email}">
         <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/btn_email.svg" width="425" alt="E-mail Direto" />
       </a>
       <br/><br/>
-      <a href="${getVal("connOrg")}" target="_blank">
+      <a href="${orgUrl}" target="_blank">
         <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/btn_org.svg" width="425" alt="Organização Oficial" />
       </a>
       <br/><br/>
@@ -987,26 +615,26 @@
 ### 🚀 Projetos em Destaque
 
 <p align="center">
-  <a href="${p1Link}" target="_blank">
-    <img src="${p1Img}" width="49%" alt="${getVal("p1Title")}" />
+  <a href="https://myrifa.com.br" target="_blank">
+    <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/card_myrifa.svg" width="49%" alt="MyRifa • Moeda Pix 3D" />
   </a>
-  <a href="${p2Link}" target="_blank">
-    <img src="${p2Img}" width="49%" alt="${getVal("p2Title")}" />
-  </a>
-</p>
-
-<p align="center">
-  <a href="${p3Link}" target="_blank">
-    <img src="${p3Img}" width="49%" alt="${getVal("p3Title")}" />
-  </a>
-  <a href="${p4Link}" target="_blank">
-    <img src="${p4Img}" width="49%" alt="${getVal("p4Title")}" />
+  <a href="https://www.webuildsites.com.br" target="_blank">
+    <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/card_webuildsites.svg" width="49%" alt="WebuildSites • Monitor 3D" />
   </a>
 </p>
 
 <p align="center">
-  <a href="${p5Link}" target="_blank">
-    <img src="${p5Img}" width="99%" alt="${getVal("p5Title")}" />
+  <a href="https://lnki.pro" target="_blank">
+    <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/card_lnki.svg" width="49%" alt="Lnki.pro • Elo de Corrente 3D" />
+  </a>
+  <a href="https://lenamimos.com.br" target="_blank">
+    <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/card_lenamimos.svg" width="49%" alt="Lena Mimos • Caixa de Presente 3D" />
+  </a>
+</p>
+
+<p align="center">
+  <a href="https://github.com/WebuildSoft/antigravity-mobile-releases/releases/latest" target="_blank">
+    <img src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/main/assets/card_antigravity.svg" width="99%" alt="Antigravity • Smartphone 3D" />
   </a>
 </p>
 
@@ -1020,44 +648,53 @@
 
 ---
 
+### 🐍 Histórico de Contribuições
+
 <p align="center">
-  <sub>Construído por <a href="${getVal("connPort")}">${getVal("hName")}</a> • Gerado via <a href="${API_HOST}">Neon Profile Cards</a></sub>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/helenilsoon/helenilsoon/output/github-contribution-grid-snake-dark.svg">
+    <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/helenilsoon/helenilsoon/output/github-contribution-grid-snake.svg">
+    <img alt="Snake Game Neon de Contribuições" src="https://raw.githubusercontent.com/helenilsoon/helenilsoon/output/github-contribution-grid-snake-dark.svg" width="100%">
+  </picture>
+</p>
+
+<p align="center">
+  <sub>Construído por <a href="${portUrl}">${name}</a> • WebuildSoft © 2026</sub>
 </p>`;
 
-      document.getElementById("fullReadmeArea").value = md;
+      document.getElementById("fullMarkdownCode").value = md;
     }
 
-    // Ouvir edição em qualquer campo
-    document.querySelectorAll(".edit-item").forEach(item => {
-      item.addEventListener("input", generateFullReadme);
-      item.addEventListener("blur", generateFullReadme);
+    // Ouvir alterações no formulário
+    const inputs = ["cfgName", "cfgRole", "cfgOrg", "cfgBio", "cfgStatus", "cfgLoc", "cfgPortfolioUrl", "cfgEmail", "cfgOrgUrl"];
+    inputs.forEach(id => {
+      document.getElementById(id).addEventListener("input", updateProfileMarkdown);
     });
 
-    // Ações de cópia
+    // Função de Cópia
     function copyReadme() {
-      const ta = document.getElementById("fullReadmeArea");
+      const ta = document.getElementById("fullMarkdownCode");
       ta.select();
       navigator.clipboard.writeText(ta.value);
 
-      const alertTop = document.getElementById("copyAlertTop");
+      const alertTop = document.getElementById("alertTopOk");
       alertTop.style.display = "inline";
       setTimeout(() => { alertTop.style.display = "none"; }, 4000);
     }
 
-    document.getElementById("btnCopyAll").addEventListener("click", copyReadme);
-    document.getElementById("btnCopyBottom").addEventListener("click", copyReadme);
+    document.getElementById("btnTopCopy").addEventListener("click", copyReadme);
+    document.getElementById("btnBottomCopy").addEventListener("click", copyReadme);
 
-    document.getElementById("btnScrollCode").addEventListener("click", () => {
-      document.getElementById("codeSection").scrollIntoView({ behavior: "smooth" });
+    document.getElementById("btnScrollToCode").addEventListener("click", () => {
+      document.getElementById("codeAreaWrap").scrollIntoView({ behavior: "smooth" });
     });
 
-    // Resetar
     document.getElementById("btnResetAll").addEventListener("click", () => {
       window.location.reload();
     });
 
     // Inicialização
-    generateFullReadme();
+    updateProfileMarkdown();
   </script>
 </body>
 </html>

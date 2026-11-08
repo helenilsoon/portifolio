@@ -1,0 +1,136 @@
+<svg width="100%" height="auto" viewBox="0 0 420 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Filtro de Brilho Neon Seguro -->
+    <filter id="neonCometGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur1" />
+      <feGaussianBlur stdDeviation="1.5" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Gradiente Neon Multicor Vibrante (Ciano -> Azul -> Violeta -> Magenta) -->
+    <linearGradient id="neonCometGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="30%" stop-color="#3b82f6" />
+      <stop offset="65%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <filter id="emeraldGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <linearGradient id="cardBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#047857" stop-opacity="0.3" />
+    </linearGradient>
+    <linearGradient id="goldCoinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#fef08a" />
+      <stop offset="50%" stop-color="#eab308" />
+      <stop offset="100%" stop-color="#854d0e" />
+    </linearGradient>
+    <linearGradient id="goldEdgeGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ca8a04" />
+      <stop offset="100%" stop-color="#713f12" />
+    </linearGradient>
+
+    <style>
+      .card-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 700; fill: #ffffff; }
+      .card-desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .tag-txt { font-family: 'Fira Code', monospace; font-size: 9px; font-weight: 600; fill: #34d399; }
+      .category { font-family: 'Fira Code', monospace; font-size: 10px; font-weight: bold; fill: #34d399; letter-spacing: 0.5px; }
+      .arrow { font-family: 'Fira Code', monospace; font-size: 11.5px; fill: #34d399; font-weight: bold; }
+
+      /* Rotação 3D da Moeda Pix no Eixo Y */
+      @keyframes flipCoin3D {
+        0% { transform: scaleX(1) translateY(0px); }
+        25% { transform: scaleX(0.2) translateY(-3px); }
+        50% { transform: scaleX(-1) translateY(0px); }
+        75% { transform: scaleX(-0.2) translateY(-3px); }
+        100% { transform: scaleX(1) translateY(0px); }
+      }
+      @keyframes floatAura {
+        0%, 100% { r: 30px; opacity: 0.2; }
+        50% { r: 38px; opacity: 0.5; }
+      }
+      .coin-3d {
+        animation: flipCoin3D 5s ease-in-out infinite;
+        transform-origin: 375px 42px;
+      }
+      .aura-coin {
+        animation: floatAura 3s ease-in-out infinite;
+      }
+    
+      /* Sincronizacao Cometa Neon: Passo 8 (49.98% a 57.12%) */
+      @keyframes cometSweep8 {
+        0%, 49.98% { stroke-dashoffset: 1120; opacity: 0; }
+        50.38% { opacity: 1; }
+        56.72% { opacity: 1; }
+        57.12%, 100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      .comet-beam {
+        stroke-dasharray: 168 952;
+        animation: cometSweep8 21s linear infinite;
+        pointer-events: none;
+      }
+    </style>
+  </defs>
+
+  <!-- Background Card -->
+  <rect x="1.5" y="1.5" width="417" height="143" rx="14" fill="#080c14" stroke="url(#cardBorder)" stroke-width="1.4" />
+  <rect class="comet-beam" x="1.5" y="1.5" width="417" height="143" rx="14" fill="none" stroke="url(#neonCometGrad)" stroke-width="2.6" stroke-linecap="round" filter="url(#neonCometGlow)" pointer-events="none" />
+
+  <!-- Ambient Light -->
+  <circle cx="375" cy="42" r="32" fill="#10b981" class="aura-coin" filter="url(#emeraldGlow)" />
+
+  <!-- Technical Icon Box Left -->
+  <rect x="20" y="18" width="28" height="28" rx="7" fill="#064e3b" fill-opacity="0.7" stroke="#10b981" stroke-opacity="0.5" stroke-width="1.2" />
+  <path d="M28 27H38M28 32H34M28 37H36" stroke="#34d399" stroke-width="1.8" stroke-linecap="round" />
+  
+  <text x="56" y="30" class="category">PLATAFORMA SAAS</text>
+  <text x="56" y="42" class="arrow">myrifa.com.br ↗</text>
+
+  <!-- ================= MOEDA PIX 3D ISOMÉTRICA DOURADA/ESMERALDA ================= -->
+  <!-- Sombra 3D da moeda -->
+  <ellipse cx="375" cy="64" rx="20" ry="5" fill="#000000" fill-opacity="0.6" filter="url(#emeraldGlow)" />
+
+  <!-- Grupo da Moeda 3D com rotação Y -->
+  <g class="coin-3d">
+    <!-- Borda Cilíndrica 3D (Espessura da Moeda) -->
+    <path d="M357 42 C357 51 393 51 393 42 V48 C393 57 357 57 357 48 Z" fill="url(#goldEdgeGrad)" stroke="#a16207" stroke-width="0.8" />
+    
+    <!-- Face Superior da Moeda 3D -->
+    <ellipse cx="375" cy="42" rx="18" ry="8.5" fill="url(#goldCoinGrad)" stroke="#fef08a" stroke-width="1.2" />
+    <ellipse cx="375" cy="42" rx="15" ry="7" fill="none" stroke="#ca8a04" stroke-width="0.8" stroke-dasharray="2 1.5" />
+    
+    <!-- Símbolo Pix em Relevo Dourado/Verde no Centro -->
+    <g transform="translate(375, 42)">
+      <!-- Losango Pix Central -->
+      <polygon points="0,-4 5,0 0,4 -5,0" fill="#064e3b" stroke="#34d399" stroke-width="0.9" />
+      <polygon points="0,-2 2.5,0 0,2 -2.5,0" fill="#34d399" />
+    </g>
+  </g>
+
+  <!-- Title -->
+  <text x="20" y="73" class="card-title">MyRifa • Campanhas &amp; Rifas Online</text>
+
+  <!-- Description -->
+  <text x="20" y="93" class="card-desc">Plataforma para campanhas com Pix automático, Supabase,</text>
+  <text x="20" y="108" class="card-desc">Cloudflare R2 e gestão de cotas em tempo real.</text>
+
+  <!-- Chips -->
+  <g transform="translate(20, 117)">
+    <rect width="66" height="20" rx="5" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-opacity="0.3" />
+    <text x="33" y="13.5" text-anchor="middle" class="tag-txt">Next.js 14</text>
+  </g>
+  <g transform="translate(92, 117)">
+    <rect width="66" height="20" rx="5" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-opacity="0.3" />
+    <text x="33" y="13.5" text-anchor="middle" class="tag-txt">Supabase</text>
+  </g>
+  <g transform="translate(164, 117)">
+    <rect width="92" height="20" rx="5" fill="#064e3b" fill-opacity="0.4" stroke="#10b981" stroke-opacity="0.3" />
+    <text x="46" y="13.5" text-anchor="middle" class="tag-txt">Pix Automático</text>
+  </g>
+</svg>

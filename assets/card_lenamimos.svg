@@ -1,0 +1,132 @@
+<svg width="100%" height="auto" viewBox="0 0 420 146" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Filtro de Brilho Neon Seguro -->
+    <filter id="neonCometGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3.5" result="blur1" />
+      <feGaussianBlur stdDeviation="1.5" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Gradiente Neon Multicor Vibrante (Ciano -> Azul -> Violeta -> Magenta) -->
+    <linearGradient id="neonCometGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="30%" stop-color="#3b82f6" />
+      <stop offset="65%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+    <filter id="fuchsiaGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="4" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+    <linearGradient id="cardBorder" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#d946ef" stop-opacity="0.8" />
+      <stop offset="50%" stop-color="#a855f7" stop-opacity="0.4" />
+      <stop offset="100%" stop-color="#ec4899" stop-opacity="0.7" />
+    </linearGradient>
+    <linearGradient id="giftTopGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f472b6" />
+      <stop offset="100%" stop-color="#c026d3" />
+    </linearGradient>
+    <style>
+      .card-title { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 14px; font-weight: 700; fill: #ffffff; }
+      .card-desc { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 11px; fill: #94a3b8; }
+      .tag-txt { font-family: 'Fira Code', monospace; font-size: 9px; font-weight: 600; fill: #f5d0fe; }
+      .category { font-family: 'Fira Code', monospace; font-size: 10px; font-weight: bold; fill: #e879f9; letter-spacing: 0.5px; }
+      .arrow { font-family: 'Fira Code', monospace; font-size: 11.5px; fill: #e879f9; font-weight: bold; }
+
+      /* Flutuação da Caixa de Presente 3D */
+      @keyframes floatGift {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-4px) rotate(2deg); }
+      }
+      .gift-3d {
+        animation: floatGift 3.6s ease-in-out infinite;
+        transform-origin: 375px 44px;
+      }
+    
+      /* Sincronizacao Cometa Neon: Passo 11 (71.40% a 78.54%) */
+      @keyframes cometSweep11 {
+        0%, 71.40% { stroke-dashoffset: 1120; opacity: 0; }
+        71.80% { opacity: 1; }
+        78.14% { opacity: 1; }
+        78.54%, 100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      .comet-beam {
+        stroke-dasharray: 168 952;
+        animation: cometSweep11 21s linear infinite;
+        pointer-events: none;
+      }
+    </style>
+  </defs>
+
+  <!-- Background Card -->
+  <rect x="1.5" y="1.5" width="417" height="143" rx="14" fill="#080c14" stroke="url(#cardBorder)" stroke-width="1.4" />
+  <rect class="comet-beam" x="1.5" y="1.5" width="417" height="143" rx="14" fill="none" stroke="url(#neonCometGrad)" stroke-width="2.6" stroke-linecap="round" filter="url(#neonCometGlow)" pointer-events="none" />
+
+  <!-- Ambient Light -->
+  <circle cx="375" cy="42" r="35" fill="#d946ef" fill-opacity="0.08" filter="url(#fuchsiaGlow)" />
+
+  <!-- Vector Shopping Bag Icon Left -->
+  <rect x="20" y="18" width="28" height="28" rx="7" fill="#701a75" fill-opacity="0.7" stroke="#d946ef" stroke-opacity="0.5" stroke-width="1.2" />
+  <rect x="26" y="27" width="16" height="13" rx="2" stroke="#f472b6" stroke-width="1.4" fill="none" />
+  <path d="M30 27V24C30 22.9 30.9 22 32 22H36C37.1 22 38 22.9 38 24V27" stroke="#f472b6" stroke-width="1.4" />
+
+  <text x="56" y="30" class="category">E-COMMERCE &amp; STORE</text>
+  <text x="56" y="42" class="arrow">lenamimos.com.br ↗</text>
+
+  <!-- ================= CAIXA DE PRESENTE 3D COM FITA EM RELEVO E LAÇO ================= -->
+  <!-- Sombra 3D da caixa -->
+  <ellipse cx="375" cy="64" rx="22" ry="6" fill="#000000" fill-opacity="0.5" filter="url(#fuchsiaGlow)" />
+
+  <g class="gift-3d">
+    <!-- Corpo da Caixa: Face Esquerda -->
+    <polygon points="358,36 375,44 375,60 358,52" fill="#701a75" stroke="#d946ef" stroke-width="1" />
+    <!-- Corpo da Caixa: Face Direita -->
+    <polygon points="375,44 392,36 392,52 375,60" fill="#831843" stroke="#ec4899" stroke-width="1" />
+
+    <!-- Fita Neon Vertical na Face Esquerda -->
+    <polygon points="364,39 369,41 369,57 364,55" fill="#f43f5e" />
+    <!-- Fita Neon Vertical na Face Direita -->
+    <polygon points="381,41 386,39 386,55 381,57" fill="#f43f5e" />
+
+    <!-- Tampa da Caixa Saliente em 3D (Ligeiramente maior) -->
+    <polygon points="375,27 394,36 375,45 356,36" fill="url(#giftTopGrad)" stroke="#fbcfe8" stroke-width="1.2" />
+
+    <!-- Fita Neon Cruzada no Topo da Tampa -->
+    <polygon points="364,32 368,34 386,40 382,38" fill="#f43f5e" />
+    <polygon points="382,34 386,32 368,40 364,38" fill="#f43f5e" />
+
+    <!-- Laço Volumétrico 3D Duplo no Topo -->
+    <!-- Alça Esquerda do Laço -->
+    <path d="M375 29 C368 20 362 23 372 28 Z" fill="#fb7185" stroke="#ffffff" stroke-width="0.8" filter="url(#fuchsiaGlow)" />
+    <!-- Alça Direita do Laço -->
+    <path d="M375 29 C382 20 388 23 378 28 Z" fill="#f43f5e" stroke="#ffffff" stroke-width="0.8" filter="url(#fuchsiaGlow)" />
+    <!-- Nó Central do Laço com Brilho Neon -->
+    <circle cx="375" cy="28.5" r="2.5" fill="#ffffff" filter="url(#fuchsiaGlow)" />
+  </g>
+
+  <!-- Title -->
+  <text x="20" y="73" class="card-title">Lena Mimos • Loja Virtual</text>
+
+  <!-- Description -->
+  <text x="20" y="93" class="card-desc">Loja virtual com checkout transparente Pix via Mercado Pago,</text>
+  <text x="20" y="108" class="card-desc">Cloudflare R2 Storage e cálculo dinâmico de frete.</text>
+
+  <!-- Chips -->
+  <g transform="translate(20, 117)">
+    <rect width="66" height="20" rx="5" fill="#701a75" fill-opacity="0.5" stroke="#d946ef" stroke-opacity="0.3" />
+    <text x="33" y="13.5" text-anchor="middle" class="tag-txt">Next.js</text>
+  </g>
+  <g transform="translate(92, 117)">
+    <rect width="90" height="20" rx="5" fill="#701a75" fill-opacity="0.5" stroke="#d946ef" stroke-opacity="0.3" />
+    <text x="45" y="13.5" text-anchor="middle" class="tag-txt">Mercado Pago</text>
+  </g>
+  <g transform="translate(188, 117)">
+    <rect width="86" height="20" rx="5" fill="#701a75" fill-opacity="0.5" stroke="#d946ef" stroke-opacity="0.3" />
+    <text x="43" y="13.5" text-anchor="middle" class="tag-txt">Cloudflare R2</text>
+  </g>
+</svg>

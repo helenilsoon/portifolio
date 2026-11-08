@@ -1,0 +1,61 @@
+<svg width="100%" height="auto" viewBox="0 0 425 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Filtro de Glow Neon Seguro Contra Clipping -->
+    <filter id="neonCometGlow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur1" />
+      <feGaussianBlur stdDeviation="1.5" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur1" />
+        <feMergeNode in="blur2" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <!-- Gradiente Neon Multicor Vibrante (Ciano -> Azul -> Roxo -> Magenta) -->
+    <linearGradient id="neonCometGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#00f0ff" />
+      <stop offset="30%" stop-color="#3b82f6" />
+      <stop offset="65%" stop-color="#a855f7" />
+      <stop offset="100%" stop-color="#ec4899" />
+    </linearGradient>
+
+    <style>
+      .btn-cat { font-family: 'Fira Code', monospace; font-size: 9.5px; font-weight: 700; fill: #f472b6; letter-spacing: 0.5px; }
+      .btn-url { font-family: 'Fira Code', monospace; font-size: 10px; fill: #94a3b8; }
+
+      /* Animação Sincronizada do Feixe Cometa Multicor (Card 6: 7.5s a 9.0s) */
+      @keyframes cometSweep6 {
+        0%, 35.714% { stroke-dashoffset: 933; opacity: 0; }
+        36.214% { opacity: 1; }
+        42.357% { opacity: 1; }
+        42.857%, 100% { stroke-dashoffset: 0; opacity: 0; }
+      }
+      .comet-beam {
+        stroke-dasharray: 170 763;
+        animation: cometSweep6 21s linear infinite;
+        pointer-events: none;
+      }
+    </style>
+  </defs>
+
+  <!-- Base Card Static Border -->
+  <rect x="1" y="1" width="423" height="54" rx="12" fill="#3b0821" fill-opacity="0.4" stroke="#ec4899" stroke-opacity="0.25" stroke-width="1.2" />
+  <rect class="comet-beam" x="1.5" y="1.5" width="423" height="54" rx="12" fill="none" stroke="url(#neonCometGrad)" stroke-width="2.6" stroke-linecap="round" filter="url(#neonCometGlow)" pointer-events="none" />
+  
+  <!-- Feixe Cometa Neon Multicor (Ciano, Azul, Roxo e Magenta) -->
+  <!-- Icon Box -->
+  <g transform="translate(14, 11)">
+    <rect width="34" height="34" rx="9" fill="#500724" stroke="#ec4899" stroke-opacity="0.5" stroke-width="1" />
+    <path d="M17 9C13.7 9 11 11.7 11 15C11 19.5 17 25 17 25C17 25 23 19.5 23 15C23 11.7 20.3 9 17 9ZM17 17C15.9 17 15 16.1 15 15C15 13.9 15.9 13 17 13C18.1 13 19 13.9 19 15C19 16.1 18.1 17 17 17Z" fill="#f472b6" />
+  </g>
+
+  <!-- Texts -->
+  <text x="58" y="24" class="btn-cat">LOCALIZAÇÃO &amp; DISPONIBILIDADE</text>
+  <text x="58" y="42" class="btn-url">Manaus, AM • Brasil (BRT / UTC-4)</text>
+
+  <!-- Right Pill -->
+  <g transform="translate(330, 18)">
+    <rect width="81" height="20" rx="6" fill="#4a044e" stroke="#ec4899" stroke-opacity="0.4" stroke-width="1" />
+    <text x="40.5" y="13.5" font-family="'Fira Code', monospace" font-size="8.5" fill="#fbcfe8" font-weight="700" text-anchor="middle">DISPONÍVEL</text>
+  </g>
+</svg>
